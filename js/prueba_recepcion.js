@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     function getVisita(){
 
-        /*let documentoTipo=$("#tipo_documento").val();
+        let documentoTipo=$("#tipo_documento").val();
         let numeroDocumento=$("#numero_documento").val();
         console.log(documentoTipo);
         console.log(numeroDocumento);
@@ -24,7 +24,7 @@ $(document).ready(function(){
         $.ajax({
 
             //url:endpoint+"?documentNumber="+numeroDocumento,
-            url:endpoint,+"/saludo",
+            url:endpoint+"/saludo",
             type:"GET",
             dataType:"json",
             complete:function(data){
@@ -39,14 +39,15 @@ $(document).ready(function(){
                 alert("peticion realizada:"+status)
             }
 
-            
+
+        })
+    }
+})
 
 
 
 
-        })*/
-
-        let documentoTipo=$("#tipo_documento").val();
+        /*let documentoTipo=$("#tipo_documento").val();
         let numeroDocumento=$("#numero_documento").val();
         console.log(documentoTipo);
         console.log(numeroDocumento);
@@ -74,24 +75,4 @@ $(document).ready(function(){
 
 
 
-        })
-
-
-
-
-    }
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-})
+        })*/

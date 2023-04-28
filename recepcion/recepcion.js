@@ -1,4 +1,4 @@
-//var endpoint="localhost:7001"
+var endpoint="localhost:7001"
 
 $(document).ready(function(){
 

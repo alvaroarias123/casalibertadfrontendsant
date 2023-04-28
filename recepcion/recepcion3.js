@@ -93,9 +93,9 @@ $(document).ready(function(){
         }else{
 
             guardarVisita()
-            alert("Visita guardada")
+
             guardarBandejaRec()
-            alert("Turno para acogida creado")
+
             borrar()
             
             location.href="recepcion.html"
@@ -133,7 +133,7 @@ $(document).ready(function(){
         var numeroDocumento=$("#numero_documento").val();
 
         let visita={
-            consentimiento_proces_datos:consemtimiento,
+            consentimiento_proces_datos:consentimiento,
             tipo_documento:$("#tipo_documento").val(),
             num_documento:$("#numero_documento").val(),
             nombres:$("#nombres").val(),
@@ -159,9 +159,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
+                    alert("Visita guardada")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... la visita no se guardó en basa datos!!!")
                 }
                 console.log(mensaje)
             }
@@ -192,9 +194,11 @@ $(document).ready(function(){
                 let mensaje =""
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
+                    alert("Turno para acogida creado")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... el turno no fué creado en base datos!!!!")
                 }
                 console.log(mensaje)
             }
