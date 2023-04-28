@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Acogida_Registro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <!--<link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="registro.js"></script>
+
+
+    <!--<link rel="shortcut icon" href="favicons/favicon-32x32.png" type="image/x-icon">-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+
+</head>
+
+
+<body style="font-family: 'Roboto', sans-serif;">
+    <div class="container-fluid">
+        <div class="row" style="background-color: #A41549;">
+            <div class="col d-flex justify-content-between pl-10 pr-0">
+                <div>
+                    <h4 class="text-white py-4">SIDIJUS CASA LIBERTAD </h4>
+                </div>
+                <div class="dropdown align-self-end">
+                    <button data-bs-toggle="tooltip" title="Administrador de cuenta"
+                        class="p-0 d-flex align-items-center data-toggle" type="button" id="" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="material-icons">account_circle</span>
+                        <span class="mx-2">Usuario</span>
+                        <span class="arrow-down material-icons">arrow_drop_down</span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Configuración</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb" style="background-color: white;">
+                    <li class="breadcrumb-item"><a href="/introduccion.html">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="/recepcion/recepcion.html">Recepción</a></li>
+                    <li class=breadcrumb-item>Acogida</a></li>
+
+                </ol>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!--<div class="" style="height: 50%; background-color: aqua;">-->
+
+            <div class=" mb-3">
+                <ol class="list-unstyled">
+                    <li class="border border-bottom-0" style="list-style: none;  margin: 0px;">
+                        <a href="/introduccion.html" class="btn btn-sm" style="margin: 5px; color: black;">Ayuda</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none; margin: 0px;">
+                        <a href="/administracion.html" class="btn btn-sm"
+                            style="margin: 5px; color: black;">Administración</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none;">
+                        <a href="/recepcion/recepcion.html" class="btn btn-sm"
+                            style="margin: 5px; color: black;">Recepción</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none; background-color: #049bf3fd">
+                        <a href="/acogida/bandeja.html" class="btn btn-sm"
+                            style="margin: 5px; color: black;">Acogida</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none;">
+                        <a href="/articulacion/bandeja_articulador.html" class="btn btn-sm"
+                            style="margin: 5px; color: black;">Articulador</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none;">
+                        <a href="/dimension.html" class="btn btn-sm" style="margin: 5px; color: black;">Dimensión</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none;">
+                        <a href="/agenda.html" class="btn btn-sm" style="margin: 5px; color: black;">Agenda</a>
+                    </li>
+                    <li class="border border-bottom-0" style="list-style: none;">
+                        <a href="/consulta.html" class="btn btn-sm" style="margin: 5px; color: black;">Consulta</a>
+                    </li>
+                    <li class="border" style="list-style: none;">
+                        <a href="/reportes.html" class="btn btn-sm" style="margin: 5px; color: black;">Reportes</a>
+                    </li>
+                </ol>
+            </div>
+
+            <div class=" col-xl-10 col-lg-9 col-md-9 ">
+                <!--<div class="col-lg-9">-->
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-xl-12 list-group list-group-horizontal">
+                        <a href="registro.html"
+                            class="list-group-item list-group-item-action text-center align-self-center"
+                            style="background-color: #049bf3fd; font-size: 14px;">Registro</a>
+                        <!--height: fit-content;--><!--height: auto; width: auto;-->
+                        <a href="datos_demograficos.html"
+                            class="list-group-item list-group-item-action list-group-item-dark text-center align-self-center"
+                            style="font-size: 14px; height: auto; min-width: fit-content;">Datos
+                            Demográficos</a><!--style="height: fit-content; min-width: fit-content;"-->
+                        <a href="vivienda.html"
+                            class="list-group-item list-group-item-action list-group-item-dark text-center align-self-center"
+                            style="font-size: 14px; width: auto; height: auto;">Vivienda</a><!--style="height: fit-content;"-->
+                        <a href="antecedentes.html"
+                            class="list-group-item list-group-item-action list-group-item-dark text-center align-self-center pt-0 pb-0"
+                            style="font-size: 15px; height: auto; min-width: fit-content;">Antecedentes<br> y
+                            Privación
+                            de la Libertad</a><!--style="height: fit-content;  min-width: fit-content;"-->
+                        <a href="programas.html"
+                            class="list-group-item list-group-item-action list-group-item-dark text-center align-self-center pt-0 pb-0"
+                            style="font-size: 15px; height: auto; min-width: fit-content;">Programas <br>Casa
+                            Libertad</a><!--style="height: fit-content;  min-width: fit-content;"-->
+                        <a href="formatos.html"
+                            class="list-group-item list-group-item-action list-group-item-dark text-center align-self-center"
+                            style="font-size: 14px; width: auto; height: auto;">Formatos</a><!--style="height: fit-content;"-->
+
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div>
+                        <h4 style="color: #A41549;">CARACTERIZACIÓN CIUDADANO</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form>
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <p style="font-size: medium; margin-bottom: 0; line-height: 100%;">¿El ciudadano
+                                        cumple las condiciones para ser beneficiario del
+                                        programa?</p>
+                                    <div class="row justify-content-end">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input radio" type="radio" value="s" id="radio1A"
+                                                name="radio">
+                                            <label class="form-check-label" for="radio1A">Si</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input radio" type="radio" value="n" id="radio2A"
+                                                name="radio">
+                                            <label class="form-check-label" for="radio2A">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div>
+                                        <label for="canal_atencion" class="form-label mb-0"
+                                            style="display: block;">Canal
+                                            de atención<strong>*</strong></label>
+                                        <div>
+                                            <select
+                                                class="form-select form-select-sm form-control form-control-sm bg-white"
+                                                id="canal_atencion">
+                                                <option value="0">SELECCIONE</option>
+                                                <option value="1">Presencial</option>
+                                                <option value="2">Telefónico</option>
+                                                <option value="3">Digital</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <p class="mb-0" style="line-height: 100%;">Ciudadano acepta terminos y condiciones?
+                                    </p>
+                                    <div class="form-check form-check-inline mt-1">
+                                        <input class="form-check-input" type="radio" value="s" id="radio1B"
+                                            name="radioX">
+                                        <label class="form-check-label" for="radio1B">Si</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" value="n" id="radio2B"
+                                            name="radioX">
+                                        <label class="form-check-label" for="radio2B">No</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="tipo_documento" class="form-label mb-0"
+                                            style="display:   block;">Tipo
+                                            de
+                                            documento<strong>*</strong></label>
+                                        <!--<input type="text" class="form-control form-control-sm"
+                                        style="background-color:  #A41549;" id="tipo_documento" disabled>-->
+                                        <select class="form-select form-select-sm form-control" id="tipo_documento"
+                                            style="background-color: #9F2257;" disabled>
+                                            <option value="0">SELECCIONE</option>
+                                            <option value="1">Cédula de ciudadanía</option>
+                                            <option value="2">Cédula de extranjería</option>
+                                            <option value="3">Tarjeta de identidad</option>
+                                            <option value="4">Pasaporte</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="numero_documento" class="form-label mb-0"
+                                            style="display: block;">Número
+                                            de
+                                            Documento<strong>*</strong></label>
+                                        <input type="text" class="form-control form-control-sm" id="numero_documento"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="nombres" class="form-label mb-0"
+                                            style="display: block; ">Nombres<strong>*</strong></label>
+                                        <input type="text" class="form-control form-control-sm" id="nombres"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="primer_apellido" class="form-label mb-0"
+                                            style="display:   block;">Primer Apellido<strong>*</strong></label>
+                                        <input type="text" class="form-control form-control-sm" id="primer_apellido"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="segundo_apellido" class="form-label mb-0"
+                                            style="display: block;">Segundo Apellido<strong>*</strong></label>
+                                        <input type="text" class="form-control form-control-sm" id="segundo_apellido"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="fecha_expedicion" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0 ">Fecha expedición documento<strong>*</strong></p>
+                                            <!-- style=" font-size: 92%;"-->
+                                        </label>
+                                        <input type="date" class="form-control form-control-sm hab"
+                                            id="fecha_expedicion">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-1">
+                                <div class="col-lg-12 col-md-12">
+                                    <div>
+                                        <label for="direccion1" class="form-label mb-0"
+                                            style="display: block; line-height: 90%;">Dirección<strong>*</strong><br>Ejemplo:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-2 col-md-2">
+                                    <div>
+                                        <label for="calle" class="mb-0">Dg*</label>
+                                        <select
+                                            class="form-select form-select-sm form-control form-control-bg bg-white hab"
+                                            id="calle">
+                                            <option value="0">SELECCIONE</option>
+                                            <option value="Calle">Calle</option>
+                                            <option value="Kr.">Kr.</option>
+                                            <option value="Diag.">Diag.</option>
+                                            <option value="Av.">Av.</option>
+                                            <option value="Transv.">Transv.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label class="mb-0">8*</label>
+                                        <input type="text" class="form-control hab" id="8">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1  col-md-1">
+                                    <div>
+                                        <label class="mb-0">A</label>
+                                        <select class="form-control hab" id="A"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label class="mb-0">BIS</label>
+                                        <select class="form-control hab"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0" style="display: block;">A</label>
+                                        <select class="form-control" hab></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0" style="display:   block;">SUR</label>
+                                        <select class="form-control hab" id="SUR">
+                                            <option value="0"></option>
+                                            <option value="Norte">Norte</option>
+                                            <option value="Sur">Sur</option>
+                                            <option value="Este">Este</option>
+                                            <option value="Oeste">Oeste</option>
+                                            <option value="Oriente">Oriente</option>
+                                            <option value="Occidente">Occidente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div class="mt-4">
+                                        <p class="text-center">#</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0"
+                                            style="display: block;">9<strong>*</strong></label>
+                                        <input type="text" class="form-control hab" id="9">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0" style="display:   block;">A</label>
+                                        <select class="form-control hab"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0"
+                                            style="display:   block;">25<strong>*</strong></label>
+                                        <input type="text" class="form-control hab" id="25">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1">
+                                    <div>
+                                        <label for="" class="form-label mb-0" style="display:   block;">ESTE</label>
+                                        <select class="form-control hab" id="ESTE">
+                                            <option value="0"></option>
+                                            <option value="Norte">Norte</option>
+                                            <option value="Sur">Sur</option>
+                                            <option value="Este">Este</option>
+                                            <option value="Oeste">Oeste</option>
+                                            <option value="Oriente">Oriente</option>
+                                            <option value="Occidente">Occidente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-2">
+
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="info_complementaria" class="form-label mb-0 mt-3"
+                                            style="display:   block; line-height: 100%;">Información
+                                            Complementaria<br>Ejemplo: Casa, apto, piso</label>
+                                        <input type="text" class="form-control form-control-sm mt-1 hab"
+                                            id="info_complementaria">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 mt-1">
+                                    <div>
+                                        <label class="form-label mb-0" for="direccion"
+                                            style="display: block;"><br></label>
+                                        <input type="text" class="form-control form-control-sm mt-4" id="direccion"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="localidad" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Localidad<strong>*</strong></p>
+                                        </label>
+                                        <select
+                                            class="form-select form-select-sm form-control form-control-sm bg-white hab"
+                                            id="localidad">
+                                            <option value="0">SELECCIONE</option>
+                                            <option value="Antonio Nariño">Antonio Nariño</option>
+                                            <option value="Barrios Unidos">Barrios Unidos</option>
+                                            <option value="Bosa">Bosa</option>
+                                            <option value="Chapinero">Chapinero</option>
+                                            <option value="Ciudad Bolivar">Ciudad Bolivar</option>
+                                            <option value="Engativa">Engativá</option>
+                                            <option value="Fontibon">Fontibón</option>
+                                            <option value="Kennedy">Kennedy</option>
+                                            <option value="La Candelaria">La Candelaria</option>
+                                            <option value="Los Martires">Los Mártires</option>
+                                            <option value="Puente Aranda">Puente Aranda</option>
+                                            <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                            <option value="San Cristobal">San Cristobal</option>
+                                            <option value="Santa Fe">Santa Fe</option>
+                                            <option value="Suba">Suba</option>
+                                            <option value="Sumapaz">Sumapáz</option>
+                                            <option value="Teusaquillo">Teusaquillo</option>
+                                            <option value="Tunjuelito">Tunjuelito</option>
+                                            <option value="Usaquen">Usaquén</option>
+                                            <option value="Usme">Usme</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="barrio" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Barrio de Residencia<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="barrio">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="estrato" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Estrato Socioeconómico<strong>*</strong></p>
+                                        </label>
+                                        <select
+                                            class="form-select form-select-sm form-control form-control-sm bg-white hab"
+                                            id="estrato">
+                                            <option value="0">SELECCIONE</option>
+                                            <option value="-0">-0</option>
+                                            <option value="-1">-1</option>
+                                            <option value="-2">-2</option>
+                                            <option value="-3">-3</option>
+                                            <option value="-4">-4</option>
+                                            <option value="-5">-5</option>
+                                            <option value="-6">-6</option>
+                                            <option value="Sin estratificacion">Sin estratificación</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="tel_fijo" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Teléfono Fijo</p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="tel_fijo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="celular_1" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Teléfono Celular 1<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="celular_1"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="celular_2" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Teléfono Celular 2<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="celular_2"
+                                            style="background-color:  #A41549;" disabled>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="email" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Correo Electrónico</p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="nom_cont_usu" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Nombre Contacto Usuario<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="nom_cont_usu">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="prim_apell" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Primer Apellido<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="prim_apell">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="seg_apell" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Segundo Apellido<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="seg_apell">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="cel_numero" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Celular Contacto<strong>*</strong></p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="cel_numero">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <label for="parentesco" class="form-label mb-0" style="display: block;">
+                                            <p class="mb-0">Parentesco</p>
+                                        </label>
+                                        <input type="text" class="form-control form-control-sm hab" id="parentesco">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5 justify-content-center">
+                                <div class="text-center">
+                                    <button class="btn" type="button" id="seleccione_guardar"
+                                        style="background-color: #A41549; color: white;">SIGUIENTE</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col">
+                                    <label for="observaciones" class="form-label">Observaciones:</label>
+                                    <textarea class="form-control" rows="5" cols="130" id="observaciones"></textarea>
+                                    <!--si no está dentro de un formulario, se especificará  cols="130"-->
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center mt-5">
+                                <div class="col-lg-3" style="text-align: center;">
+                                    <button type="button" id="button_guarda" class="btn btn-primary"
+                                        style="background-color: #A41549; width: 250px;">GUARDAR</button>
+                                </div>
+                            </div>
+
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="mt-5">
+
+                <ul class="nav mt-5 justify-content-center" style="background-color: #9F2257; width: 45px;">
+                    <li class="nav-item my-2">
+                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cambiar nivel de contraste"
+                            type="button">
+                            <span class="material-icons" style="color: #A41549;">contrast
+                            </span>
+                        </button>
+                    </li>
+                    <li class="nav-item my-2">
+                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Aumentar tamaño de fuente"
+                            type="button">
+                            <span class="material-icons" style="color: #A41549;">text_increase
+                            </span>
+                        </button>
+                    </li>
+                    <li class="nav-item my-2">
+                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Disminuir tamaño de fuente"
+                            type="button">
+                            <span class="material-icons" style="color: #9F2257;">text_decrease
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row justify-content-center m-3">
+        <div class="col-lg-12" style="text-align: center;">
+            Casa Libertad | &copy; Copyright Secretaría Distrital de Seguridad, Convivencia y Justicia de Bogotá,
+            2023
+        </div>
+    </div>
+
+    </div>
+
+</body>
