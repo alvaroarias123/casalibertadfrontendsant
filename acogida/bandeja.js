@@ -1,4 +1,4 @@
-const endpoint="localhost:7001/bandejarec"
+const endpoint="localhost:7001"
 
 $(document).ready(function(){
 
@@ -9,7 +9,7 @@ $(document).ready(function(){
 
         $.ajax({
 
-            url:endpoint+"/all",
+            url:endpoint+"/bandejarec/all",
             type:"GET",
             dataType:"json",
             success:function(respuesta){
@@ -58,7 +58,7 @@ $(document).ready(function(){
         }
         $.ajax({
 
-            url:endpoint+"/actualizar",
+            url:endpoint+"/bandaco/actualizar",
             type:"PUT",
             data:JSON.stringify(info),
             dataType:'json',
@@ -68,9 +68,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo accion con exito"
+                    alert("Se guardó cambio de status correctamente!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... No se guardó el cambio de status (de atender a atendiendo)!!!")
                 }
                 console.log(mensaje)
             }

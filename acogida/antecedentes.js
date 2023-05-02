@@ -162,7 +162,7 @@ $(document).ready(function(){
         }
         else{
             guardarAntecedentes();
-            alert("Se ha guardado Antecedentes");
+            //alert("Se ha guardado Antecedentes");
         }
     }
 
@@ -249,9 +249,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo antecedentes con exito"
+                    alert("Se guardó Antecedentes con éxito!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... No se guardó Antecedentes en base datos!!!")
                 }
                 console.log(mensaje)
             }

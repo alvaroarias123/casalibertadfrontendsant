@@ -114,9 +114,11 @@ function guardarFormulario(){
             let mensaje=""
             if(data.status=="201"){
                 mensaje="guardo registro con exito"
+                alert("Se guardó registro con éxito!!")
             }
             else{
                 mensaje="problemas al guardar en base datos"
+                alert("Ups... Problemas!! No se guardó registro en la base datos!!")
             }
             console.log(mensaje)
         }
@@ -187,7 +189,7 @@ function validarCampos(){
     else{
         
         guardarInformacion()
-        alert("Información guardada")
+        //alert("Información guardada")
         //borrar()
         window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         
@@ -301,9 +303,11 @@ function guardarInformacion(){
             let mensaje=""
             if(data.status=="201"){
                 mensaje="guardo registro con exito"
+                alert("Se guardó registro con éxito!!")
             }
             else{
                 mensaje="problemas al guardar en base datos"
+                alert("Ups... Problemas!! No se guardó registro en la base datos!!")
             }
             console.log(mensaje)
         }

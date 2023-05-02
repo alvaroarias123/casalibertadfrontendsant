@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     //alert("Funciona");
 
-    traerProgramas();
+    traerProgramas(numero);
 
     $("#btn_anterior").click(function(){
         validarCampos2();
@@ -67,7 +67,7 @@ $(document).ready(function(){
         }
         else{
             guardarProgramas(numero);
-            alert("Se ha guardado Programas")
+            //alert("Se ha guardado Programas")
             window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }
@@ -92,13 +92,13 @@ $(document).ready(function(){
         }
         else{
             guardarProgramas(numero);
-            alert("Se ha guardado Programas")
+            //alert("Se ha guardado Programas")
             window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         }        
     }
 
 
-    function traerProgramas(){
+    function traerProgramas(numero){
 
         $.ajax({
             url:endpoint+"/programas/consulta?numeroDocumento="+numero,
@@ -113,7 +113,7 @@ $(document).ready(function(){
 
 
 
-    function guardarProgramas(){
+    function guardarProgramas(numero){
 
             let informacion={
                 otr_medio_conoc:$("#medio").val(), 
@@ -135,9 +135,11 @@ $(document).ready(function(){
                     let mensaje=""
                     if(data.status=="201"){
                         mensaje="guardo Programas con exito"
+                        alert("Se guardó programas con éxito!!!")
                     }
                     else{
                         mensaje="problemas al guardar en base datos"
+                        alert("Ups... Problemas!! No se guardó programas en base datos!!")
                     }
                     console.log(mensaje)
                 }

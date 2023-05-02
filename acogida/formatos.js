@@ -19,7 +19,7 @@ $(document).ready(function(){
 
         validarFormulario();
         guardarBandejaArticulacion();
-        alert("Se guardo info en Bandeja Articulación");
+        //alert("Se guardo info en Bandeja Articulación");
         window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
@@ -55,8 +55,8 @@ $(document).ready(function(){
         else if($("#estado").val()=="0"){
         }
         else{
-            guardarFormatos();
-            alert("Se guardo Formatos");
+            guardarFormatos(numero);
+            //alert("Se guardo Formatos");
 
         }
     }
@@ -92,7 +92,7 @@ $(document).ready(function(){
         $("#estado").val(items.estado);
     }
 
-    function guardarFormatos(){
+    function guardarFormatos(numero){
 
         let informacion={
             consentimiento_firma:$("#consentimiento_firma").val(),
@@ -117,9 +117,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo Formatos con exito"
+                    alert("Se guardó Formatos con éxito!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... No se ha guardado Formatos en base datos!!")
                 }
                 console.log(mensaje)
             }
@@ -148,9 +150,11 @@ $(document).ready(function(){
                 let mensaje =""
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
+                    alert("Se creó turno en articulación con éxito!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... No se ha guardado turno en Articulación")
                 }
                 console.log(mensaje)
             }

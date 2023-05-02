@@ -27,7 +27,7 @@ $(document).ready(function(){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
             guardarViviendas();
-            alert("Se ha guardado viviendas")
+            //alert("Se ha guardado viviendas")
             window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }
@@ -39,7 +39,7 @@ $(document).ready(function(){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
             guardarViviendas();
-            alert("Se ha guardado viviendas")
+            //alert("Se ha guardado viviendas")
             window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }        
@@ -60,9 +60,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo viviendas con exito"
+                    alert("Se guardó viviendas con éxito!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... Problemas!! no se guardó viviendas en base datos!!")
                 }
                 console.log(mensaje)
             }

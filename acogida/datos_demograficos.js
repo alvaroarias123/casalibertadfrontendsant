@@ -139,8 +139,8 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem();
-            alert("Se ha guardado Datos Demográficos")
+            guardarFormularioDatosDem(numero);
+            //alert("Se ha guardado Datos Demográficos")
             window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             
             
@@ -186,14 +186,14 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem();
-            alert("Se ha guardado Datos Demográficos")
+            guardarFormularioDatosDem(numero);
+            //alert("Se ha guardado Datos Demográficos")
             window.location='registro.html?numeroDocumento='+numero;
             
         }
     }
 
-    function guardarFormularioDatosDem(){
+    function guardarFormularioDatosDem(numero){
         if($("#pais").val()==""){pais="Colombia"}else{pais=$("#pais").val()};
         if($("#otra_etnia").val()==""){especif=null}else(especif=$("#otra_etnia").val());
         if($("#radio1").prop("checked")==true){victima="si"}else{victima="no"};
@@ -246,9 +246,11 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo datos demográficos con exito"
+                    alert("Se guardó Datos Demográficos con éxito!!!")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
+                    alert("Ups... No se guardaron Datos Demográficos en base datos!!!")
                 }
                 console.log(mensaje)
             }

@@ -106,8 +106,8 @@ $(document).ready(function(){
 
     function getUsuario(num,tipos){
 
-        var numeroDocumento = numero;
-        var documentoTipo=tipo;
+        //var numeroDocumento = numero;
+        //var documentoTipo=tipo;
 
         $.ajax({
 
