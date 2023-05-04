@@ -1,4 +1,5 @@
-var endpoint="localhost:7001";
+//var endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -75,10 +76,9 @@ $(document).ready(function(){
     }
 
     function pintarRespuesta(items){
-
-        $("#consentimiento_firma").val(items.consentimiento_firma);
-        $("#consentimiento_firma_habeas").val(items.trat_datos_firma);
-        $("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma);
+        if(items.consentimiento_firma==null){$("#consentimiento_firma").val("0")}else{$("#consentimiento_firma").val(items.consentimiento_firma);}
+        if(items.trat_datos_firma==null){$("#consentimiento_firma_habeas").val("0")}else{$("#consentimiento_firma_habeas").val(items.trat_datos_firma)}
+        if(items.autoriz_imagen_firma==null){$("#consentimiento_uso_imagen").val("0")}else{$("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma)}
         if(items.adjunto_concentimiento!=null){
             $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento);
         }else{$("#adjunto_concentimiento_firma").val("");}
@@ -88,8 +88,9 @@ $(document).ready(function(){
         if(items.adjunto_uso_imagen!=null){
             $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen);
         }else{$("#adjunto_uso_imagen").val("");}
-        $("#medio_att_no_presencial").val(items.medio_att_no_presencial);
-        $("#estado").val(items.estado);
+        if(items.medio_att_no_presencial==null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
+        if(items.estado==null){$("#estado").val("0")}else{$("#estado").val(items.estado)}
+        
     }
 
     function guardarFormatos(numero){
@@ -102,7 +103,7 @@ $(document).ready(function(){
             adjunto_trat_datos:$("#adjunto_datos_habeas").val(),
             adjunto_uso_imagen:$("#adjunto_uso_imagen").val(),
             medio_att_no_presencial:$("#medio_att_no_presencial").val(),
-            estado:$("#estado") .val()  
+            estado:$("#estado").val()  
         }
 
         $.ajax({

@@ -1,4 +1,5 @@
-const endpoint="localhost:7001";
+//const endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -120,7 +121,7 @@ $(document).ready(function(){
         else if($("#etnia").val()=="0"){
             alert("seleccione Etnia")
         }
-        else if($("#etnia").val()=="7" && $("#otra_etnia").val()=="" ){
+        else if($("#etnia").val()=="7" && $("#otra_etnia").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#sexo").val()=="0"){
@@ -167,7 +168,7 @@ $(document).ready(function(){
         else if($("#etnia").val()=="0"){
             alert("seleccione Etnia")
         }
-        else if($("#etnia").val()=="7" && $("#otra_etnia").val()=="" ){
+        else if($("#etnia").val()=="7" && $("#otra_etnia").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#sexo").val()=="0"){
@@ -195,7 +196,7 @@ $(document).ready(function(){
 
     function guardarFormularioDatosDem(numero){
         if($("#pais").val()==""){pais="Colombia"}else{pais=$("#pais").val()};
-        if($("#otra_etnia").val()==""){especif=null}else(especif=$("#otra_etnia").val());
+        if($("#otra_etnia").val().trim()==""){especif=null}else(especif=$("#otra_etnia").val().trim());
         if($("#radio1").prop("checked")==true){victima="si"}else{victima="no"};
         if($("#disc2").prop("checked")==true){ayuda_mov="no";ayuda_lect="no";ayuda_trad="no"};//ojo 
         if($("#disc1").prop("checked")==true){discapac="si"}else{discapac="no"};
@@ -250,7 +251,7 @@ $(document).ready(function(){
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardaron Datos Demográficos en base datos!!!")
+                    alert("Ups... No se guardaron Datos Demográficos en base datos!!! Comuníquese con el Administrador")
                 }
                 console.log(mensaje)
             }

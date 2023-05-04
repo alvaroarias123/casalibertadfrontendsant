@@ -1,4 +1,5 @@
-const endpoint="localhost:7001"
+//const endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 

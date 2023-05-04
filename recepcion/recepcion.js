@@ -1,4 +1,5 @@
-var endpoint="localhost:7001"
+//var endpoint="localhost:7001"
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -30,13 +31,34 @@ $(document).ready(function(){
 
     $("#verificar").click(function(){
 
+        var numeroDocum =$("#numero_documento").val().trim()
+
         if($("#tipo_documento").val()=="0"){
-            alert("Seleccione Tipo de Documento")
+            alert("Seleccione Tipo de Documento");
         }
-        else if($("#numero_documento").val()==""){
+        else if(numeroDocum==""){
             alert("Ingrese numero de documento")
-        }else{
-            var numeroDocumento =$("#numero_documento").val()
+        }
+        else if($("#tipo_documento").val()!= 4 && isNaN(numeroDocum)){
+            alert("Por favor introduce solo numeros en Numero de Documento");
+        }
+        else if($("#tipo_documento").val()==1 && numeroDocum.length>=11){
+            alert("el campo Numero de Documento acepta máximo 10 dígitos")
+        }
+        else if($("#tipo_documento").val()==2 && numeroDocum.length>=7){
+            alert("Cedula de extranjería debe ser máximo de 6 dígitos")
+        }
+        else if($("#tipo_documento").val()==3 && numeroDocum.length>=11){
+            alert("Tarjeta de Identidad debe ser máximo de 10 dígitos")
+        }
+        else if($("#tipo_documento").val()==4 && numeroDocum.length>=17){
+            alert("Pasaporte debe ser máximo de 16 dígitos")
+        }
+        else if($("#tipo_documento").val()==4 && !isNaN(numeroDocum)){
+            alert("Pasaporte debe ser alfanumérico")
+        }
+        else{
+            var numeroDocumento =$("#numero_documento").val().trim()
             var tipoDocumento = $("#tipo_documento").val()
 
             borrar()

@@ -1,4 +1,5 @@
-var endpoint="localhost:7001";
+//var endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -53,7 +54,7 @@ $(document).ready(function(){
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
         }
-        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val()=="" ){
+        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#expectativa").val()=="0"){
@@ -62,7 +63,7 @@ $(document).ready(function(){
         else if($("#nombre_funcionario").val()=="0"){
             alert("Seleccione Funcionario que registró")
         }
-        else if($("#nombre_funcionario").val()=="3" && $("#nombres_otro_func").val()=="" ){
+        else if($("#nombre_funcionario").val()=="3" && $("#nombres_otro_func").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else{
@@ -78,7 +79,7 @@ $(document).ready(function(){
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
         }
-        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val()=="" ){
+        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#expectativa").val()=="0"){
@@ -87,7 +88,7 @@ $(document).ready(function(){
         else if($("#nombre_funcionario").val()=="0"){
             alert("Seleccione Funcionario que registró")
         }
-        else if($("#nombre_funcionario").val()=="3" && $("#nombres_otro_func").val()=="" ){
+        else if($("#nombre_funcionario").val()=="3" && $("#nombres_otro_func").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else{
@@ -116,11 +117,11 @@ $(document).ready(function(){
     function guardarProgramas(numero){
 
             let informacion={
-                otr_medio_conoc:$("#medio").val(), 
-                nombres_otro_func:$("#otr-medio-conoc").val(), 
-                medios_conoc_uniqid:$("#expectativa").val(), 
-                expectativas_uniqid:$("#nombre_funcionario").val(),
-                funcs_registro_uniqid:$("#nombres_otro_func").val() 
+                otr_medio_conoc:$("#otr-medio-conoc").val().trim(), 
+                nombres_otro_func:$("#nombres_otro_func").val().trim(), 
+                medios_conoc_uniqid:$("#medio").val(), 
+                expectativas_uniqid:$("#expectativa").val(),
+                funcs_registro_uniqid:$("#nombre_funcionario").val() 
             }
 
             $.ajax({
@@ -139,10 +140,20 @@ $(document).ready(function(){
                     }
                     else{
                         mensaje="problemas al guardar en base datos"
-                        alert("Ups... Problemas!! No se guardó programas en base datos!!")
+                        alert("Ups... Problemas!! No se guardó programas en base datos!! Comuníquese con el Administrador")
                     }
                     console.log(mensaje)
                 }
             })
+    }
+
+    function pintarRespuesta(items){
+
+
+        if(items.otr_medio_conoc==null){$("#otr-medio-conoc".val(""))}else{$("#otr-medio-conoc".val(items.otr_medio_conoc))}
+        if(items.nombres_otro_func==null){$("#nombres_otro_func").val("")}else{$("#nombres_otro_func").val(items.nombres_otro_func)}
+        if(items.medios_conoc_uniqid=="0"){$("#medio").val("0")}else($("#medio").val(items.medios_conoc_uniqid))
+        if(items.expectativas_uniqid=="0"){$("#expectativa".val("0"))}else{$("#expectativa".val(items.expectativas_uniqid))}
+        if(items.funcs_registro_uniqid=="0"){$("#nombre_funcionario").val("0")}else{$("#nombre_funcionario").val(items.funcs_registro_uniqid)}
     }
 })

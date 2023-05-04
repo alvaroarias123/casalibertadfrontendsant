@@ -1,4 +1,6 @@
-var endpoint="localhost:7001"
+//var endpoint="localhost:7001";
+//var endpoint="";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -50,7 +52,7 @@ $(document).ready(function(){
         if($("#razon").val()=="13"){
             $("#otra_razon").attr('disabled',false);
         }
-        else if($("#razon").val()=="3")
+        if($("#razon").val()=="3")
             $("#modulo").attr('disabled',false);
 
     }
@@ -71,22 +73,34 @@ $(document).ready(function(){
             alert("seleccionar autorización de tratamiento de datos");
         }
         else if($("#tipo_documento").val()=="0"){
-            alert("Seleccionar 'Tipo de Documento'");
+            alert("Seleccionar 'Tipo Documento'");
         }
-        else if($("#numero_documento").val()==""){
+        else if($("#numero_documento").val().trim()==""){
             alert("Llenar campo 'Número de Documento'");
         }
-        else if($("#nombres").val()==""){
+        else if($("#nombres").val().trim()==""){
             alert("Llenar campo 'Nombres'");
         }
-        else if($("#primer_apellido").val()==""){
+        else if($("#primer_apellido").val().trim()==""){
             alert("Llenar campo 'Primer apellido'");
         }
-        else if($("#cel_1").val()==""){
+        else if($("#cel_1").val().trim()==""){
             alert("Llenar campo 'Telefono 1'");
+        }
+        else if($("#cel_1").val().trim().length!=10){
+            alert("Teléfono 1 debe ser de 10 dígitos")
+        }
+        else if($("#cel_2").val().trim()!="" && $("#cel_2").val().trim().length!=10){
+            alert("Teléfono 2 debe ser de 10 dígitos")
         }
         else if($("#razon").val()=="0"){
             alert("Seleccionar 'razón visitas");
+        }
+        else if($("#razon").val()=="13" && $("#otra_razon").val().trim()==""){
+            alert("especifique otra razón")
+        }
+        else if($("#razon").val()=="3" && $("#modulo").val()=="0"){
+            alert("Seleccione con cual Dimensión tiene cita/Taller")
         }
         else if($("#canal").val()=="0"){
             alert("Seleccionar 'Canal de atención");
@@ -94,11 +108,11 @@ $(document).ready(function(){
 
             guardarVisita()
 
-            guardarBandejaRec()
+            //guardarBandejaRec()
 
-            borrar()
+            //borrar()
             
-            location.href="recepcion.html"
+            //location.href="recepcion.html"
             
         }
 
@@ -124,8 +138,8 @@ $(document).ready(function(){
     function guardarVisita(){
 
         if($("#radio1").prop("checked")){consentimiento="s"}else{consentimiento="n"};
-        if($("#segundo_apellido").val()==""){segundoApellido = null}else{segundoApellido=$("#segundo_apellido").val()};
-        if($("#cel_2").val()==""){cel2=0}else{cel2=$("#cel_2").val()};
+        if($("#segundo_apellido").val().trim()==""){segundoApellido = null}else{segundoApellido=$("#segundo_apellido").val().trim()};
+        if($("#cel_2").val().trim()==""){cel2=0}else{cel2=$("#cel_2").val().trim()};
         if($("#otra_razon").val()==""){otraRazon=null}else{otraRazon=$("#otra_razon").val()};
         if($("#modulo").val()=="0"){citaDimension=0}else{citaDimension=$("#modulo").val()};
         
@@ -136,10 +150,10 @@ $(document).ready(function(){
             consentimiento_proces_datos:consentimiento,
             tipo_documento:$("#tipo_documento").val(),
             num_documento:$("#numero_documento").val(),
-            nombres:$("#nombres").val(),
-            primer_apellido:$("#primer_apellido").val(),
+            nombres:$("#nombres").val().trim(),
+            primer_apellido:$("#primer_apellido").val().trim(),
             segundo_apellido:segundoApellido,
-            cel_1:$("#cel_1").val(),
+            cel_1:$("#cel_1").val().trim(),
             cel_2:cel2,
             razon_visitas_uniqid:$("#razon").val(),
             otra_razon:otraRazon,
@@ -159,11 +173,12 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
-                    alert("Visita guardada")
+                    guardarBandejaRec()
+                    alert("Visita guardada con éxito")
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... la visita no se guardó en basa datos!!!")
+                    alert("Ups... la visita no se guardó en base datos. Comuníquese con el administrador!!!")
                 }
                 console.log(mensaje)
             }
@@ -172,12 +187,12 @@ $(document).ready(function(){
 
     function guardarBandejaRec(){
 
-        if($("#segundo_apellido").val()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val()};
+        if($("#segundo_apellido").val().trim()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val().trim()};
 
         let bandeja={
             numeroDocumento:numero,
-            nombres:$("#nombres").val(),
-            primer_apellido:$("#primer_apellido").val(),
+            nombres:$("#nombres").val().trim(),
+            primer_apellido:$("#primer_apellido").val().trim(),
             segundoApellido:segApellido,
             accion:"Si"
         }
@@ -195,6 +210,8 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
                     alert("Turno para acogida creado")
+                    borrar()
+                    location.href="recepcion.html"
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
@@ -227,11 +244,24 @@ $(document).ready(function(){
         if(items.nombres!=null){
             $("#nombres").val(items.nombres);
             $("#primer_apellido").val(items.primer_apellido);
-            $("#segundo_apellido").val(items.segundo_apellido);
+            if($("#segundo_apellido").val(items.segundo_apellido)!=null){
+                $("#segundo_apellido").val(items.segundo_apellido);
+            }else{
+                $("#segundo_apellido").val("");
+            }       
             $("#cel_1").val(items.cel_1);
-            $("#cel_2").val(items.cel_2);
+            if($("#cel_2").val(items.cel_2)!=null){
+                $("#cel_2").val(items.cel_2);
+            }else{
+                $("#cel_2").val("");
+            }
             $("#razon").val(items.razon_visitas_uniqid);
-            $("#otra_razon").val(items.otra_razon);
+            if($("#otra_razon").val(items.otra_razon)!=null){
+                $("#otra_razon").val(items.otra_razon);
+            }else{
+                $("#otra_razon").val("");
+            }
+            
             $("#modulo").val(items.citas_solicitadas_uniqid);
             $("#canal").val(items.canal_de_atencion_uniqid);
         }else{

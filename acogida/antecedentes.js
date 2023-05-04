@@ -1,4 +1,5 @@
-var endpoint="localhost:7001";
+//var endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -134,12 +135,12 @@ $(document).ready(function(){
         else if(($("#sisipec1").prop('checked') || $("#sisipec2").prop('checked') || $("#sisipec3").prop('checked')) !=true){
             alert("seleccione una opción de Sisipec");
         }
-        else if($("#info_ultimo_proceso").val()==""){
+        else if($("#info_ultimo_proceso").val().trim()==""){
             alert("llene casilla Información del último proceso");
         }
         else if($("#fecha_libertad").val()==""){
             alert("Seleccione Fecha de Libertad");
-        }else if($("#meses_condena").val()==""){
+        }else if($("#meses_condena").val().trim()==""){
             alert("Llene ¿Cuanto tiempo duró privado de la Libertad?")
         }
         else if($("#establecimiento").val()=="0"){
@@ -183,11 +184,11 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-        $("#fecha_libertad").val(items.fecha_libertad);
-        $("#meses_condena").val(items.meses_condena);
-        $("#info_ultimo_proceso").val(items.ultimoProceso);
-        $("#aprehend_adolesc").val(items.aprehend_adolesc);
-        $("#aprehend_mayor").val(items.aprehend_mayor);
+        if(items.fecha_libertad==null){$("#fecha_libertad").val("")}else{$("#fecha_libertad").val(items.fecha_libertad)}
+        if(items.meses_condena){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
+        if(items.ultimoProceso==null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
+        if(items.aprehend_adolesc==null){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
+        if(items.aprehend_mayor==null){$("#aprehend_mayor").val("0")}else{$("#aprehend_mayor").val(items.aprehend_mayor)}
         if(items.proceso_actual=="si"){$("#proceso_actual1").attr('checked',true)};
         if(items.proceso_actual=="no"){$("#proceso_actual2").attr('checked',true)};
         if(items.personeria=="si"){$("#personeria1").attr('checked',true)}else if(items.personeria=="no"){$("#personeria2").attr('checked',true)}else{$("#personeria3").attr('checked',true)};
@@ -197,10 +198,10 @@ $(document).ready(function(){
         if(items.policia=="si"){$("#policia1").attr('checked',true)}else if(items.policia=="no"){$("#policia2").attr('checked',true)}else{$("#policia3").attr('checked',true)};
         if(items.codigo_seguridad=="si"){$("#codigo_seguridad1").attr('checked',true)}else if(items.codigo_seguridad=="no"){$("#codigo_seguridad2").attr('checked',true)}else{$("#codigo_seguridad3").attr('checked',true)};
         if(items.sisipec=="si"){$("#sisipec1").attr('checked',true)}else if(items.sisipec=="no"){$("#sisipec2").attr('checked',true)}else{$("#sisipec3").attr('checked',true)};
-        $("#info_ultimo_proceso").val(items.ultimoProceso)
-        $("#establecimiento").val(items.estab_carcs_uniqid)
-        $("#situacion").val(items.sit_jurid_uniqid)
-        $("#delito").val(items.delitos_uniqid)
+        if(items.estab_carcs_uniqid==null){$("#establecimiento").val("0")}else[$("#establecimiento").val(items.estab_carcs_uniqid)]
+        if(items.sit_jurid_uniqid){$("#situacion").val(items.sit_jurid_uniqid)}else{$("#situacion").val(items.sit_jurid_uniqid)}
+        if(items.delitos_uniqid==null){$("#delito").val("")}else{$("#delito").val(items.delitos_uniqid)}
+
     }
 
 
@@ -220,8 +221,8 @@ $(document).ready(function(){
 
         let informacion={
             fecha_libertad:$("#fecha_libertad").val(),
-            meses_condena:$("#meses_condena").val(),
-            ultimoProceso:$("#info_ultimo_proceso").val(),
+            meses_condena:$("#meses_condena").val().trim(),
+            ultimoProceso:$("#info_ultimo_proceso").val().trim(),
             aprehend_adolesc:$("#aprehend_adolesc").val(),
             aprehend_mayor:$("#aprehend_mayor").val(),
             proceso_actual:procesoAct,

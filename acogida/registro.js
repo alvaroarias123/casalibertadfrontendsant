@@ -1,4 +1,5 @@
-var endpoint="localhost:7001";
+//var endpoint="localhost:7001";
+var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
@@ -118,7 +119,7 @@ function guardarFormulario(){
             }
             else{
                 mensaje="problemas al guardar en base datos"
-                alert("Ups... Problemas!! No se guardó registro en la base datos!!")
+                alert("Ups... Problemas!! No se guardó registro en la base datos!! Comuníquese con el Administrador")
             }
             console.log(mensaje)
         }
@@ -134,57 +135,44 @@ function validarCampos(){
     else if($("#radio1B").prop("checked")==false && $("#radio2B").prop("checked")==false ){
         alert("seleccione aceptación términos y condiciones");
     }
-    else if($("#fecha_expedicion").val==""){
+    else if($("#fecha_expedicion").val()==""){
         alert("Selleccionar fecha expedición documento")
     }
     else if($("#calle").val()=="0"){
         alert("Seleccione opción en desplegable dirección ")
     }
-    else if($("#8").val()==""){
+    else if($("#8").val().trim()==""){
         alert("llenar casilla 8*")
     }
     else if($("#SUR").val()=="0"){
         alert("Seleccione opción en desplegable sur")
     }
-    else if($("#9").val()==""){
+    else if($("#9").val().trim()==""){
         alert("llenar casilla 9*")
     }
-    else if($("#25").val()==""){
+    else if($("#25").val().trim()==""){
         alert("llenar casilla 25*")
     }
     else if($("#ESTE").val()=="0"){
         alert("Seleccione opción en desplegable ESTE")
     }
-    else if($("#info_complementaria").val()==""){
+    else if($("#info_complementaria").val().trim()==""){
         alert("Llenar casilla Información Complementaria")
     }
     else if($("#localidad").val()=="0"){
         alert("Seleccione opción en Localidad")
     }
-    else if($("#barrio").val()==""){
+    else if($("#barrio").val().trim()==""){
         alert("Llenar casilla Barrio de Residencia")
     }
     else if($("#estrato").val()=="0"){
         alert("Seleccione opción Estrato Socioeconómico")
     }
-    else if($("#tel_fijo").val()==""){
-        alert("Llenar casilla Telefono Fijo")
-    }
-    else if($("#email").val()==""){
-        alert("Llenar casilla Correo Electrónico")
-    }
-    else if($("#nom_cont_usu").val()==""){
+    else if($("#nom_cont_usu").val().trim()==""){
         alert("Llenar casilla Nombre Contacto Usuario")
     }
-    else if($("#prim_apell").val()==""){
+    else if($("#prim_apell").val().trim()==""){
         alert("Llenar casilla Primer Apellido")
-    }else if($("#seg_apell").val()==""){
-        alert("Llenar casilla Segundo Apellido")
-    }
-    else if($("#cel_numero").val()==""){
-        alert("Llenar casilla Celular Contacto")
-    }else if($("#parentesco").val()==""){
-        alert("Seleccionar casilla Parentesco")
     }
     else{
         
@@ -263,31 +251,31 @@ function guardarInformacion(){
     if($("#radio1B").prop("checked")){aceptacion="s"}else{aceptacion="n"};
 
     let registro={
-        numero_documento:$("#numero_documento").val(),
+        numero_documento:$("#numero_documento").val().trim(),
         condiciones_programa:condiciones,
         canal_atencion:$("#canal_atencion").val(),
         aceptacion_terminos:aceptacion,
         tipo_documento:$("#tipo_documento").val(),
-        num_documento:$("#numero_documento").val(),
-        nombres:$("#nombres").val(),
-        primer_apellido:$("#primer_apellido").val(),
-        segundo_apellido:$("#segundo_apellido").val(),
+        num_documento:$("#numero_documento").val().trim(),
+        nombres:$("#nombres").val().trim(),
+        primer_apellido:$("#primer_apellido").val().trim(),
+        segundo_apellido:$("#segundo_apellido").val().trim(),
         fecha_expedicion:$("#fecha_expedicion").val(),
         direccion:$("#calle").val(),
-        info_complementaria:$("#info_complementaria").val(),
-        verificacion_direccion:$("#direccion").val(),
+        info_complementaria:$("#info_complementaria").val().trim(),
+        verificacion_direccion:$("#direccion").val().trim(),
         localidad:$("#localidad").val(),
-        barrio:$("#barrio").val(),
+        barrio:$("#barrio").val().trim(),
         estrato:$("#estrato").val(),
-        tel_fijo:$("#tel_fijo").val(),
-        cel_1:$("#celular_1").val(),
-        cel_2:$("#celular_2").val(),
-        correo:$("#email").val(),
-        nombre_contacto:$("#nom_cont_usu").val(),
-        primer_apellido_cont:$("#prim_apell").val(),
-        segundo_apellido_cont:$("#seg_apell").val(),
-        cel_contacto:$("#cel_numero").val(),
-        parentesco:$("#parentesco").val(),
+        tel_fijo:$("#tel_fijo").val().trim(),
+        cel_1:$("#celular_1").val().trim(),
+        cel_2:$("#celular_2").val().trim(),
+        correo:$("#email").val().trim(),
+        nombre_contacto:$("#nom_cont_usu").val().trim(),
+        primer_apellido_cont:$("#prim_apell").val().trim(),
+        segundo_apellido_cont:$("#seg_apell").val().trim(),
+        cel_contacto:$("#cel_numero").val().trim(),
+        parentesco:$("#parentesco").val().trim(),
         observaciones:null
         //observaciones:$("#observaciones").val(null)-----------------------------------------
     }
