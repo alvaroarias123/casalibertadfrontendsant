@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -16,21 +16,55 @@ $(document).ready(function(){
 
     traerFormatos(numero);
 
-    $("#btn_anterior").click(function(){
+    $("#boton_aumentar").click(function(){
 
-        validarFormulario();
-        guardarBandejaArticulacion();
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
+
+    $("#btn_anterior").click(function(){
+        var sitio=2;
+        validarFormulario(sitio);
+        //guardarBandejaArticulacion();
         //alert("Se guardo info en Bandeja Articulación");
-        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        //window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
     $("#btn_guardar").click(function(){
-
-        validarFormulario();
-        location.href="/introduccion.html";
+        var sitio=1;
+        validarFormulario(sitio);
+        //guardarBandejaArticulacion();
+        //location.href="/introduccion.html";
     })
 
-    function validarFormulario(){   
+    function validarFormulario(sitio){   
 
         if($("#consentimiento_firma").val()=="0"){
             alert("Seleccione opción ¿Usuario firmó consentimiento informado");
@@ -56,7 +90,7 @@ $(document).ready(function(){
         else if($("#estado").val()=="0"){
         }
         else{
-            guardarFormatos(numero);
+            guardarFormatos(numero,sitio);
             //alert("Se guardo Formatos");
 
         }
@@ -93,7 +127,7 @@ $(document).ready(function(){
         
     }
 
-    function guardarFormatos(numero){
+    function guardarFormatos(numero,sitio){
 
         let informacion={
             consentimiento_firma:$("#consentimiento_firma").val(),
@@ -119,6 +153,8 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo Formatos con exito"
                     alert("Se guardó Formatos con éxito!!")
+                    guardarBandejaArticulacion(sitio);
+                    
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
@@ -129,7 +165,7 @@ $(document).ready(function(){
         })
     }
 
-    function guardarBandejaArticulacion(){
+    function guardarBandejaArticulacion(sitio){
 
         let bandeja={
             numeroDocumento:numero,
@@ -152,10 +188,15 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
                     alert("Se creó turno en articulación con éxito!!")
+                    if(sitio==1){
+                        location.href="/introduccion.html";
+                    }else{
+                        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se ha guardado turno en Articulación")
+                    alert("Ups... No se ha guardado turno en Articulación. Comuníquese con el Administrador!!!")
                 }
                 console.log(mensaje)
             }

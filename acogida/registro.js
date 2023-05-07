@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -8,6 +8,39 @@ $(document).ready(function(){
     const urlParams = new URLSearchParams(valores1);
     var numero=urlParams.get("numeroDocumento");
     
+
+    $("#boton_aumentar").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
 
 //alert("prueba")
 
@@ -48,6 +81,162 @@ $("#button_guarda").click(function(){
     
 })
 
+$("#calle").blur(function(){
+    var cal = $("#calle").val();
+    $("#direccion").val(cal);
+})
+
+
+$("#8").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    $("#direccion").val(cal+" "+nu);
+    
+})
+
+$("#A").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    $("#direccion").val(cal+" "+nu+" "+som);
+    
+})
+
+$("#BIS").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis);
+    
+})
+
+$("#AA").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa);
+    
+})
+
+$("#SUR").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur);
+    
+})
+
+$("#9").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me);
+    
+})
+
+$("#AAA").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa);
+    
+})
+
+$("#25").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    var mal=$("#25").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal);
+    
+})
+
+$("#ESTE").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    var mal=$("#25").val();
+    var este=$("#ESTE").val();
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este);
+    
+})
+
+$("#info_complementaria").focus(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    var mal=$("#25").val();
+    var este=$("#ESTE").val();
+
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este);
+})
+
+$("#info_complementaria").blur(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    var mal=$("#25").val();
+    var este=$("#ESTE").val();
+    var info=$("#info_complementaria").val();
+
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este+"   "+info);
+    
+})
+
+$("#localidad").focus(function(){
+    var cal = $("#calle").val();
+    var nu = $("#8").val();
+    var som = $("#A").val(); 
+    var bis = $("#BIS").val();
+    var aa=$("#AA").val();
+    var sur=$("#SUR").val();
+    var me=$("#9").val();
+    var aaa=$("#AAA").val();
+    var mal=$("#25").val();
+    var este=$("#ESTE").val();
+    var info=$("#info_complementaria").val();
+
+    $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este+"   "+info);
+    
+})
+
+
+
 
 function validarCamposMinimos(){   
 
@@ -62,7 +251,7 @@ function validarCamposMinimos(){
     }
     else{
         guardarFormulario();
-        location.href="/introduccion.html";
+        //location.href="/introduccion.html";
 
     }
 
@@ -116,6 +305,7 @@ function guardarFormulario(){
             if(data.status=="201"){
                 mensaje="guardo registro con exito"
                 alert("Se guardó registro con éxito!!")
+                location.href="/introduccion.html";
             }
             else{
                 mensaje="problemas al guardar en base datos"
@@ -144,17 +334,11 @@ function validarCampos(){
     else if($("#8").val().trim()==""){
         alert("llenar casilla 8*")
     }
-    else if($("#SUR").val()=="0"){
-        alert("Seleccione opción en desplegable sur")
-    }
     else if($("#9").val().trim()==""){
         alert("llenar casilla 9*")
     }
     else if($("#25").val().trim()==""){
         alert("llenar casilla 25*")
-    }
-    else if($("#ESTE").val()=="0"){
-        alert("Seleccione opción en desplegable ESTE")
     }
     else if($("#info_complementaria").val().trim()==""){
         alert("Llenar casilla Información Complementaria")
@@ -168,18 +352,24 @@ function validarCampos(){
     else if($("#estrato").val()=="0"){
         alert("Seleccione opción Estrato Socioeconómico")
     }
+    else if($("#email").val().trim()!=""){
+        validarCorreo($("#email").val().trim())
+    }
     else if($("#nom_cont_usu").val().trim()==""){
         alert("Llenar casilla Nombre Contacto Usuario")
     }
     else if($("#prim_apell").val().trim()==""){
         alert("Llenar casilla Primer Apellido")
     }
+    else if($("#cel_numero").val().trim()!="" && $("#cel_numero").val().trim().length!=10){
+        alert("Celular Contacto debe ser de 10 dígitos")
+    }
     else{
         
         guardarInformacion()
         //alert("Información guardada")
         //borrar()
-        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         
     }
 
@@ -292,6 +482,7 @@ function guardarInformacion(){
             if(data.status=="201"){
                 mensaje="guardo registro con exito"
                 alert("Se guardó registro con éxito!!")
+                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }
             else{
                 mensaje="problemas al guardar en base datos"
@@ -302,6 +493,15 @@ function guardarInformacion(){
     })
 
 }
+
+function validarCorreo(email){
+    var expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    var esValido=expReg.test(email);
+    if(esValido==false){
+        alert("Correo no es válido!!!")
+    }
+}
+
 
 
 })

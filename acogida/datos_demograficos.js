@@ -1,5 +1,5 @@
 //const endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -12,6 +12,39 @@ $(document).ready(function(){
     var segundoApellido=urlParams.get("segundoApellido");
 
     //alert("Hola")
+
+    $("#boton_aumentar").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
 
     traerPaises();
     traerDatosDemograficos(numero);
@@ -57,11 +90,13 @@ $(document).ready(function(){
     })
 
     $("#btn_siguiente").click(function(){
-        validarCampos1();
+        var sitio=1;
+        validarCampos1(sitio);
     })
 
     $("#btn_anterior").click(function(){
-        validarCampos2();
+        var sitio=2;
+        validarCampos2(sitio);
     })
 
     function deshabilitarCajaDiscapacidad(){
@@ -104,7 +139,7 @@ $(document).ready(function(){
 
 
 
-    function validarCampos1(){
+    function validarCampos1(sitio){
 
         if($("#fecha_nacimiento").val()==""){
             alert("seleccione Fecha de Nacimiento")
@@ -140,9 +175,9 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem(numero);
+            guardarFormularioDatosDem(numero,sitio);
             //alert("Se ha guardado Datos Demográficos")
-            window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            //window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             
             
     
@@ -151,7 +186,7 @@ $(document).ready(function(){
 
     }
 
-    function validarCampos2(){
+    function validarCampos2(sitio){
 
         if($("#fecha_nacimiento").val()==""){
             alert("seleccione Fecha de Nacimiento")
@@ -187,14 +222,14 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem(numero);
+            guardarFormularioDatosDem(numero,sitio);
             //alert("Se ha guardado Datos Demográficos")
-            window.location='registro.html?numeroDocumento='+numero;
+            //window.location='registro.html?numeroDocumento='+numero;
             
         }
     }
 
-    function guardarFormularioDatosDem(numero){
+    function guardarFormularioDatosDem(numero,sitio){
         if($("#pais").val()==""){pais="Colombia"}else{pais=$("#pais").val()};
         if($("#otra_etnia").val().trim()==""){especif=null}else(especif=$("#otra_etnia").val().trim());
         if($("#radio1").prop("checked")==true){victima="si"}else{victima="no"};
@@ -248,6 +283,12 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo datos demográficos con exito"
                     alert("Se guardó Datos Demográficos con éxito!!!")
+                    if(sitio==1){
+                        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }
+                    else{
+                        window.location='registro.html?numeroDocumento='+numero;
+                    }
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
@@ -271,7 +312,7 @@ $(document).ready(function(){
         })
     }
 
-    function pintarResultado(items){   //hay que revisar este para que no pinte el resultado null!!!!!
+    function pintarResultado(items){   
 
         if(items.fecha_nacimiento==null){$("#fecha_nacimiento").val("")}else{$("#fecha_nacimiento").val(items.fecha_nacimiento)};
         if(items.nacionalidad==null){$("#nacionalidad").val("0")}else{$("#nacionalidad").val(items.nacionalidad)};

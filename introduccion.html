@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Inicio</title>
+    <title>Introduccion</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="css/styles.css">-->
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/introduccion.js"></script>
 
 
     <!--<link rel="shortcut icon" href="favicons/favicon-32x32.png" type="image/x-icon">-->
@@ -48,7 +48,7 @@
 
 </head>
 
-<body style="font-family: 'Roboto', sans-serif;">
+<body style="font-family: 'Roboto', sans-serif;" id="cuerpo">
     <div class="container-fluid">
         <div class="row" style="background-color: #A41549;">
             <div class="col d-flex justify-content-between pl-10 pr-0">
@@ -148,21 +148,21 @@
                 <ul class="nav mt-5 justify-content-center" style="background-color: #A41549; width: 45px;">
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cambiar nivel de contraste"
-                            type="button">
+                            type="button" id="contraste">
                             <span class="material-icons" style="color: #A41549;">contrast
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Aumentar tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_aumentar">
                             <span class="material-icons" style="color: #A41549;">text_increase
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Disminuir tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_disminuir">
                             <span class="material-icons" style="color: #A41549;">text_decrease
                             </span>
                         </button>

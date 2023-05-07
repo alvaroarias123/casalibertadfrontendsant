@@ -53,7 +53,7 @@
 </head>
 
 
-<body style="font-family: 'Roboto', sans-serif;">
+<body style="font-family: 'Roboto', sans-serif;" id="cuerpo">
     <div class="container-fluid">
         <div class="row" style="background-color: #A41549;">
             <div class="col d-flex justify-content-between pl-10 pr-0">
@@ -325,26 +325,57 @@
                                 <div class="col-lg-1  col-md-1">
                                     <div>
                                         <label class="mb-0">A</label>
-                                        <select class="form-control hab" id="A"></select>
+                                        <select class="form-control hab" id="A">
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                            <option value="J">J</option>
+                                            <option value="K">K</option>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     <div>
                                         <label class="mb-0">BIS</label>
-                                        <select class="form-control hab"></select>
+                                        <select class="form-control hab" id="BIS">
+                                            <option value=""></option>
+                                            <option value="BIS">BIS</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     <div>
                                         <label for="" class="form-label mb-0" style="display: block;">A</label>
-                                        <select class="form-control" hab></select>
+                                        <select class="form-control" hab id="AA">
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                            <option value="J">J</option>
+                                            <option value="K">K</option>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-1 col-md-1">
                                     <div>
                                         <label for="" class="form-label mb-0" style="display:   block;">SUR</label>
                                         <select class="form-control hab" id="SUR">
-                                            <option value="0"></option>
+                                            <option value=""></option>
                                             <option value="Norte">Norte</option>
                                             <option value="Sur">Sur</option>
                                             <option value="Este">Este</option>
@@ -369,7 +400,21 @@
                                 <div class="col-lg-1 col-md-1">
                                     <div>
                                         <label for="" class="form-label mb-0" style="display:   block;">A</label>
-                                        <select class="form-control hab"></select>
+                                        <select class="form-control hab" id="AAA">
+                                            <option value=""></option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="I">I</option>
+                                            <option value="J">J</option>
+                                            <option value="K">K</option>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-1 col-md-1">
@@ -383,7 +428,7 @@
                                     <div>
                                         <label for="" class="form-label mb-0" style="display:   block;">ESTE</label>
                                         <select class="form-control hab" id="ESTE">
-                                            <option value="0"></option>
+                                            <option value=""></option>
                                             <option value="Norte">Norte</option>
                                             <option value="Sur">Sur</option>
                                             <option value="Este">Este</option>
@@ -413,7 +458,7 @@
                                         <label class="form-label mb-0" for="direccion"
                                             style="display: block;"><br></label>
                                         <input type="text" class="form-control form-control-sm mt-4" id="direccion"
-                                            style="background-color:  #A41549;" disabled>
+                                            style="background-color:  #A41549; color: white;" disabled>
                                     </div>
                                 </div>
 
@@ -598,21 +643,21 @@
                 <ul class="nav mt-5 justify-content-center" style="background-color: #9F2257; width: 45px;">
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cambiar nivel de contraste"
-                            type="button">
+                            type="button" id="contraste">
                             <span class="material-icons" style="color: #A41549;">contrast
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Aumentar tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_aumentar">
                             <span class="material-icons" style="color: #A41549;">text_increase
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Disminuir tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_disminuir">
                             <span class="material-icons" style="color: #9F2257;">text_decrease
                             </span>
                         </button>

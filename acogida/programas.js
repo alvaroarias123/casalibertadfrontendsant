@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -16,12 +16,47 @@ $(document).ready(function(){
 
     traerProgramas(numero);
 
+    $("#boton_aumentar").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
+
     $("#btn_anterior").click(function(){
-        validarCampos2();
+        var sitio=2;
+        validarCampos2(sitio);
     })
 
     $("#btn_siguiente").click(function(){
-        validarCampos1();
+        var sitio=1;
+        validarCampos1(sitio);
     })
 
     $("#medio").click(function(){
@@ -50,7 +85,7 @@ $(document).ready(function(){
         }
     }
 
-    function validarCampos2(){
+    function validarCampos2(sitio){
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
         }
@@ -67,14 +102,14 @@ $(document).ready(function(){
             alert("Seleccione Especifique")
         }
         else{
-            guardarProgramas(numero);
+            guardarProgramas(numero,sitio);
             //alert("Se ha guardado Programas")
-            window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            //window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }
     }
 
-    function validarCampos1(){
+    function validarCampos1(sitio){
 
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
@@ -92,9 +127,9 @@ $(document).ready(function(){
             alert("Seleccione Especifique")
         }
         else{
-            guardarProgramas(numero);
+            guardarProgramas(numero,sitio);
             //alert("Se ha guardado Programas")
-            window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            //window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         }        
     }
 
@@ -114,7 +149,7 @@ $(document).ready(function(){
 
 
 
-    function guardarProgramas(numero){
+    function guardarProgramas(numero,sitio){
 
             let informacion={
                 otr_medio_conoc:$("#otr-medio-conoc").val().trim(), 
@@ -137,6 +172,11 @@ $(document).ready(function(){
                     if(data.status=="201"){
                         mensaje="guardo Programas con exito"
                         alert("Se guardó programas con éxito!!!")
+                        if(sitio==1){
+                            window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                        }else{
+                            window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                        }
                     }
                     else{
                         mensaje="problemas al guardar en base datos"

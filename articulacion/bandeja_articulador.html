@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 
     <!--<link rel="stylesheet" href="css/styles.css">-->
-    <script type="text/javascript" src="/js/script.js"></script>
+    <script type="text/javascript" src="bandeja_articulador.js"></script>
 
 
     <!--<link rel="shortcut icon" href="favicons/favicon-32x32.png" type="image/x-icon">-->
@@ -52,7 +52,7 @@
 
 </head>
 
-<body style="font-family: 'Roboto', sans-serif;">
+<body style="font-family: 'Roboto', sans-serif;" id="cuerpo">
     <div class="container-fluid">
         <div class="row" style="background-color: #9F2257;">
             <div class="col d-flex justify-content-between pl-10 pr-0">
@@ -140,25 +140,6 @@
                             </thead>
                             <!--con el id de tbody es que renderizamos la informacion pedida de base datos-->
                             <tbody id="tbody">
-                                <tr>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td>hola</td>
-                                <td class="text-center" ><button class="btn" type="button" id="" style="background-color:#9F2257; color: white;">ATENDER</button></td>
-                                </tr>
-                                <tr>
-                                    <td>hola</td>
-                                    <td>hola</td>
-                                    <td>hola</td>
-                                    <td>hola</td>
-                                    <td>hola</td>
-                                    <td class="text-center"><button class="btn btn-warning" type="button" id="" style="color: white;">ATENDIENDO</button></td>
-                                </tr>
-                                
-                                
-                                
 
                             </tbody>
                     
@@ -184,21 +165,21 @@
                 <ul class="nav mt-5 justify-content-center" style="background-color: #9F2257; width: 45px;">
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cambiar nivel de contraste"
-                            type="button">
+                            type="button" id="contraste">
                             <span class="material-icons" style="color: #9F2257;">contrast
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Aumentar tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_aumentar">
                             <span class="material-icons" style="color: #9F2257;">text_increase
                             </span>
                         </button>
                     </li>
                     <li class="nav-item my-2">
                         <button data-bs-toggle="tooltip" data-bs-placement="top" title="Disminuir tamaño de fuente"
-                            type="button">
+                            type="button" id="boton_disminuir">
                             <span class="material-icons" style="color: #9F2257;">text_decrease
                             </span>
                         </button>

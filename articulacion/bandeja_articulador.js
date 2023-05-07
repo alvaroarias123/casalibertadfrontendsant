@@ -1,5 +1,5 @@
 //const endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
 
 $(document).ready(function(){
 
@@ -38,12 +38,11 @@ $(document).ready(function(){
 
     })
 
-
     function getTurnos(){
 
         $.ajax({
 
-            url:endpoint+"/bandaco/consulta",
+            url:endpoint+"/bandejaArtic/consulta",
             type:"GET",
             dataType:"json",
             success:function(respuesta){
@@ -86,13 +85,16 @@ $(document).ready(function(){
 
     function atender(idElemento){
 
-        let info ={
+        alert("Módulo Articulación en construcción!!!")
+        location.href="/introduccion.html";
+
+        /*let info ={
             numeroDocumento:idElemento,
             accion:'n'
         }
         $.ajax({
 
-            url:endpoint+"/bandaco/actualizar",
+            url:endpoint+"/bandejaArtic/save",
             type:"PUT",
             data:JSON.stringify(info),
             dataType:'json',
@@ -103,25 +105,29 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo accion con exito"
                     alert("Se guardó cambio de status correctamente!!")
+                    //window.location='registro.html?numeroDocumento='+idElemento;//Aquí la direccion es a la primera pagina de Articulación
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardó el cambio de status (de atender a atendiendo)!!!")
+                    alert("Ups... No se guardó el cambio de status (de atender a atendiendo). Comuníquese con el Administrador!!!")
                 }
                 console.log(mensaje)
             }
         })
 
-        window.location='registro.html?numeroDocumento='+idElemento;
+        //window.location='registro.html?numeroDocumento='+idElemento;*/
 
     }
 
 
     function atendiendo(idElemento){
 
-        window.location='registro.html?numeroDocumento='+idElemento;
+        alert("Módulo Articulación en construcción!!!")
+        location.href="/introduccion.html";
+
+        /*window.location='registro.html?numeroDocumento='+idElemento;*/
 
     }
 
-
+    
 })

@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -13,40 +13,75 @@ $(document).ready(function(){
 
     //alert("okkk")
 
+    $("#boton_aumentar").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
+
     traerVivienda(numero);
 
     $("#btn_anterior").click(function(){
-        validarCampos2();
+        var sitio=2;
+        validarCampos2(sitio);
     })
 
     $("#btn_siguiente").click(function(){
-        validarCampos1();
+        var sitio=1;
+        validarCampos1(sitio);
     })
 
-    function validarCampos2(){
+    function validarCampos2(sitio){
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas();
+            guardarViviendas(sitio);
             //alert("Se ha guardado viviendas")
-            window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            //window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }
     }
 
-    function validarCampos1(){
+    function validarCampos1(sitio){
 
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas();
+            guardarViviendas(sitio);
             //alert("Se ha guardado viviendas")
-            window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            //window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
         }        
     }
 
-    function guardarViviendas(){
+    function guardarViviendas(sitio){
 
         let tipo=$("#tipo_vivienda").val();
 
@@ -62,10 +97,15 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo viviendas con exito"
                     alert("Se guardó viviendas con éxito!!")
+                    if(sitio==1){
+                        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }else{
+                        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... Problemas!! no se guardó viviendas en base datos!!")
+                    alert("Ups... Problemas!! no se guardó viviendas en base datos!! Comuníquese con el Administrador!!")
                 }
                 console.log(mensaje)
             }

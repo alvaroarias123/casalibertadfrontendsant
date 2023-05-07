@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073";
+var endpoint="http://172.21.21.27:9073/part1/CasaLibertadAco";//  /acogida
 
 $(document).ready(function(){
 
@@ -15,14 +15,49 @@ $(document).ready(function(){
 
     traerAntecedentes(numero);
 
+    $("#boton_aumentar").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=1.2*ventana_ancho;
+        nuevoAlto=1.2*ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+        
+
+    })
+
+    $("#boton_disminuir").click(function(){
+
+        var ventana_ancho=$("#cuerpo").width();
+        var ventana_alto=$("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho=ventana_ancho/1.2;
+        nuevoAlto=ventana_alto/1.2;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+    })
+
     $("#btn_anterior").click(function(){
-        validarCampos()
-        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        var sitio=1;
+        validarCampos(sitio)
+        //window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
     $("#btn_siguiente").click(function(){
-        validarCampos();
-        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        var sitio=2;
+        validarCampos(sitio);
+        //window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
 
@@ -112,7 +147,7 @@ $(document).ready(function(){
         $("#sisipec1").prop('checked',false);
     })
 
-    function validarCampos(){ 
+    function validarCampos(sitio){ 
 
         if(($("#personeria1").prop('checked') || $("#personeria2").prop('checked') || $("#personeria3").prop('checked')) !=true){
             alert("Seleccione una casilla de Personería");
@@ -162,7 +197,7 @@ $(document).ready(function(){
             alert("seleccionar si actualmente tiene un proceso en su contra");
         }
         else{
-            guardarAntecedentes();
+            guardarAntecedentes(sitio);
             //alert("Se ha guardado Antecedentes");
         }
     }
@@ -207,7 +242,7 @@ $(document).ready(function(){
 
 
 
-    function guardarAntecedentes(){
+    function guardarAntecedentes(sitio){
 
         if($("#proceso_actual1").prop('checked')){procesoAct="si"}else{procesoAct="no"};
         if($("#personeria1").prop('checked')){person="si"}else if($("#personeria2").prop('checked')){person="no"}else{person="no fue posible verificar"}
@@ -251,10 +286,15 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo antecedentes con exito"
                     alert("Se guardó Antecedentes con éxito!!")
+                    if(sitio==1){
+                        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }else{
+                        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                    }
                 }
                 else{
                     mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardó Antecedentes en base datos!!!")
+                    alert("Ups... No se guardó Antecedentes en base datos. Comuníquese con el Administrador!!!")
                 }
                 console.log(mensaje)
             }
