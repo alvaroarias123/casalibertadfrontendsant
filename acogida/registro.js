@@ -7,6 +7,30 @@ $(document).ready(function(){
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero=urlParams.get("numeroDocumento");
+
+    $("#registro").click(function(){
+        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    $("#datos_dem").click(function(){
+    
+        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#vivienda").click(function(){
+        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#antecedente").click(function(){
+        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#programa").click(function(){
+        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#formato").click(function(){
+        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
     
 
     $("#boton_aumentar").click(function(){
@@ -89,14 +113,14 @@ $("#calle").blur(function(){
 
 $("#8").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     $("#direccion").val(cal+" "+nu);
     
 })
 
 $("#A").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     $("#direccion").val(cal+" "+nu+" "+som);
     
@@ -104,7 +128,7 @@ $("#A").blur(function(){
 
 $("#BIS").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis);
@@ -113,7 +137,7 @@ $("#BIS").blur(function(){
 
 $("#AA").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
@@ -123,7 +147,7 @@ $("#AA").blur(function(){
 
 $("#SUR").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
@@ -134,24 +158,24 @@ $("#SUR").blur(function(){
 
 $("#9").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me);
     
 })
 
 $("#AAA").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa);
     
@@ -159,28 +183,28 @@ $("#AAA").blur(function(){
 
 $("#25").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
-    var mal=$("#25").val();
+    var mal=$("#25").val().trim();
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal);
     
 })
 
 $("#ESTE").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
-    var mal=$("#25").val();
+    var mal=$("#25").val().trim();
     var este=$("#ESTE").val();
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este);
     
@@ -188,14 +212,14 @@ $("#ESTE").blur(function(){
 
 $("#info_complementaria").focus(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
-    var mal=$("#25").val();
+    var mal=$("#25").val().trim();
     var este=$("#ESTE").val();
 
     $("#direccion").val(cal+" "+nu+" "+som+" "+bis+" "+aa+" "+sur+" # "+me+" "+aaa+" - "+mal+"  "+este);
@@ -203,14 +227,14 @@ $("#info_complementaria").focus(function(){
 
 $("#info_complementaria").blur(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
-    var mal=$("#25").val();
+    var mal=$("#25").val().trim();
     var este=$("#ESTE").val();
     var info=$("#info_complementaria").val();
 
@@ -220,14 +244,14 @@ $("#info_complementaria").blur(function(){
 
 $("#localidad").focus(function(){
     var cal = $("#calle").val();
-    var nu = $("#8").val();
+    var nu = $("#8").val().trim();
     var som = $("#A").val(); 
     var bis = $("#BIS").val();
     var aa=$("#AA").val();
     var sur=$("#SUR").val();
-    var me=$("#9").val();
+    var me=$("#9").val().trim();
     var aaa=$("#AAA").val();
-    var mal=$("#25").val();
+    var mal=$("#25").val().trim();
     var este=$("#ESTE").val();
     var info=$("#info_complementaria").val();
 

@@ -7,13 +7,36 @@ $(document).ready(function(){
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero=urlParams.get("numeroDocumento");
-    var numero=urlParams.get("numeroDocumento");
     var nombres=urlParams.get("nombres");
     var primerApellido=urlParams.get("primerApellido");
     var segundoApellido=urlParams.get("segundoApellido");
 
 
     traerAntecedentes(numero);
+
+    $("#registro").click(function(){
+        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    $("#datos_dem").click(function(){
+    
+        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#vivienda").click(function(){
+        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#antecedente").click(function(){
+        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#programa").click(function(){
+        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#formato").click(function(){
+        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
 
     $("#boton_aumentar").click(function(){
 

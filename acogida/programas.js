@@ -16,6 +16,30 @@ $(document).ready(function(){
 
     traerProgramas(numero);
 
+    $("#registro").click(function(){
+        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    $("#datos_dem").click(function(){
+    
+        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#vivienda").click(function(){
+        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#antecedente").click(function(){
+        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#programa").click(function(){
+        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+    
+    $("#formato").click(function(){
+        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    })
+
     $("#boton_aumentar").click(function(){
 
         var ventana_ancho=$("#cuerpo").width();
