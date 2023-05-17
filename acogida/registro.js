@@ -1,5 +1,6 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/casa_libertad_aco"; //  /acogida
+//var endpoint="http://172.21.21.27:9073/casa_libertad_aco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -304,7 +305,7 @@ function guardarFormulario(){
         localidad:null,
         barrio:null,
         estrato:null,
-        tel_fijo:null,
+        tel_fijo:0,
         cel_1:$("#celular_1").val(),
         cel_2:$("#celular_2").val(),
         correo:null,
