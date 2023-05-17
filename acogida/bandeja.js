@@ -2,6 +2,7 @@
 //var endpoint="http://172.21.21.27:9073/casa_libertad_aco";
 var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
+
 $(document).ready(function () {
 
     var m = 0;
@@ -75,7 +76,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: endpoint + "/all",
+            url: endpoint + "/bandaco/consulta",
             type: "GET",
             dataType: "json",
             success: function (respuesta) {
