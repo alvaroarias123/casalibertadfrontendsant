@@ -1,6 +1,6 @@
 //const endpoint="localhost:7001";
-//var endpoint="http://172.21.21.27:9073/casa_libertad_aco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
+var endpoint="http://172.21.21.27:9073/part1/casa_libertad_aco";
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
 
 $(document).ready(function(){
 
