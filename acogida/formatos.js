@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/casa_libertad_aco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
 //var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
@@ -178,7 +178,9 @@ $(document).ready(function(){
                 if(data.status=="201"){
                     mensaje="guardo Formatos con exito"
                     alert("Se guardó Formatos con éxito!!")
+                    eliminarTurno(numero);
                     guardarBandejaArticulacion(sitio);
+                    
                     
                 }
                 else{
@@ -228,13 +230,34 @@ $(document).ready(function(){
         })
     }
 
+    function eliminarTurno(numero){
+        let bandeja={
+            numeroDocumento:numero
+        }
+        $.ajax({
+
+            url:endpoint+"/bandaco/delete",
+            type:"DELETE",
+            data:JSON.stringify(bandeja),
+            dataType:'json',
+            contentType:"application/json",
+            complete:function(data){
+                console.log(data.status)
+                let mensaje =""
+                if(data.status=="204"){
+                    mensaje="se elimino turno con exito"
+                    
+                }
+                else{
+                    mensaje="problemas al eliminar turno en base datos"
+                    alert("Ups... No se ha eliminado turno en bandeja acogida. Comuníquese con el Administrador!!!")
+                }
+                console.log(mensaje)
+            }
+        })
 
 
-
-
-
-
-
+    }
 
 
 
