@@ -62,7 +62,7 @@ $(document).ready(function(){
 
         for(i=0;i<items.length;i++){
 
-            if(items[i].accion=='s'){
+            if(items[i].accion==='s'){
                 registro+="<tr>";
                 registro+="<td>"+items[i].uniqid+"</td>";
                 registro+="<td>"+items[i].numeroDocumento+"</td>";

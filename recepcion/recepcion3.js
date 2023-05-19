@@ -206,7 +206,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo visitante con exito"
                     guardarBandejaRec()
                     alert("Visita guardada con éxito")
@@ -242,7 +242,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje =""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo visitante con exito"
                     alert("Turno para acogida creado")
                     borrar()
@@ -276,27 +276,27 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-        if(items.nombres!=null){
+        if(items.nombres!==null){
             $("#nombres").val(items.nombres);
             $("#primer_apellido").val(items.primer_apellido);
-            if($("#segundo_apellido").val(items.segundo_apellido)!=null){
+            //if($("#segundo_apellido").val(items.segundo_apellido)!==null){
+            if(items.segundo_apellido!==null){
                 $("#segundo_apellido").val(items.segundo_apellido);
             }else{
                 $("#segundo_apellido").val("");
             }       
             $("#cel_1").val(items.cel_1);
-            if($("#cel_2").val(items.cel_2)!=null){
+            if(items.cel_2!==0){
                 $("#cel_2").val(items.cel_2);
             }else{
                 $("#cel_2").val("");
             }
             $("#razon").val(items.razon_visitas_uniqid);
-            if($("#otra_razon").val(items.otra_razon)!=null){
+            if(items.otra_razon!==null){
                 $("#otra_razon").val(items.otra_razon);
             }else{
                 $("#otra_razon").val("");
             }
-            
             $("#modulo").val(items.citas_solicitadas_uniqid);
             $("#canal").val(items.canal_de_atencion_uniqid);
         }else{

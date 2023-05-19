@@ -135,20 +135,20 @@ $(document).ready(function(){
     }
 
     function pintarRespuesta(items){
-        if(items.consentimiento_firma==null){$("#consentimiento_firma").val("0")}else{$("#consentimiento_firma").val(items.consentimiento_firma);}
-        if(items.trat_datos_firma==null){$("#consentimiento_firma_habeas").val("0")}else{$("#consentimiento_firma_habeas").val(items.trat_datos_firma)}
-        if(items.autoriz_imagen_firma==null){$("#consentimiento_uso_imagen").val("0")}else{$("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma)}
-        if(items.adjunto_concentimiento!=null){
+        if(items.consentimiento_firma===null){$("#consentimiento_firma").val("0")}else{$("#consentimiento_firma").val(items.consentimiento_firma);}
+        if(items.trat_datos_firma===null){$("#consentimiento_firma_habeas").val("0")}else{$("#consentimiento_firma_habeas").val(items.trat_datos_firma)}
+        if(items.autoriz_imagen_firma===null){$("#consentimiento_uso_imagen").val("0")}else{$("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma)}
+        if(items.adjunto_concentimiento!==null){
             $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento);
         }else{$("#adjunto_concentimiento_firma").val("");}
-        if(items.adjunto_trat_datos!=null){
+        if(items.adjunto_trat_datos!==null){
             $("#adjunto_datos_habeas").val(items.adjunto_trat_datos);
         }else{$("#adjunto_datos_habeas").val("");}
-        if(items.adjunto_uso_imagen!=null){
+        if(items.adjunto_uso_imagen!==null){
             $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen);
         }else{$("#adjunto_uso_imagen").val("");}
-        if(items.medio_att_no_presencial==null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
-        if(items.estado==null){$("#estado").val("0")}else{$("#estado").val(items.estado)}
+        if(items.medio_att_no_presencial===null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
+        if(items.estado===null){$("#estado").val("0")}else{$("#estado").val(items.estado)}
         
     }
 
@@ -175,7 +175,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo Formatos con exito"
                     alert("Se guardó Formatos con éxito!!")
                     eliminarTurno(numero);
@@ -212,7 +212,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje =""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo visitante con exito"
                     alert("Se creó turno en articulación con éxito!!")
                     if(sitio==1){

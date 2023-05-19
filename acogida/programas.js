@@ -194,7 +194,7 @@ $(document).ready(function(){
                 complete:function(data){
                     console.log(data.status)
                     let mensaje=""
-                    if(data.status=="201"){
+                    if(data.status=="200"){
                         mensaje="guardo Programas con exito"
                         alert("Se guardó programas con éxito!!!")
                         if(sitio==1){
@@ -215,10 +215,10 @@ $(document).ready(function(){
     function pintarRespuesta(items){
 
 
-        if(items.otr_medio_conoc==null){$("#otr-medio-conoc".val(""))}else{$("#otr-medio-conoc".val(items.otr_medio_conoc))}
-        if(items.nombres_otro_func==null){$("#nombres_otro_func").val("")}else{$("#nombres_otro_func").val(items.nombres_otro_func)}
-        if(items.medios_conoc_uniqid=="0"){$("#medio").val("0")}else($("#medio").val(items.medios_conoc_uniqid))
-        if(items.expectativas_uniqid=="0"){$("#expectativa".val("0"))}else{$("#expectativa".val(items.expectativas_uniqid))}
-        if(items.funcs_registro_uniqid=="0"){$("#nombre_funcionario").val("0")}else{$("#nombre_funcionario").val(items.funcs_registro_uniqid)}
+        if(items.otr_medio_conoc===null){$("#otr-medio-conoc".val(""))}else{$("#otr-medio-conoc".val(items.otr_medio_conoc))}
+        if(items.nombres_otro_func===null){$("#nombres_otro_func").val("")}else{$("#nombres_otro_func").val(items.nombres_otro_func)}
+        if(items.medios_conoc_uniqid===null){$("#medio").val("0")}else($("#medio").val(items.medios_conoc_uniqid))
+        if(items.expectativas_uniqid===null){$("#expectativa".val("0"))}else{$("#expectativa".val(items.expectativas_uniqid))}
+        if(items.funcs_registro_uniqid===null){$("#nombre_funcionario").val("0")}else{$("#nombre_funcionario").val(items.funcs_registro_uniqid)}
     }
 })

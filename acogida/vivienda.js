@@ -118,10 +118,10 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
-                if(data.status=="201"){
+                if(data.status==="200"){
                     mensaje="guardo viviendas con exito"
                     alert("Se guardó viviendas con éxito!!")
-                    if(sitio==1){
+                    if(sitio===1){
                         window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
                     }else{
                         window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
@@ -156,7 +156,7 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-        if(items.uniqid==null){$("#tipo_vivienda").val("0")}else{$("#tipo_vivienda").val(items.uniqid)};
+        if(items.uniqid===null){$("#tipo_vivienda").val("0")}else{$("#tipo_vivienda").val(items.uniqid)};
     }
 
 })

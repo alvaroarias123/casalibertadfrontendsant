@@ -107,7 +107,7 @@ $(document).ready(function () {
                 }
 
                 for (i; i < part; i++) {
-                    if (items[i].accion == 's') {
+                    if (items[i].accion === 's') {
                         registro += "<tr>";
                         registro += "<td>" + items[i].uniqid + "</td>";
                         registro += "<td>" + items[i].numeroDocumento + "</td>";
@@ -151,7 +151,7 @@ $(document).ready(function () {
             complete: function (data) {
                 console.log(data.status)
                 let mensaje = ""
-                if (data.status == "201") {
+                if (data.status == "200") {
                     mensaje = "guardo accion con exito"
                     alert("Se guardó cambio de status correctamente!!")
                 }

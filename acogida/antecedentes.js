@@ -243,23 +243,23 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-        if(items.fecha_libertad==null){$("#fecha_libertad").val("")}else{$("#fecha_libertad").val(items.fecha_libertad)}
+        if(items.fecha_libertad===null){$("#fecha_libertad").val("")}else{$("#fecha_libertad").val(items.fecha_libertad)}
         if(items.meses_condena){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
-        if(items.ultimoProceso==null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
-        if(items.aprehend_adolesc==null){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
-        if(items.aprehend_mayor==null){$("#aprehend_mayor").val("0")}else{$("#aprehend_mayor").val(items.aprehend_mayor)}
-        if(items.proceso_actual=="si"){$("#proceso_actual1").attr('checked',true)};
-        if(items.proceso_actual=="no"){$("#proceso_actual2").attr('checked',true)};
-        if(items.personeria=="si"){$("#personeria1").attr('checked',true)}else if(items.personeria=="no"){$("#personeria2").attr('checked',true)}else{$("#personeria3").attr('checked',true)};
-        if(items.procuraduria=="si"){$("#procuraduria1").attr('checked',true)}else if(items.procuraduria=="no"){$("#procuraduria2").attr('checked',true)}else{$("#procuraduria3").attr('checked',true)};
-        if(items.contraloria=="si"){$("#contraloria1").attr('checked',true)}else if(items.contraloria=="no"){$("#contraloria2").attr('checked',true)}else{$("#contraloria3").attr('checked',true)};
-        if(items.rama_judicial=="si"){$("#rama_judicial1").attr('checked',true)}else if(items.rama_judicial=="no"){$("#rama_judicial2").attr('checked',true)}else{$("#rama_judicial3").attr('checked',true)};
-        if(items.policia=="si"){$("#policia1").attr('checked',true)}else if(items.policia=="no"){$("#policia2").attr('checked',true)}else{$("#policia3").attr('checked',true)};
-        if(items.codigo_seguridad=="si"){$("#codigo_seguridad1").attr('checked',true)}else if(items.codigo_seguridad=="no"){$("#codigo_seguridad2").attr('checked',true)}else{$("#codigo_seguridad3").attr('checked',true)};
-        if(items.sisipec=="si"){$("#sisipec1").attr('checked',true)}else if(items.sisipec=="no"){$("#sisipec2").attr('checked',true)}else{$("#sisipec3").attr('checked',true)};
-        if(items.estab_carcs_uniqid==null){$("#establecimiento").val("0")}else[$("#establecimiento").val(items.estab_carcs_uniqid)]
-        if(items.sit_jurid_uniqid){$("#situacion").val(items.sit_jurid_uniqid)}else{$("#situacion").val(items.sit_jurid_uniqid)}
-        if(items.delitos_uniqid==null){$("#delito").val("")}else{$("#delito").val(items.delitos_uniqid)}
+        if(items.ultimoProceso===null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
+        if(items.aprehend_adolesc){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
+        if(items.aprehend_mayor){$("#aprehend_mayor").val("0")}else{$("#aprehend_mayor").val(items.aprehend_mayor)}
+        if(items.proceso_actual==="si"){$("#proceso_actual1").attr('checked',true)};
+        if(items.proceso_actual==="no"){$("#proceso_actual2").attr('checked',true)};
+        if(items.personeria==="si"){$("#personeria1").attr('checked',true)}else if(items.personeria==="no"){$("#personeria2").attr('checked',true)}else{$("#personeria3").attr('checked',true)};
+        if(items.procuraduria==="si"){$("#procuraduria1").attr('checked',true)}else if(items.procuraduria==="no"){$("#procuraduria2").attr('checked',true)}else{$("#procuraduria3").attr('checked',true)};
+        if(items.contraloria==="si"){$("#contraloria1").attr('checked',true)}else if(items.contraloria==="no"){$("#contraloria2").attr('checked',true)}else{$("#contraloria3").attr('checked',true)};
+        if(items.rama_judicial==="si"){$("#rama_judicial1").attr('checked',true)}else if(items.rama_judicial==="no"){$("#rama_judicial2").attr('checked',true)}else{$("#rama_judicial3").attr('checked',true)};
+        if(items.policia==="si"){$("#policia1").attr('checked',true)}else if(items.policia==="no"){$("#policia2").attr('checked',true)}else{$("#policia3").attr('checked',true)};
+        if(items.codigo_seguridad==="si"){$("#codigo_seguridad1").attr('checked',true)}else if(items.codigo_seguridad==="no"){$("#codigo_seguridad2").attr('checked',true)}else{$("#codigo_seguridad3").attr('checked',true)};
+        if(items.sisipec==="si"){$("#sisipec1").attr('checked',true)}else if(items.sisipec==="no"){$("#sisipec2").attr('checked',true)}else{$("#sisipec3").attr('checked',true)};
+        if(items.estab_carcs_uniqid===null){$("#establecimiento").val("0")}else[$("#establecimiento").val(items.estab_carcs_uniqid)]
+        if(items.sit_jurid_uniqid===null){$("#situacion").val(items.sit_jurid_uniqid)}else{$("#situacion").val(items.sit_jurid_uniqid)}
+        if(items.delitos_uniqid===null){$("#delito").val("")}else{$("#delito").val(items.delitos_uniqid)}
 
     }
 
@@ -307,7 +307,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo antecedentes con exito"
                     alert("Se guardó Antecedentes con éxito!!")
                     if(sitio==1){

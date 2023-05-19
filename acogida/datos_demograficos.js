@@ -305,7 +305,7 @@ $(document).ready(function(){
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
-                if(data.status=="201"){
+                if(data.status=="200"){
                     mensaje="guardo datos demográficos con exito"
                     alert("Se guardó Datos Demográficos con éxito!!!")
                     if(sitio==1){
@@ -339,30 +339,30 @@ $(document).ready(function(){
 
     function pintarResultado(items){   
 
-        if(items.fecha_nacimiento==null){$("#fecha_nacimiento").val("")}else{$("#fecha_nacimiento").val(items.fecha_nacimiento)};
-        if(items.nacionalidad==null){$("#nacionalidad").val("0")}else{$("#nacionalidad").val(items.nacionalidad)};
-        if(items.pais_origen==null){$("#pais").val("")}else{$("#pais").val(items.pais_origen)};
-        if(items.estado_civil==null){$("#estado").val("0")}else{$("#estado").val(items.estado_civil)};
-        if(items.etnia==null){$("#etnia").val("0")}else{$("#etnia").val(items.etnia)};
-        if(items.especifique==null){$("#otra_etnia").val("")}else{$("#otra_etnia").val(items.especifique)};
-        if(items.sexo==null){$("#sexo").val("0")}else{$("#sexo").val(items.sexo)};
-        if(items.identidad_genero==null){$("#identidad").val("0")}else{$("#identidad").val(items.identidad_genero)};
-        if(items.orientacion_sexual==null){$("#orientacion").val("0")}else{$("#orientacion").val(items.orientacion_sexual)};
-        if(items.discapacitado==null){$("#disc1").attr('checked',false);$("#disc2").attr('checked',false)};
-        if(items.discapacitado=="si"){$("#disc1").attr('checked',true);$("#disc2").attr('checked',false)};
-        if(items.discapacitado=="no"){$("#disc2").attr('checked',true);$("#disc1").attr('checked',false)};
-        if(items.ayuda_movilidad==null){$("#ayuda_movilidad1").attr('checked',false);$("#ayuda_movilidad2").attr('checked',true)};
-        if(items.ayuda_movilidad=="si"){$("#ayuda_movilidad1").attr('checked',true);$("#ayuda_movilidad2").attr('checked',false)};
-        if(items.ayuda_movilidad=="no"){$("#ayuda_movilidad1").attr('checked',false);$("#ayuda_movilidad2").attr('checked',true)};
-        if(items.ayuda_lectoescritura==null){$("#ayuda_lectoescritura1").attr('checked',false);$("#ayuda_lectoescritura2").attr('checked',true)};
-        if(items.ayuda_lectoescritura=="si"){$("#ayuda_lectoescritura1").attr('checked',true);$("#ayuda_lectoescritura2").attr('checked',false)};
-        if(items.ayuda_lectoescritura=="no"){$("#ayuda_lectoescritura1").attr('checked',false);$("#ayuda_lectoescritura2").attr('checked',true)};
-        if(items.ayuda_traduccion==null){$("#ayuda_traduccion1").attr('checked',false);$("#ayuda_traduccion2").attr('checked',true)};
-        if(items.ayuda_traduccion=="si"){$("#ayuda_traduccion1").attr('checked',true);$("#ayuda_traduccion2").attr('checked',false)};
-        if(items.ayuda_traduccion=="no"){$("#ayuda_traduccion1").attr('checked',false);$("#ayuda_traduccion2").attr('checked',true)};
-        if(items.vict_conf_arma==null){$("#radio1").attr('checked',false);$("#radio2").attr('checked',false)};
-        if(items.vict_conf_arma=="si"){$("#radio1").attr('checked',true);$("#radio2").attr('checked',false)};
-        if(items.vict_conf_arma=="no"){$("#radio1").attr('checked',false);$("#radio2").attr('checked',true)};
+        if(items.fecha_nacimiento===null){$("#fecha_nacimiento").val("")}else{$("#fecha_nacimiento").val(items.fecha_nacimiento)};
+        if(items.nacionalidad===null){$("#nacionalidad").val("0")}else{$("#nacionalidad").val(items.nacionalidad)};
+        if(items.pais_origen===null){$("#pais").val("")}else{$("#pais").val(items.pais_origen)};
+        if(items.estado_civil===null){$("#estado").val("0")}else{$("#estado").val(items.estado_civil)};
+        if(items.etnia===null){$("#etnia").val("0")}else{$("#etnia").val(items.etnia)};
+        if(items.especifique===null){$("#otra_etnia").val("")}else{$("#otra_etnia").val(items.especifique)};
+        if(items.sexo===null){$("#sexo").val("0")}else{$("#sexo").val(items.sexo)};
+        if(items.identidad_genero===null){$("#identidad").val("0")}else{$("#identidad").val(items.identidad_genero)};
+        if(items.orientacion_sexual===null){$("#orientacion").val("0")}else{$("#orientacion").val(items.orientacion_sexual)};
+        if(items.discapacitado===null){$("#disc1").attr('checked',false);$("#disc2").attr('checked',false)};
+        if(items.discapacitado==="si"){$("#disc1").attr('checked',true);$("#disc2").attr('checked',false)};
+        if(items.discapacitado==="no"){$("#disc2").attr('checked',true);$("#disc1").attr('checked',false)};
+        if(items.ayuda_movilidad===null){$("#ayuda_movilidad1").attr('checked',false);$("#ayuda_movilidad2").attr('checked',true)};
+        if(items.ayuda_movilidad==="si"){$("#ayuda_movilidad1").attr('checked',true);$("#ayuda_movilidad2").attr('checked',false)};
+        if(items.ayuda_movilidad==="no"){$("#ayuda_movilidad1").attr('checked',false);$("#ayuda_movilidad2").attr('checked',true)};
+        if(items.ayuda_lectoescritura===null){$("#ayuda_lectoescritura1").attr('checked',false);$("#ayuda_lectoescritura2").attr('checked',true)};
+        if(items.ayuda_lectoescritura==="si"){$("#ayuda_lectoescritura1").attr('checked',true);$("#ayuda_lectoescritura2").attr('checked',false)};
+        if(items.ayuda_lectoescritura==="no"){$("#ayuda_lectoescritura1").attr('checked',false);$("#ayuda_lectoescritura2").attr('checked',true)};
+        if(items.ayuda_traduccion===null){$("#ayuda_traduccion1").attr('checked',false);$("#ayuda_traduccion2").attr('checked',true)};
+        if(items.ayuda_traduccion==="si"){$("#ayuda_traduccion1").attr('checked',true);$("#ayuda_traduccion2").attr('checked',false)};
+        if(items.ayuda_traduccion==="no"){$("#ayuda_traduccion1").attr('checked',false);$("#ayuda_traduccion2").attr('checked',true)};
+        if(items.vict_conf_arma===null){$("#radio1").attr('checked',false);$("#radio2").attr('checked',false)};
+        if(items.vict_conf_arma==="si"){$("#radio1").attr('checked',true);$("#radio2").attr('checked',false)};
+        if(items.vict_conf_arma==="no"){$("#radio1").attr('checked',false);$("#radio2").attr('checked',true)};
 
     } 
 
