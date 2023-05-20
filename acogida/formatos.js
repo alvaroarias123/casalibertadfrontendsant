@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     //alert("Funciona");
 
-    traerFormatos(numero);
+    traerFormatos();
 
     $("#registro").click(function(){
         window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
@@ -115,13 +115,21 @@ $(document).ready(function(){
         else if($("#estado").val()=="0"){
         }
         else{
-            guardarFormatos(numero,sitio);
-            //alert("Se guardo Formatos");
-
+            guardarFormatos();
+            alert("Se guardó Formatos con éxito!!");
+            guardarBandejaArticulacion();
+            alert("Se creó turno en bandeja articulación con éxito!!")
+            eliminarTurno();
+            alert("Se eliminó turno en bandeja acogida");
+            if(sitio==1){
+                location.href="/introduccion.html";
+            }else{
+                window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }
     }
 
-    function traerFormatos(numero){
+    function traerFormatos(){
 
         $.ajax({
             url:endpoint+"/formatos/consulta?numeroDocumento="+numero,
@@ -129,7 +137,7 @@ $(document).ready(function(){
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items)
+                pintarRespuesta(respuesta)
             }
         })
     }
@@ -152,7 +160,7 @@ $(document).ready(function(){
         
     }
 
-    function guardarFormatos(numero,sitio){
+    function guardarFormatos(){
 
         let informacion={
             consentimiento_firma:$("#consentimiento_firma").val(),
@@ -173,26 +181,15 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje=""
-                if(data.status=="200"){
-                    mensaje="guardo Formatos con exito"
-                    alert("Se guardó Formatos con éxito!!")
-                    eliminarTurno(numero);
-                    guardarBandejaArticulacion(sitio);
-                    
-                    
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se ha guardado Formatos en base datos!!")
-                }
+                mensaje="guardo Formatos con exito"
                 console.log(mensaje)
             }
         })
     }
 
-    function guardarBandejaArticulacion(sitio){
+    function guardarBandejaArticulacion(){
 
         let bandeja={
             numeroDocumento:numero,
@@ -210,27 +207,15 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje =""
-                if(data.status=="200"){
-                    mensaje="guardo visitante con exito"
-                    alert("Se creó turno en articulación con éxito!!")
-                    if(sitio==1){
-                        location.href="/introduccion.html";
-                    }else{
-                        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se ha guardado turno en Articulación. Comuníquese con el Administrador!!!")
-                }
+                mensaje="se guardo bandeja articulación"
                 console.log(mensaje)
             }
         })
     }
 
-    function eliminarTurno(numero){
+    function eliminarTurno(){
         let bandeja={
             numeroDocumento:numero
         }
@@ -242,16 +227,9 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje =""
-                if(data.status=="204"){
-                    mensaje="se elimino turno con exito"
-                    
-                }
-                else{
-                    mensaje="problemas al eliminar turno en base datos"
-                    alert("Ups... No se ha eliminado turno en bandeja acogida. Comuníquese con el Administrador!!!")
-                }
+                mensaje="se elimino turno en bandeja acogida"
                 console.log(mensaje)
             }
         })

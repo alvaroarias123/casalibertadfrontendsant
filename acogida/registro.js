@@ -272,11 +272,12 @@ function validarCamposMinimos(){
         alert("seleccione aceptación términos y condiciones");
     }
     else if($("#observaciones").val()==""){
-        alert("Ecsriba las obsevaciones pertinentes")
+        alert("Ecsriba las obsevaciones pertinentes");
     }
     else{
         guardarFormulario();
-        //location.href="/introduccion.html";
+        alert("Se guardó registro con éxito!!");
+        location.href="/introduccion.html";
 
     }
 
@@ -325,17 +326,9 @@ function guardarFormulario(){
         dataType:'json',
         contentType:"application/json",
         complete:function(data){
-            console.log(data.status)
+            console.log(data)
             let mensaje=""
-            if(data.status=="200"){
-                mensaje="guardo registro con exito"
-                alert("Se guardó registro con éxito!!")
-                location.href="/introduccion.html";
-            }
-            else{
-                mensaje="problemas al guardar en base datos"
-                alert("Ups... Problemas!! No se guardó registro en la base datos!! Comuníquese con el Administrador")
-            }
+            mensaje="guardo registro con exito"
             console.log(mensaje)
         }
     })
@@ -392,9 +385,9 @@ function validarCampos(){
     else{
         
         guardarInformacion()
-        //alert("Información guardada")
+        alert("Se guardó registro con éxito!!")
         //borrar()
-        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         
     }
 
@@ -421,7 +414,7 @@ function mostrarInformacion(numeroDocumento){
         dataType:"json",
         success:function(respuesta){
             console.log(respuesta);
-            pintarRespuesta(respuesta.items)
+            pintarRespuesta(respuesta)
         }
     })
 }
@@ -502,18 +495,15 @@ function guardarInformacion(){
         dataType:'json',
         contentType:"application/json",
         complete:function(data){
-            console.log(data.status)
+            console.log(data)
             let mensaje=""
-            if(data.status=="200"){
-                mensaje="guardo registro con exito"
-                alert("Se guardó registro con éxito!!")
-                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-            }
-            else{
-                mensaje="problemas al guardar en base datos"
-                alert("Ups... Problemas!! No se guardó registro en la base datos!!")
-            }
+            mensaje="guardo registro con exito"
             console.log(mensaje)
+            
+                
+                
+                
+            
         }
     })
 

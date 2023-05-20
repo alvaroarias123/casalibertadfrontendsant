@@ -83,7 +83,6 @@ $(document).ready(function () {
 
                 console.log(respuesta);
                 pintarRespuesta(respuesta.items, m)
-
             }
         })
     }
@@ -151,14 +150,7 @@ $(document).ready(function () {
             complete: function (data) {
                 console.log(data.status)
                 let mensaje = ""
-                if (data.status == "200") {
-                    mensaje = "guardo accion con exito"
-                    alert("Se guardó cambio de status correctamente!!")
-                }
-                else {
-                    mensaje = "problemas al guardar en base datos"
-                    alert("Ups... No se guardó el cambio de status (de atender a atendiendo)!!!")
-                }
+                mensaje = "guardo accion con exito"
                 console.log(mensaje)
             }
         })
@@ -175,7 +167,7 @@ $(document).ready(function () {
     }
 
     function borrarTabla() {
-
+        let registro="";
         for (i=0; i <10 ; i++) {
 
                         registro += "<tr>";

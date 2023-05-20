@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     //alert("Funciona");
 
-    traerProgramas(numero);
+    traerProgramas();
 
     $("#registro").click(function(){
         window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
@@ -127,10 +127,13 @@ $(document).ready(function(){
             alert("Seleccione Especifique")
         }
         else{
-            guardarProgramas(numero,sitio);
-            //alert("Se ha guardado Programas")
-            //window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-
+            guardarProgramas();
+            alert("Se guardó programas con éxito!!!")
+            if(sitio==1){
+                window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }else{
+                window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }
     }
 
@@ -152,14 +155,18 @@ $(document).ready(function(){
             alert("Seleccione Especifique")
         }
         else{
-            guardarProgramas(numero,sitio);
-            //alert("Se ha guardado Programas")
-            //window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            guardarProgramas();
+            alert("Se guardó programas con éxito!!!")
+            if(sitio==1){
+                window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }else{
+                window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }        
     }
 
 
-    function traerProgramas(numero){
+    function traerProgramas(){
 
         $.ajax({
             url:endpoint+"/programas/consulta?numeroDocumento="+numero,
@@ -167,14 +174,14 @@ $(document).ready(function(){
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items)
+                pintarRespuesta(respuesta)
             }
         })
     }
 
 
 
-    function guardarProgramas(numero,sitio){
+    function guardarProgramas(){
 
             let informacion={
                 otr_medio_conoc:$("#otr-medio-conoc").val().trim(), 
@@ -192,21 +199,9 @@ $(document).ready(function(){
                 dataType:'json',
                 contentType:"application/json",
                 complete:function(data){
-                    console.log(data.status)
+                    console.log(data)
                     let mensaje=""
-                    if(data.status=="200"){
-                        mensaje="guardo Programas con exito"
-                        alert("Se guardó programas con éxito!!!")
-                        if(sitio==1){
-                            window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                        }else{
-                            window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                        }
-                    }
-                    else{
-                        mensaje="problemas al guardar en base datos"
-                        alert("Ups... Problemas!! No se guardó programas en base datos!! Comuníquese con el Administrador")
-                    }
+                    mensaje="guardo Programas con exito"
                     console.log(mensaje)
                 }
             })

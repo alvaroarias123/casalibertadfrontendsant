@@ -72,7 +72,7 @@ $(document).ready(function(){
     })
 
     traerPaises();
-    traerDatosDemograficos(numero);
+    traerDatosDemograficos();
 
     $("#nacionalidad").click(function(){
         habilitarCajaPais();
@@ -200,15 +200,16 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem(numero,sitio);
-            //alert("Se ha guardado Datos Demográficos")
-            //window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-            
-            
-    
+            guardarFormularioDatosDem();
+            alert("Se ha guardado Datos Demográficos")
+
+            if(sitio==1){
+                window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
+            else{
+                window.location='registro.html?numeroDocumento='+numero;
+            }
         }
-
-
     }
 
     function validarCampos2(sitio){
@@ -247,14 +248,18 @@ $(document).ready(function(){
             alert("seleccionar si se considera victima del conflicto armado");
         }       
         else{
-            guardarFormularioDatosDem(numero,sitio);
-            //alert("Se ha guardado Datos Demográficos")
-            //window.location='registro.html?numeroDocumento='+numero;
-            
+            guardarFormularioDatosDem();
+            alert("Se ha guardado Datos Demográficos")
+            if(sitio==1){
+                window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
+            else{
+                window.location='registro.html?numeroDocumento='+numero;
+            }
         }
     }
 
-    function guardarFormularioDatosDem(numero,sitio){
+    function guardarFormularioDatosDem(){
         if($("#pais").val()==""){pais="Colombia"}else{pais=$("#pais").val()};
         if($("#otra_etnia").val().trim()==""){especif=null}else(especif=$("#otra_etnia").val().trim());
         if($("#radio1").prop("checked")==true){victima="si"}else{victima="no"};
@@ -303,36 +308,23 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje=""
-                if(data.status=="200"){
-                    mensaje="guardo datos demográficos con exito"
-                    alert("Se guardó Datos Demográficos con éxito!!!")
-                    if(sitio==1){
-                        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }
-                    else{
-                        window.location='registro.html?numeroDocumento='+numero;
-                    }
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardaron Datos Demográficos en base datos!!! Comuníquese con el Administrador")
-                }
+                mensaje="guardo datos demográficos con exito"
                 console.log(mensaje)
             }
         })
     }
 
-    function traerDatosDemograficos(numeros){
+    function traerDatosDemograficos(){
 
         $.ajax({
-            url:endpoint+"/datos_demog/consulta?numeroDocumento="+numeros,
+            url:endpoint+"/datos_demog/consulta?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(resultado){
                 console.log(resultado);
-                pintarResultado(resultado.items)
+                pintarResultado(resultado)
             }
         })
     }

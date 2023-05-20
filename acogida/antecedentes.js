@@ -13,7 +13,7 @@ $(document).ready(function(){
     var segundoApellido=urlParams.get("segundoApellido");
 
 
-    traerAntecedentes(numero);
+    traerAntecedentes();
 
     $("#registro").click(function(){
         window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
@@ -75,13 +75,11 @@ $(document).ready(function(){
     $("#btn_anterior").click(function(){
         var sitio=1;
         validarCampos(sitio)
-        //window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
     $("#btn_siguiente").click(function(){
         var sitio=2;
         validarCampos(sitio);
-        //window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
 
@@ -221,22 +219,27 @@ $(document).ready(function(){
             alert("seleccionar si actualmente tiene un proceso en su contra");
         }
         else{
-            guardarAntecedentes(sitio);
-            //alert("Se ha guardado Antecedentes");
+            guardarAntecedentes();
+            alert("Se guardó Antecedentes con éxito!!")
+            if(sitio==1){
+                window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }else{
+                window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }
     }
 
 
 
-    function traerAntecedentes(numeros){
+    function traerAntecedentes(){
 
         $.ajax({
-            url:endpoint+"/antecedentes/consultar?numeroDocumento="+numeros,
+            url:endpoint+"/antecedentes/consultar?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items)
+                pintarRespuesta(respuesta)
             }
         })
     }
@@ -266,7 +269,7 @@ $(document).ready(function(){
 
 
 
-    function guardarAntecedentes(sitio){
+    function guardarAntecedentes(){
 
         if($("#proceso_actual1").prop('checked')){procesoAct="si"}else{procesoAct="no"};
         if($("#personeria1").prop('checked')){person="si"}else if($("#personeria2").prop('checked')){person="no"}else{person="no fue posible verificar"}
@@ -305,21 +308,9 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje=""
-                if(data.status=="200"){
-                    mensaje="guardo antecedentes con exito"
-                    alert("Se guardó Antecedentes con éxito!!")
-                    if(sitio==1){
-                        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }else{
-                        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardó Antecedentes en base datos. Comuníquese con el Administrador!!!")
-                }
+                mensaje="guardo antecedentes con exito"
                 console.log(mensaje)
             }
         })

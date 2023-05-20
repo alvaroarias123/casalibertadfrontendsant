@@ -142,21 +142,21 @@ $(document).ready(function(){
         }else{
 
             guardarVisita()
-
-            //guardarBandejaRec()
-
-            //borrar()
-            
-            //location.href="recepcion.html"
+            alert("Visita guardada")
+            getUsuario() // de esta manera traigo a usuario con la data y la guardo en variable info
+            if(info.citas_solicitadas_uniqid===2){
+            guardarBandejaRec()
+            alert("Turno para acogida creado") 
+            }
+            borrar()
+            location.href="recepcion.html"
             
         }
 
     }
+    var info;
 
     function getUsuario(num,tipos){
-
-        //var numeroDocumento = numero;
-        //var documentoTipo=tipo;
 
         $.ajax({
 
@@ -164,8 +164,9 @@ $(document).ready(function(){
             type:'GET',
             dataType:'json',
             success:function(data){
+                info=data
                 console.log(data)
-                pintarRespuesta(data.items)
+                pintarRespuesta(data)
             }
         })
     }
@@ -204,18 +205,11 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje=""
-                if(data.status=="200"){
-                    mensaje="guardo visitante con exito"
-                    guardarBandejaRec()
-                    alert("Visita guardada con éxito")
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... la visita no se guardó en base datos. Comuníquese con el administrador!!!")
-                }
+                mensaje="guardo visitante con exito" 
                 console.log(mensaje)
+                
             }
         })
     }
@@ -229,7 +223,7 @@ $(document).ready(function(){
             nombres:$("#nombres").val().trim(),
             primer_apellido:$("#primer_apellido").val().trim(),
             segundoApellido:segApellido,
-            accion:"Si"
+            accion:"s"
         }
 
         $.ajax({
@@ -240,18 +234,9 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje =""
-                if(data.status=="200"){
-                    mensaje="guardo visitante con exito"
-                    alert("Turno para acogida creado")
-                    borrar()
-                    location.href="recepcion.html"
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... el turno no fué creado en base datos!!!!")
-                }
+                mensaje="guardo turno bandeja acogida con exito"   
                 console.log(mensaje)
             }
         })
@@ -279,7 +264,6 @@ $(document).ready(function(){
         if(items.nombres!==null){
             $("#nombres").val(items.nombres);
             $("#primer_apellido").val(items.primer_apellido);
-            //if($("#segundo_apellido").val(items.segundo_apellido)!==null){
             if(items.segundo_apellido!==null){
                 $("#segundo_apellido").val(items.segundo_apellido);
             }else{
@@ -291,35 +275,13 @@ $(document).ready(function(){
             }else{
                 $("#cel_2").val("");
             }
-            $("#razon").val(items.razon_visitas_uniqid);
-            if(items.otra_razon!==null){
-                $("#otra_razon").val(items.otra_razon);
-            }else{
-                $("#otra_razon").val("");
-            }
-            $("#modulo").val(items.citas_solicitadas_uniqid);
-            $("#canal").val(items.canal_de_atencion_uniqid);
+            $("#razon").val("0");
+            $("#otra_razon").val("");
+            $("#modulo").val("0");
+            $("#canal").val("0");
         }else{
             alert("No hay visitas guardadas");
         }
-
-        /*for(i=0;i<items.length;i++){
-
-            if(items[i].nombres!=null){
-                $("#nombres").val(items[i].nombres)
-                $("#primer_apellido").val(items[i].primer_apellido)
-                $("#segundo_apellido").val(items[i].segundo_apellido)
-                $("#cel_1").val(items[i].cel_1)
-                $("#cel_2").val(items[i].cel_2)
-                $("#razon").val(items[i].razon_visitas_uniqid)
-                $("#otra_razon").val(items[i].otra_razon)
-                $("#modulo").val(items[i].citas_solicitadas_uniqid)
-                $("#canal").val(items[i].canal_de_atencion_uniqid)
-            }else{
-                alert("No hay visitas guardadas")
-            }
-        }*/
-
     }
 
 

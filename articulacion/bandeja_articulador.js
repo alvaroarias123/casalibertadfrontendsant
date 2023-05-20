@@ -88,36 +88,6 @@ $(document).ready(function(){
 
         alert("Módulo Articulación en construcción!!!")
         location.href="/introduccion.html";
-
-        /*let info ={
-            numeroDocumento:idElemento,
-            accion:'n'
-        }
-        $.ajax({
-
-            url:endpoint+"/bandejaArtic/save",
-            type:"PUT",
-            data:JSON.stringify(info),
-            dataType:'json',
-            contentType:"application/json",
-            complete:function(data){
-                console.log(data.status)
-                let mensaje=""
-                if(data.status=="201"){
-                    mensaje="guardo accion con exito"
-                    alert("Se guardó cambio de status correctamente!!")
-                    //window.location='registro.html?numeroDocumento='+idElemento;//Aquí la direccion es a la primera pagina de Articulación
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... No se guardó el cambio de status (de atender a atendiendo). Comuníquese con el Administrador!!!")
-                }
-                console.log(mensaje)
-            }
-        })
-
-        //window.location='registro.html?numeroDocumento='+idElemento;*/
-
     }
 
 
@@ -125,10 +95,5 @@ $(document).ready(function(){
 
         alert("Módulo Articulación en construcción!!!")
         location.href="/introduccion.html";
-
-        /*window.location='registro.html?numeroDocumento='+idElemento;*/
-
     }
-
-    
 })

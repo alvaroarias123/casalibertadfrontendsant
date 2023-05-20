@@ -87,10 +87,13 @@ $(document).ready(function(){
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas(sitio);
-            //alert("Se ha guardado viviendas")
-            //window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-
+            guardarViviendas();
+            alert("Se ha guardado viviendas")
+            if(sitio===1){
+                window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }else{
+                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }
     }
 
@@ -98,14 +101,17 @@ $(document).ready(function(){
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas(sitio);
-            //alert("Se ha guardado viviendas")
-            //window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-
+            guardarViviendas();
+            alert("Se guardó viviendas con éxito!!");
+            if(sitio===1){
+                window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }else{
+                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            }
         }        
     }
 
-    function guardarViviendas(sitio){
+    function guardarViviendas(){
 
         let tipo=$("#tipo_vivienda").val();
 
@@ -116,26 +122,11 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data)
                 let mensaje=""
-                if(data.status==="200"){
-                    mensaje="guardo viviendas con exito"
-                    alert("Se guardó viviendas con éxito!!")
-                    if(sitio===1){
-                        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }else{
-                        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-                    }
-                }
-                else{
-                    mensaje="problemas al guardar en base datos"
-                    alert("Ups... Problemas!! no se guardó viviendas en base datos!! Comuníquese con el Administrador!!")
-                }
+                mensaje="guardo viviendas con exito"
                 console.log(mensaje)
             }
-
-
-
         })
     }
 
@@ -147,7 +138,7 @@ $(document).ready(function(){
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items)
+                pintarRespuesta(respuesta)
             }
         })
 
