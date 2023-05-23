@@ -108,22 +108,22 @@ $(document).ready(function () {
                 }
 
                 for (i; i < part; i++) {   //ojo aqui puede ser error porque sería respuesta.items
-                    if (respuesta.items[i].accion === 's') {  //agregué respuesta
+                    if (respuesta.items[i+1].accion === 's') {  //agregué respuesta
                         registro += "<tr>";
-                        registro += "<td>" + respuesta.items[i].uniqid + "</td>";  // agregué respuesta
-                        registro += "<td>" + respuesta.items[i].numeroDocumento + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta.items[i].nombres + "</td>";// agregué respuesta
-                        registro += "<td>" + respuesta.items[i].primerApellido + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta.items[i].segundoApellido + "</td>";//agregué respuesta
-                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta.items[i].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                        registro += "<td>" + respuesta.items[i+1].uniqid + "</td>";  // agregué respuesta
+                        registro += "<td>" + respuesta.items[i+1].numeroDocumento + "</td>";//agregué respuesta
+                        registro += "<td>" + respuesta.items[i+1].nombres + "</td>";// agregué respuesta
+                        registro += "<td>" + respuesta.items[i+1].primerApellido + "</td>";//agregué respuesta
+                        registro += "<td>" + respuesta.items[i+1].segundoApellido + "</td>";//agregué respuesta
+                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta.items[i+1].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
                         registro += "</tr>"
                     } else {
                         registro += "<tr>";
-                        registro += "<td>" + respuesta.items[i].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
-                        registro += "<td>" + respuesta.items[i].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
-                        registro += "<td>" + respuesta.items[i].nombres + "</td>"; //respuesta.value.nombres
-                        registro += "<td>" + respuesta.items[i].primerApellido + "</td>";  //respuesta.value.primerApellido
-                        registro += "<td>" + respuesta.items[i].segundoApellido + "</td>"; //respuesta.value.segundoApellido
+                        registro += "<td>" + respuesta.items[i+1].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
+                        registro += "<td>" + respuesta.items[i+1].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
+                        registro += "<td>" + respuesta.items[i+1].nombres + "</td>"; //respuesta.value.nombres
+                        registro += "<td>" + respuesta.items[i+1].primerApellido + "</td>";  //respuesta.value.primerApellido
+                        registro += "<td>" + respuesta.items[i+1].segundoApellido + "</td>"; //respuesta.value.segundoApellido
                         registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta.items[i].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
                         registro += "</tr>";
                     }
