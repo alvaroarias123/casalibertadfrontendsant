@@ -102,7 +102,9 @@ $(document).ready(function () {
                 if (respuesta.length < ((m * 10) + 10)) {
                     var part = respuesta.length;  // en todas las respuesta antes estaba items
                 } else {
-                    var part = i + 10;
+                    //var part = i + 10;// no es debería ser repsuesta.length
+                    var part=respuesta.length;
+                    i=i+10;
                 }
 
                 for (i; i < part; i++) {   //ojo aqui puede ser error porque sería respuesta.items
