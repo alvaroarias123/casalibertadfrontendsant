@@ -144,7 +144,7 @@ $(document).ready(function(){
             guardarVisita()
             alert("Visita guardada")
             getUsuario() // de esta manera traigo a usuario con la data y la guardo en variable info
-            if(info.citas_solicitadas_uniqid==2){   
+            if(info.citas_solicitadas_uniqid==2){    //cambié === por == 
             guardarBandejaRec()
             alert("Turno para acogida creado") 
             }

@@ -88,41 +88,41 @@ $(document).ready(function () {
     }
 
 
-    function pintarRespuesta(items, m) {
+    function pintarRespuesta(respuesta, m) {  //cambié items po respuesta
 
-        z = items.length;
+        z = respuesta.length;  //cambié items por respuesta
         let registro = "";
 
         var i = m * 10;
 
         if (i >= 0) {
 
-            if (items.length > i) {
+            if (respuesta.length > i) {
 
-                if (items.length < ((m * 10) + 10)) {
-                    var part = items.length;
+                if (respuesta.length < ((m * 10) + 10)) {
+                    var part = respuesta.length;  // en todas las respuesta antes estaba items
                 } else {
                     var part = i + 10;
                 }
 
-                for (i; i < part; i++) {
-                    if (items[i].accion === 's') {
+                for (i; i < part; i++) {   //ojo aqui puede ser error porque sería respuesta.items
+                    if (respuesta.items[i].accion === 's') {  //agregué respuesta
                         registro += "<tr>";
-                        registro += "<td>" + items[i].uniqid + "</td>";
-                        registro += "<td>" + items[i].numeroDocumento + "</td>";
-                        registro += "<td>" + items[i].nombres + "</td>";
-                        registro += "<td>" + items[i].primerApellido + "</td>";
-                        registro += "<td>" + items[i].segundoApellido + "</td>";
-                        registro += "<td class='text-center bot1'><button onclick='atender(" + items[i].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                        registro += "<td>" + respuesta.items[i].uniqid + "</td>";  // agregué respuesta
+                        registro += "<td>" + respuesta.items[i].numeroDocumento + "</td>";//agregué respuesta
+                        registro += "<td>" + respuesta.items[i].nombres + "</td>";// agregué respuesta
+                        registro += "<td>" + respuesta.items[i].primerApellido + "</td>";//agregué respuesta
+                        registro += "<td>" + respuesta.items[i].segundoApellido + "</td>";//agregué respuesta
+                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta.items[i].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
                         registro += "</tr>"
                     } else {
                         registro += "<tr>";
-                        registro += "<td>" + value.uniqid + "</td>";
-                        registro += "<td>" + value.numeroDocumento + "</td>";
-                        registro += "<td>" + value.nombres + "</td>";
-                        registro += "<td>" + value.primerApellido + "</td>";
-                        registro += "<td>" + value.segundoApellido + "</td>";
-                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + items[i].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+                        registro += "<td>" + respuesta.items[i].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
+                        registro += "<td>" + respuesta.items[i].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
+                        registro += "<td>" + respuesta.items[i].nombres + "</td>"; //respuesta.value.nombres
+                        registro += "<td>" + respuesta.items[i].primerApellido + "</td>";  //respuesta.value.primerApellido
+                        registro += "<td>" + respuesta.items[i].segundoApellido + "</td>"; //respuesta.value.segundoApellido
+                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta.items[i].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
                         registro += "</tr>";
                     }
                 }
