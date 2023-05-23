@@ -144,7 +144,7 @@ $(document).ready(function(){
             guardarVisita()
             alert("Visita guardada")
             getUsuario() // de esta manera traigo a usuario con la data y la guardo en variable info
-            if(info.citas_solicitadas_uniqid===2){
+            if(info.citas_solicitadas_uniqid==2){   
             guardarBandejaRec()
             alert("Turno para acogida creado") 
             }
@@ -221,7 +221,7 @@ $(document).ready(function(){
         let bandeja={
             numeroDocumento:numero,
             nombres:$("#nombres").val().trim(),
-            primer_apellido:$("#primer_apellido").val().trim(),
+            primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
             segundoApellido:segApellido,
             accion:"s"
         }

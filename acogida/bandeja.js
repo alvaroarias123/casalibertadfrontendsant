@@ -82,7 +82,7 @@ $(document).ready(function () {
             success: function (respuesta) {
 
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items, m)
+                pintarRespuesta(respuesta, m)  //pintarRespuesta(respuesta.items, m)
             }
         })
     }
