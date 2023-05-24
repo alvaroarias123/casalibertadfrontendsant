@@ -367,17 +367,21 @@ $(document).ready(function(){
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
-                pintarRespuesta(respuesta.items)
+                pintarRespuesta(respuesta)
             }
         })
     }
 
     function pintarRespuesta(items){
 
-        let registro='<option value="0">SELECCIONE</option>';
-        for(i=0;i<items.length;i++){
+        //let registro='<option value="0">SELECCIONE</option>';
+        let registro="";
+        $.each(items,function(index,value){
+            registro+='<option value="'+value.uniqid+'">'+value.pais+'</option>';
+        })
+        /*for(i=0;i<items.length;i++){
             registro+='<option value="'+items[i].uniqid+'">'+items[i].pais+'</option>';
-        }
+        }*/
         $("#pais").html(registro);
     }
     
