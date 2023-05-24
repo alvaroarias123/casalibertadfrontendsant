@@ -137,55 +137,53 @@ $(document).ready(function () {
 
     }
 
-    function atender(idElemento) {
-
-        let info = {
-            numeroDocumento: idElemento,
-            accion: 'n'
-        };
-        $.ajax({
-
-            url: endpoint + "/bandaco/actualizar",
-            type: "PUT",
-            data: JSON.stringify(info),
-            dataType: 'json',
-            contentType: "application/json",
-            complete: function (data) {
-                console.log(data)
-                let mensaje = ""
-                mensaje = "guardo accion con exito"
-                console.log(mensaje)
-            } 
-        })
-
-        window.location = 'registro.html?numeroDocumento=' + idElemento;
-
-    }
-
-
-    function atendiendo(idElemento) {
-
-        window.location = 'registro.html?numeroDocumento=' + idElemento;
-
-    }
-
-    function borrarTabla() {
-        let registro="";
-        for (i=0; i <10 ; i++) {
-
-                        registro += "<tr>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "<td>" + "" + "</td>";
-                        registro += "</tr>"
-
-        }
-        $("#tbody").html(registro)
-
-    }
-
-
 })
+
+function atender(idElemento) {
+
+    let info = {
+        numeroDocumento: idElemento,
+        accion: 'n'
+    };
+    $.ajax({
+
+        url: endpoint + "/bandaco/actualizar",
+        type: "PUT",
+        data: JSON.stringify(info),
+        dataType: 'json',
+        contentType: "application/json",
+        complete: function (data) {
+            console.log(data)
+            let mensaje = ""
+            mensaje = "guardo accion con exito"
+            console.log(mensaje)
+        } 
+    })
+
+    window.location = 'registro.html?numeroDocumento=' + idElemento;
+
+}
+
+function atendiendo(idElemento) {
+
+    window.location = 'registro.html?numeroDocumento=' + idElemento;
+
+}
+
+function borrarTabla() {
+    let registro="";
+    for (i=0; i <10 ; i++) {
+
+                    registro += "<tr>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "<td>" + "" + "</td>";
+                    registro += "</tr>"
+
+    }
+    $("#tbody").html(registro)
+
+}
