@@ -104,9 +104,9 @@ $(document).ready(function(){
     function habilitarCampos(){
 
         if($("#medio").val()=="8"){
-            $("#otr-medio-conoc").attr('disabled',false);
+            $("#otr_medio_conoc").attr('disabled',false);
         }else{
-            $("#otr-medio-conoc").attr('disabled',true);
+            $("#otr_medio_conoc").attr('disabled',true);
         }
     }
 
@@ -114,7 +114,7 @@ $(document).ready(function(){
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
         }
-        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val().trim()=="" ){
+        else if($("#medio").val()=="8" && $("#otr_medio_conoc").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#expectativa").val()=="0"){
@@ -142,7 +142,7 @@ $(document).ready(function(){
         if($("#medio").val()=="0"){
             alert("seleccione ¿donde o por quién se enteró de Casa Libertad?")
         }
-        else if($("#medio").val()=="8" && $("#otr-medio-conoc").val().trim()=="" ){
+        else if($("#medio").val()=="8" && $("#otr_medio_conoc").val().trim()=="" ){
             alert("Seleccione Especifique")
         }
         else if($("#expectativa").val()=="0"){
@@ -184,7 +184,7 @@ $(document).ready(function(){
     function guardarProgramas(){
 
             let informacion={
-                otr_medio_conoc:$("#otr-medio-conoc").val().trim(), 
+                otr_medio_conoc:$("#otr_medio_conoc").val().trim(),
                 nombres_otro_func:$("#nombres_otro_func").val().trim(), 
                 medios_conoc_uniqid:$("#medio").val(), 
                 expectativas_uniqid:$("#expectativa").val(),
@@ -210,10 +210,10 @@ $(document).ready(function(){
     function pintarRespuesta(items){
 
 
-        if(items.otr_medio_conoc===null){$("#otr-medio-conoc".val(""))}else{$("#otr-medio-conoc".val(items.otr_medio_conoc))}
+        if(items.otr_medio_conoc===null){$("#otr_medio_conoc").val("")}else{$("#otr_medio_conoc".val(items.otr_medio_conoc))}
         if(items.nombres_otro_func===null){$("#nombres_otro_func").val("")}else{$("#nombres_otro_func").val(items.nombres_otro_func)}
         if(items.medios_conoc_uniqid===null){$("#medio").val("0")}else($("#medio").val(items.medios_conoc_uniqid))
-        if(items.expectativas_uniqid===null){$("#expectativa".val("0"))}else{$("#expectativa".val(items.expectativas_uniqid))}
+        if(items.expectativas_uniqid===null){$("#expectativa").val("0")}else{$("#expectativa".val(items.expectativas_uniqid))}
         if(items.funcs_registro_uniqid===null){$("#nombre_funcionario").val("0")}else{$("#nombre_funcionario").val(items.funcs_registro_uniqid)}
     }
 })

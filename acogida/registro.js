@@ -1,5 +1,5 @@
 //var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part/1/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
 //var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
@@ -450,6 +450,11 @@ function pintarRespuesta(items){
     if(items.cel_contacto===null){$("#cel_numero").val("")}else{$("#cel_numero").val(items.cel_contacto)};
     if(items.parentesco===null){$("#parentesco").val("")}else{$("#parentesco").val(items.parentesco)};
     if(items.observaciones===null){$("#observaciones").val("")}else{$("#observaciones").val(items.observaciones)}
+    if($("#radio1A").prop("checked")==false){
+        deshabilitarCampos();
+    }else{
+        habilitarCampos()
+    }
 }
 
 

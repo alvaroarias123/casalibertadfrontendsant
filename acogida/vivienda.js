@@ -116,7 +116,7 @@ $(document).ready(function(){
         let tipo=$("#tipo_vivienda").val();
 
         $.ajax({
-            url:endpoint+"/vivienda/save?numeroDocumento="+numeros+"&tipo="+tipo,
+            url:endpoint+"/vivienda/save?numeroDocumento="+numero+"&tipo="+tipo,
             type:'POST',
             data:JSON.stringify(tipo),
             dataType:'json',

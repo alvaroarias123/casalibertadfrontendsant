@@ -260,10 +260,10 @@ $(document).ready(function(){
     }
 
     function guardarFormularioDatosDem(){
-        if($("#pais").val()==""){pais="Colombia"}else{pais=$("#pais").val()};
+        //if($("#pais").val()=="0"){pais=$("#pais").val("0")}else{pais=$("#pais").val()};
         if($("#otra_etnia").val().trim()==""){especif=null}else(especif=$("#otra_etnia").val().trim());
         if($("#radio1").prop("checked")==true){victima="si"}else{victima="no"};
-        if($("#disc2").prop("checked")==true){ayuda_mov="no";ayuda_lect="no";ayuda_trad="no"};//ojo 
+        if($("#disc2").prop("checked")==true){ayuda_mov="no";ayuda_lect="no";ayuda_trad="no"};
         if($("#disc1").prop("checked")==true){discapac="si"}else{discapac="no"};
         if($("#disc1").prop("checked")==true){
             if($("#ayuda_movilidad1").prop("checked")==true){
@@ -286,7 +286,7 @@ $(document).ready(function(){
         let formulario={
             fecha_nacimiento:$("#fecha_nacimiento").val(),
             nacionalidad:$("#nacionalidad").val(),
-            pais_origen:pais,
+            pais_origen:$("#pais").val(),
             estado_civil:$("#estado").val(),
             etnia:$("#etnia").val(),
             especifique:especif,

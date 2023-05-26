@@ -196,7 +196,7 @@ $(document).ready(function(){
             nombres:nombres,
             primer_apellido:primerApellido,
             segundoApellido:segundoApellido,
-            accion:"Si"
+            accion:"s"
         }
 
         $.ajax({

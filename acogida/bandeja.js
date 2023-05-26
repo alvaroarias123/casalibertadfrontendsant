@@ -51,10 +51,12 @@ $(document).ready(function () {
     })
 
     $("#btn_anterior").click(function () {
-        borrarTabla();
-        m = m - 1;
-        if (m) {
-            getTurnos(m);
+        if(m>=0){
+            borrarTabla();
+            m = m - 1;
+            if (m) {
+                getTurnos(m);
+        }
         }
     })
 
