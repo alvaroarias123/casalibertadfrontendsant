@@ -1,6 +1,5 @@
-//const endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//const endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -331,7 +330,23 @@ $(document).ready(function(){
 
     function pintarResultado(items){   
 
-        if(items.fecha_nacimiento===null){$("#fecha_nacimiento").val("")}else{$("#fecha_nacimiento").val(items.fecha_nacimiento)};
+        if(items.fecha_nacimiento!==null){
+            fecha=new Date(items.fecha_nacimiento)
+            let dia=fecha.getDate()
+            let mes=fecha.getMonth()+1
+            let annio=fecha.getFullYear()
+            if(mes<10){
+                mes="-0"+mes;
+            }
+            if(dia<10){
+                dia="-0"+dia;
+            }
+            calen=annio+mes+dia
+            $("#fecha_nacimiento").val(calen)
+            console.log(calen)
+        }else{
+            $("#fecha_nacimiento").val(items.fecha_nacimiento)
+        };
         if(items.nacionalidad===null){$("#nacionalidad").val("0")}else{$("#nacionalidad").val(items.nacionalidad)};
         if(items.pais_origen===null){$("#pais").val("")}else{$("#pais").val(items.pais_origen)};
         if(items.estado_civil===null){$("#estado").val("0")}else{$("#estado").val(items.estado_civil)};

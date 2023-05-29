@@ -1,6 +1,5 @@
-//const endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
+//const endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
 
 $(document).ready(function(){
 

@@ -1,6 +1,5 @@
 //var endpoint="localhost:7001/CasaLRec";
 //var endpoint="localhost:8085";
-//var endpoint="http://172.21.21.27:9073/CasaLibertadR";
 var endpoint="http://172.21.21.27:9073/part1/CasaLRec";// /recepcion
 
 
@@ -47,12 +46,22 @@ $(document).ready(function(){
     const urlParams = new URLSearchParams(valores);
     var numero=urlParams.get("numeroDocumento");
     var tipo=urlParams.get("tipo_documento");
+    var radio1=urlParams.get("radio1")
     
     
 
 
     $("#numero_documento").val(numero);
     $("#tipo_documento").val(tipo);
+    if(radio1=="true"){
+        $("#radio1").attr("checked",true)
+        $("#radio2").attr("checked",false)
+    }else{
+        $("#radio1").attr("checked",false)
+        $("#radio2").attr("checked",true)
+    }
+    //$("#radio1").val();
+    //$("radio2").prop("checked")=radio2;
 
     getUsuario(numero,tipo)
 
@@ -206,9 +215,13 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
+                console.log(data.status)
                 let mensaje=""
-                mensaje="guardo visitante con exito" 
+                if(data.status=="201"){
+                    mensaje="guardo visitante con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }
                 console.log(mensaje)
                 
             }
@@ -235,9 +248,13 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
-                let mensaje =""
-                mensaje="guardo turno bandeja acogida con exito"   
+                console.log(data.status)
+                let mensaje=""
+                if(data.status=="201"){
+                    mensaje="guardo turno bandeja acogida con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }   
                 console.log(mensaje)
             }
         })

@@ -1,6 +1,5 @@
-//var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco";//  /acogida
+//var endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco";//  /acogida
 
 $(document).ready(function(){
 
@@ -246,11 +245,28 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-        if(items.fecha_libertad===null){$("#fecha_libertad").val("")}else{$("#fecha_libertad").val(items.fecha_libertad)}
-        if(items.meses_condena){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
+        if(items.fecha_libertad!==null){
+            fecha=new Date(items.fecha_libertad)
+            let dia=fecha.getDate()
+            let mes=fecha.getMonth()+1
+            let annio=fecha.getFullYear()
+            if(mes<10){
+                mes="-0"+mes;
+            }
+            if(dia<10){
+                dia="-0"+dia;
+            }
+            calen=annio+mes+dia
+            $("#fecha_libertad").val(calen);
+            console.log(calen)
+
+        }else{
+            $("#fecha_libertad").val("")
+        }
+        if(items.meses_condena===null){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
         if(items.ultimoProceso===null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
-        if(items.aprehend_adolesc){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
-        if(items.aprehend_mayor){$("#aprehend_mayor").val("0")}else{$("#aprehend_mayor").val(items.aprehend_mayor)}
+        if(items.aprehend_adolesc===null){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
+        if(items.aprehend_mayor!==null){$("#aprehend_mayor").val(items.aprehend_mayor)}else{$("#aprehend_mayor").val("100")}
         if(items.proceso_actual==="si"){$("#proceso_actual1").attr('checked',true)};
         if(items.proceso_actual==="no"){$("#proceso_actual2").attr('checked',true)};
         if(items.personeria==="si"){$("#personeria1").attr('checked',true)}else if(items.personeria==="no"){$("#personeria2").attr('checked',true)}else{$("#personeria3").attr('checked',true)};
@@ -260,9 +276,9 @@ $(document).ready(function(){
         if(items.policia==="si"){$("#policia1").attr('checked',true)}else if(items.policia==="no"){$("#policia2").attr('checked',true)}else{$("#policia3").attr('checked',true)};
         if(items.codigo_seguridad==="si"){$("#codigo_seguridad1").attr('checked',true)}else if(items.codigo_seguridad==="no"){$("#codigo_seguridad2").attr('checked',true)}else{$("#codigo_seguridad3").attr('checked',true)};
         if(items.sisipec==="si"){$("#sisipec1").attr('checked',true)}else if(items.sisipec==="no"){$("#sisipec2").attr('checked',true)}else{$("#sisipec3").attr('checked',true)};
-        if(items.estab_carcs_uniqid===null){$("#establecimiento").val("0")}else[$("#establecimiento").val(items.estab_carcs_uniqid)]
-        if(items.sit_jurid_uniqid===null){$("#situacion").val(items.sit_jurid_uniqid)}else{$("#situacion").val(items.sit_jurid_uniqid)}
-        if(items.delitos_uniqid===null){$("#delito").val("")}else{$("#delito").val(items.delitos_uniqid)}
+        if(items.estab_carcs_uniqid!==null){$("#establecimiento").val(items.estab_carcs_uniqid)}else{$("#establecimiento").val("0")}
+        if(items.sit_jurid_uniqid!==null){$("#situacion").val(items.sit_jurid_uniqid)}else{$("#situacion").val("0")}
+        if(items.delitos_uniqid!=="0"){$("#delito").val(items.delitos_uniqid)}else{$("#delito").val("0")}
 
     }
 
@@ -282,13 +298,14 @@ $(document).ready(function(){
 
 
         let informacion={
+            delitos_uniqid:$("#delito").val(),
             fecha_libertad:$("#fecha_libertad").val(),
             meses_condena:$("#meses_condena").val().trim(),
             ultimoProceso:$("#info_ultimo_proceso").val().trim(),
             aprehend_adolesc:$("#aprehend_adolesc").val(),
             aprehend_mayor:$("#aprehend_mayor").val(),
             proceso_actual:procesoAct,
-            delitos_uniqid:$("#delito").val(),
+            //delitos_uniqid:$("#delito").val(),
             estab_carcs_uniqid:$("#establecimiento").val(),
             sit_jurid_uniqid:$("#situacion").val(),
             personeria:person,
@@ -299,12 +316,13 @@ $(document).ready(function(){
             codigo_seguridad:codSeg,
             sisipec:sisip
         }
-
+        datem=JSON.stringify(informacion)
         $.ajax({
 
             url:endpoint+"/antecedentes/save?numeroDocumento="+numero,
             type:'POST',
-            data:JSON.stringify(informacion),
+            //data:JSON.stringify(informacion),
+            data:datem,
             dataType:'json',
             contentType:"application/json",
             complete:function(data){

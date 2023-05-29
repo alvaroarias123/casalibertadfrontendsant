@@ -1,6 +1,5 @@
-//var endpoint="localhost:7001/CasaLibertadR;"
+//var endpoint="localhost:7001/CasaLRec";
 //var endpoint="localhost:8085";
-//var endpoint="http://172.21.21.27:9073/CasaLibertadR";
 var endpoint="http://172.21.21.27:9073/part1/CasaLRec"; //  /recepcion
 
 
@@ -69,7 +68,10 @@ $(document).ready(function(){
 
         var numeroDocum =$("#numero_documento").val().trim()
 
-        if($("#tipo_documento").val()=="0"){
+        if($("#radio1").prop("checked")==false && $("#radio2").prop("checked")==false ){
+            alert("seleccionar autorización de tratamiento de datos");
+        }
+        else if($("#tipo_documento").val()=="0"){
             alert("Seleccione Tipo de Documento");
         }
         else if(numeroDocum==""){
@@ -96,10 +98,11 @@ $(document).ready(function(){
         else{
             var numeroDocumento =$("#numero_documento").val().trim()
             var tipoDocumento = $("#tipo_documento").val()
+            var radio1=$("#radio1").prop("checked")
 
             borrar()
 
-            window.location='recepcion3.html?numeroDocumento='+numeroDocumento+'&tipo_documento='+tipoDocumento
+            window.location='recepcion3.html?numeroDocumento='+numeroDocumento+'&tipo_documento='+tipoDocumento+'&radio1='+radio1
 
         }    
     })

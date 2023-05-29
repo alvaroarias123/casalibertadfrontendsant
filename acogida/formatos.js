@@ -1,6 +1,5 @@
-//var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -94,20 +93,29 @@ $(document).ready(function(){
         if($("#consentimiento_firma").val()=="0"){
             alert("Seleccione opción ¿Usuario firmó consentimiento informado");
         }
-        else if($("#consentimiento_firma").val()=="si" || $("#consentimiento_firma").val()=="no"){
+        /*else if($("#consentimiento_firma").val()=="si" || $("#consentimiento_firma").val()=="no"){
             alert("Adjuntar Consentimiento Informado");
+        }*/
+        else if($("#adjunto_concentimiento_firma").val()==false){
+            alert(("Adjuntar Consentimiento Informado"))
         }
         else if($("#consentimiento_firma_habeas").val()=="0"){
             alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
         }
-        else if($("#consentimiento_firma_habeas").val()=="si" || $("#consentimiento_firma_habeas").val()=="no"){
+        /*else if($("#consentimiento_firma_habeas").val()=="si" || $("#consentimiento_firma_habeas").val()=="no"){
+            alert("Adjuntar Autorización Tratamiento Datos Personales");
+        }*/
+        else if($("#adjunto_datos_habeas").val()==false){
             alert("Adjuntar Autorización Tratamiento Datos Personales");
         }
         else if($("#consentimiento_uso_imagen").val()=="0"){
             alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
         }
-        else if($("#consentimiento_uso_imagen").val()=="si" || $("#consentimiento_uso_imagen").val()=="no"){
+        /*else if($("#consentimiento_uso_imagen").val()=="si" || $("#consentimiento_uso_imagen").val()=="no"){
             alert("Adjuntar Autorización Uso de Imagen");
+        }*/
+        else if($("#adjunto_uso_imagen").val()==false){
+            alert("Adjuntar Autorización Uso de Imagen")
         }
         else if($("#medio_att_no_presencial").val()=="0"){
             alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
@@ -116,16 +124,29 @@ $(document).ready(function(){
         }
         else{
             guardarFormatos();
-            alert("Se guardó Formatos con éxito!!");
-            guardarBandejaArticulacion();
-            alert("Se creó turno en bandeja articulación con éxito!!")
-            eliminarTurno();
-            alert("Se eliminó turno en bandeja acogida");
-            if(sitio==1){
-                location.href="/introduccion.html";
+            //alert("Se guardó Formatos con éxito!!");
+            if($("#adjunto_uso_imagen").val()==true){
+                guardarBandejaArticulacion();
+                //alert("Se creó turno en bandeja articulación con éxito!!")
+                eliminarTurno();
+                //alert("Se eliminó turno en bandeja acogida");
+                alert("Se guardó Formatos con éxito!!");
+                if(sitio==1){
+                    location.href="/introduccion.html";
+                }else{  
+                    window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                }
             }else{
-                window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                alert("Se guardó Formatos con éxito!!");
+                if(sitio==1){
+                    location.href="/introduccion.html";
+                }else{  
+                    window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                }
+
             }
+
+            
         }
     }
 
@@ -181,10 +202,16 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
+                console.log(data.status)
                 let mensaje=""
-                mensaje="guardo Formatos con exito"
+                if(data.status=="201"){
+                    mensaje="guardo Formatos con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                    alert(mensaje);
+                }
                 console.log(mensaje)
+                
             }
         })
     }
@@ -207,9 +234,14 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
-                let mensaje =""
-                mensaje="se guardo bandeja articulación"
+                console.log(data.status)
+                let mensaje=""
+                if(data.status=="201"){
+                    mensaje="se guardo bandeja articulación"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                    alert(mensaje);
+                }
                 console.log(mensaje)
             }
         })
@@ -227,9 +259,14 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
-                let mensaje =""
-                mensaje="se elimino turno en bandeja acogida"
+                console.log(data.status)
+                let mensaje=""
+                if(data.status=="204"){
+                    mensaje="se elimino turno en bandeja acogida"
+                }else{
+                    mensaje="problemas al eliminar en base datos consulte con el administrador"
+                    alert(mensaje);
+                }
                 console.log(mensaje)
             }
         })

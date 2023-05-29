@@ -1,6 +1,5 @@
-//var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -276,7 +275,6 @@ function validarCamposMinimos(){
     }
     else{
         guardarFormulario();
-        alert("Se guardó registro con éxito!!");
         location.href="/introduccion.html";
 
     }
@@ -326,10 +324,15 @@ function guardarFormulario(){
         dataType:'json',
         contentType:"application/json",
         complete:function(data){
-            console.log(data)
-            let mensaje=""
-            mensaje="guardo registro con exito"
-            console.log(mensaje)
+            console.log(data.status)
+                let mensaje=""
+                if(data.status=="201"){
+                    mensaje="guardo registro con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }
+                console.log(mensaje)
+                alert("mensaje")
         }
     })
 }
@@ -385,7 +388,6 @@ function validarCampos(){
     else{
         
         guardarInformacion()
-        alert("Se guardó registro con éxito!!")
         //borrar()
         window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
         
@@ -433,7 +435,22 @@ function pintarRespuesta(items){
     $("#nombres").val(items.nombres);
     $("#primer_apellido").val(items.primer_apellido);
     if(items.segundo_apellido===null){$("#segundo_apellido").val("")}else{$("#segundo_apellido").val(items.segundo_apellido)};
-    if(items.fecha_expedicion!==null){$("#fecha_expedicion").val(items.fecha_expedicion)}else{$("#fecha_expedicion").val("")};
+    if(items.fecha_expedicion!==null){
+        fecha=new Date(items.fecha_expedicion)
+            let dia=fecha.getDate()
+            let mes=fecha.getMonth()+1
+            let annio=fecha.getFullYear()
+            if(mes<10){
+                mes="-0"+mes;
+            }
+            if(dia<10){
+                dia="-0"+dia;
+            }
+            calen=annio+mes+dia
+            $("#fecha_expedicion").val(calen);
+            console.log(calen)
+    }else{
+        $("#fecha_expedicion").val("")};
     if(items.direccion!==null){$("#calle").val(items.direccion)}else{$("#calle").val("0")};
     if(items.info_complementaria!==null){$("#info_complementaria").val(items.info_complementaria)}else{$("#info_complementaria").val("")};
     if(items.verificacion_direccion===null){$("#direccion").val("")}else{$("#direccion").val(items.verificacion_direccion)};
@@ -500,18 +517,17 @@ function guardarInformacion(){
         dataType:'json',
         contentType:"application/json",
         complete:function(data){
-            console.log(data)
-            let mensaje=""
-            mensaje="guardo registro con exito"
-            console.log(mensaje)
-            
-                
-                
-                
-            
+            console.log(data.status)
+                let mensaje=""
+                if(data.status=="201"){
+                    mensaje="guardo registro con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }
+                console.log(mensaje)
+                alert(mensaje)
         }
     })
-
 }
 
 function validarCorreo(email){

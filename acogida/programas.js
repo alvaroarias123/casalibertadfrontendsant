@@ -1,6 +1,5 @@
-//var endpoint="localhost:7001";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco";
-//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="localhost:7001/CasaLAco";
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
 
@@ -209,11 +208,15 @@ $(document).ready(function(){
 
     function pintarRespuesta(items){
 
-
+        if(items.expectativas_uniqid!==null){
+            $("#expectativa").val(items.expectativas_uniqid)
+        }else{
+            $("#expectativa").val("0")
+        }
         if(items.otr_medio_conoc===null){$("#otr_medio_conoc").val("")}else{$("#otr_medio_conoc".val(items.otr_medio_conoc))}
         if(items.nombres_otro_func===null){$("#nombres_otro_func").val("")}else{$("#nombres_otro_func").val(items.nombres_otro_func)}
         if(items.medios_conoc_uniqid===null){$("#medio").val("0")}else($("#medio").val(items.medios_conoc_uniqid))
-        if(items.expectativas_uniqid===null){$("#expectativa").val("0")}else{$("#expectativa".val(items.expectativas_uniqid))}
+        //if(items.expectativas_uniqid===null){$("#expectativa").val("0")}else{$("#expectativa".val(items.expectativas_uniqid))}
         if(items.funcs_registro_uniqid===null){$("#nombre_funcionario").val("0")}else{$("#nombre_funcionario").val(items.funcs_registro_uniqid)}
     }
 })
