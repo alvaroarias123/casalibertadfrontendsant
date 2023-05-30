@@ -50,12 +50,12 @@ $(document).ready(function(){
     
     
 
-
     $("#numero_documento").val(numero);
     $("#tipo_documento").val(tipo);
     if(radio1=="true"){
         $("#radio1").attr("checked",true)
         $("#radio2").attr("checked",false)
+        document.getElementById('aceptacion').style.display='none';
     }else{
         $("#radio1").attr("checked",false)
         $("#radio2").attr("checked",true)
@@ -152,11 +152,14 @@ $(document).ready(function(){
 
             guardarVisita()
 
-            getUsuario() // de esta manera traigo a usuario con la data y la guardo en variable info
-            if(info.citas_solicitadas_uniqid==2){    //cambié === por == 
-            guardarBandejaRec()
-            alert("Visita guardada") 
+            //getUsuario(numero,tipo) // de esta manera traigo a usuario con la data y la guardo en variable info
+            //if(info.citas_solicitadas_uniqid==2){    //cambié === por ==
+            if($("#modulo").val()=="2"){ 
+                console.log("escogió 2")
+                guardarBandejaRec(numero)
+                alert("Visita guardada") 
             }
+            console.log("No escogió 2")
             alert("Visita guardada")
             borrar()
             location.href="recepcion.html"
@@ -164,7 +167,7 @@ $(document).ready(function(){
         }
 
     }
-    var info;
+    //var info;
 
     function getUsuario(num,tipos){
 
@@ -174,7 +177,7 @@ $(document).ready(function(){
             type:'GET',
             dataType:'json',
             success:function(data){
-                info=data
+                //info=data
                 console.log(data)
                 pintarRespuesta(data)
             }
@@ -215,7 +218,7 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data.status)
+                console.log(data.status)             
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="guardo visitante con exito"
@@ -228,55 +231,8 @@ $(document).ready(function(){
         })
     }
 
-    function guardarBandejaRec(){
-
-        if($("#segundo_apellido").val().trim()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val().trim()};
-
-        let bandeja={
-            numeroDocumento:numero,
-            nombres:$("#nombres").val().trim(),
-            primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
-            segundoApellido:segApellido,
-            accion:"s"
-        }
-
-        $.ajax({
-
-            url:endpoint+"/bandejarec/save",
-            type:"POST",
-            data:JSON.stringify(bandeja),
-            dataType:'json',
-            contentType:"application/json",
-            complete:function(data){
-                console.log(data.status)
-                let mensaje=""
-                if(data.status=="201"){
-                    mensaje="guardo turno bandeja acogida con exito"
-                }else{
-                    mensaje="problemas al guardar en base datos consulte con el administrador"
-                }   
-                console.log(mensaje)
-            }
-        })
-        
-    }
-
-    function borrar(){
-        $("#radio1").prop("checked",false);
-        $("#radio2").prop("checked",false);
-        $("#numero_documento").val("");
-        $("#tipo_documento").val("0");
-        $("#nombres").val("");
-        $("#primer_apellido").val("");
-        $("#segundo_apellido").val("");
-        $("#cel_1").val("");
-        $("#cel_2").val("");
-        $("#razon").val("0");
-        $("#otra_razon").val("");
-        $("#modulo").val("0");
-        $("#canal").val("0");
-    }
-
+    
+    
     function pintarRespuesta(items){
 
         if(items.nombres!==null){
@@ -305,8 +261,57 @@ $(document).ready(function(){
 
 })
 
+
+function borrar(){
+    $("#radio1").prop("checked",false);
+    $("#radio2").prop("checked",false);
+    $("#numero_documento").val("");
+    $("#tipo_documento").val("0");
+    $("#nombres").val("");
+    $("#primer_apellido").val("");
+    $("#segundo_apellido").val("");
+    $("#cel_1").val("");
+    $("#cel_2").val("");
+    $("#razon").val("0");
+    $("#otra_razon").val("");
+    $("#modulo").val("0");
+    $("#canal").val("0");
+}
+
+function guardarBandejaRec(numero){
+
+    if($("#segundo_apellido").val().trim()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val().trim()};
+
+    let bandeja={
+        numeroDocumento:numero,
+        nombres:$("#nombres").val().trim(),
+        primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
+        segundoApellido:segApellido,
+        accion:"s"
+    }
+
+    $.ajax({
+
+        url:endpoint+"/bandejarec/save",
+        type:"POST",
+        data:JSON.stringify(bandeja),
+        dataType:'json',
+        contentType:"application/json",
+        complete:function(data){
+            console.log(data.status)
+            let mensaje=""
+            if(data.status=="201"){
+                mensaje="guardo turno bandeja acogida con exito"
+            }else{
+                mensaje="problemas al guardar en base datos consulte con el administrador"
+            }   
+            console.log(mensaje)
+        }
+    })
     
-    
+}
+
+
     
 
    // <location.href="/acogida/bandeja.html";

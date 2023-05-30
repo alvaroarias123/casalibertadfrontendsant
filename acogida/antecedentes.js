@@ -244,25 +244,22 @@ $(document).ready(function(){
     }
 
     function pintarRespuesta(items){
-
         if(items.fecha_libertad!==null){
             fecha=new Date(items.fecha_libertad)
-            let dia=fecha.getDate()
-            let mes=fecha.getMonth()+1
-            let annio=fecha.getFullYear()
-            if(mes<10){
-                mes="-0"+mes;
-            }
-            if(dia<10){
-                dia="-0"+dia;
-            }
-            calen=annio+mes+dia
-            $("#fecha_libertad").val(calen);
-            console.log(calen)
-
+                let dia=fecha.getDate()
+                let mes=fecha.getMonth()+1
+                let annio=fecha.getFullYear()
+                if(mes<10){
+                    mes="-0"+mes;
+                }
+                if(dia<10){
+                    dia="-0"+dia;
+                }
+                calen=annio+mes+dia
+                $("#fecha_expedicion").val(calen);
+                console.log(calen)
         }else{
-            $("#fecha_libertad").val("")
-        }
+            $("#fecha_expedicion").val("")};
         if(items.meses_condena===null){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
         if(items.ultimoProceso===null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
         if(items.aprehend_adolesc===null){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}
