@@ -219,7 +219,7 @@ $(document).ready(function(){
         }
         else{
             guardarAntecedentes();
-            alert("Se guardó Antecedentes con éxito!!")
+            //alert("Se guardó Antecedentes con éxito!!")
             if(sitio==1){
                 window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }else{
@@ -323,10 +323,18 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
+                console.log(data.status)
                 let mensaje=""
-                mensaje="guardo antecedentes con exito"
+                if(data.status=="201"){
+                    mensaje="guardo Antecedentes con exito"
+                    
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }
+                alert(mensaje)
                 console.log(mensaje)
+                console.log(data)
+                
             }
         })
     }

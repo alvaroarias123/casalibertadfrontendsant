@@ -127,7 +127,7 @@ $(document).ready(function(){
         }
         else{
             guardarProgramas();
-            alert("Se guardó programas con éxito!!!")
+            //alert("Se guardó programas con éxito!!!")
             if(sitio==1){
                 window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }else{
@@ -155,7 +155,7 @@ $(document).ready(function(){
         }
         else{
             guardarProgramas();
-            alert("Se guardó programas con éxito!!!")
+            //alert("Se guardó programas con éxito!!!")
             if(sitio==1){
                 window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }else{
@@ -198,10 +198,16 @@ $(document).ready(function(){
                 dataType:'json',
                 contentType:"application/json",
                 complete:function(data){
-                    console.log(data)
-                    let mensaje=""
-                    mensaje="guardo Programas con exito"
+                    console.log(data.status)
+                    let mensaje = ""
+                    if (data.status == "201") {
+                        mensaje = "guardo Programas con exito"
+                    } else {
+                        mensaje = "problemas al guardar en base datos consulte con el administrador"
+                    }
                     console.log(mensaje)
+                    alert(mensaje)
+                    
                 }
             })
     }

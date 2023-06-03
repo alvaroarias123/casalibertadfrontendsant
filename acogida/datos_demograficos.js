@@ -200,7 +200,7 @@ $(document).ready(function(){
         }       
         else{
             guardarFormularioDatosDem();
-            alert("Se ha guardado Datos Demográficos")
+            //alert("Se ha guardado Datos Demográficos")
 
             if(sitio==1){
                 window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
@@ -248,7 +248,7 @@ $(document).ready(function(){
         }       
         else{
             guardarFormularioDatosDem();
-            alert("Se ha guardado Datos Demográficos")
+            //alert("Se ha guardado Datos Demográficos")
             if(sitio==1){
                 window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }
@@ -307,9 +307,15 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
+                console.log(data.status)
                 let mensaje=""
-                mensaje="guardo datos demográficos con exito"
+                if(data.status=="201"){
+                    mensaje="guardo Datos Demograficos con exito"
+                    
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }
+                alert(mensaje)
                 console.log(mensaje)
             }
         })

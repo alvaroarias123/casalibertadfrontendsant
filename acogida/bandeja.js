@@ -53,7 +53,7 @@ $(document).ready(function () {
         if(m>=0){
             borrarTabla();
             m = m - 1;
-            if (m) {
+            if (m>=0) {
                 getTurnos(m);
         }
         }
@@ -73,72 +73,75 @@ $(document).ready(function () {
 
 
 
-    function getTurnos(m) {
-
-        $.ajax({
-
-            url: endpoint + "/bandaco/consulta",
-            type: "GET",
-            dataType: "json",
-            success: function (respuesta) {
-
-                console.log(respuesta);
-                pintarRespuesta(respuesta, m)  //pintarRespuesta(respuesta.items, m)
-            }
-        })
-    }
-
-
-    function pintarRespuesta(respuesta, m) {  //cambié items po respuesta
-
-        z = respuesta.length;  //cambié items por respuesta
-        let registro = "";
-
-        var i = m * 10;
-
-        if (i >= 0) {
-
-            if (respuesta.length > i) {
-
-                if (respuesta.length < ((m * 10) + 10)) {
-                    var part = respuesta.length;  // en todas las respuesta antes estaba items
-                } else {
-                    //var part = i + 10;// no es debería ser repsuesta.length
-                    //var part=respuesta.length;
-                    var part=(i*10)+10;//var part=10;
-                    //i=i+10;
-                }
-                for (var j=i; j < part; j++) {   
-
-                    if(respuesta[j].accion === 's'){
-                        registro += "<tr>";
-                        //registro += "<td>" + respuesta[j].uniqid + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
-                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
-                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta[j].nombres + "</td>";// agregué respuesta
-                        registro += "<td>" + respuesta[j].primerApellido + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>";//agregué respuesta
-                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
-                        registro += "</tr>"
-                    } else {
-                        registro += "<tr>";
-                        //registro += "<td>" + respuesta[j].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
-                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
-                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
-                        registro += "<td>" + respuesta[j].nombres + "</td>"; //respuesta.value.nombres
-                        registro += "<td>" + respuesta[j].primerApellido + "</td>";  //respuesta.value.primerApellido
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>"; //respuesta.value.segundoApellido
-                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
-                        registro += "</tr>";
-                    }
-                }
-                $("#tbody").html(registro)
-            }
-        }
-
-    }
+    //}
 
 })
+
+function getTurnos(m) {
+
+    $.ajax({
+
+        url: endpoint + "/bandaco/consulta",
+        type: "GET",
+        dataType: "json",
+        success: function (respuesta) {
+
+            console.log(respuesta);
+            pintarRespuesta(respuesta, m)  //pintarRespuesta(respuesta.items, m)
+        }
+    })
+}
+
+
+function pintarRespuesta(respuesta, m) {  //cambié items po respuesta
+
+    z = respuesta.length;  //cambié items por respuesta
+    let registro = "";
+
+    var i = m * 10;
+
+    if (i >= 0) {
+
+        if (respuesta.length > i) {
+
+            if (respuesta.length < ((m * 10) + 10)) {
+                var part = respuesta.length;  // en todas las respuesta antes estaba items
+            } else {
+                //var part = i + 10;// no es debería ser repsuesta.length
+                //var part=respuesta.length;
+                var part=(i*10)+10;//var part=10;
+                //i=i+10;
+            }
+            for (var j=i; j < part; j++) {   
+
+                if(respuesta[j].accion === 's'){
+                    registro += "<tr>";
+                    //registro += "<td>" + respuesta[j].uniqid + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
+                    registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
+                    registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//agregué respuesta
+                    registro += "<td>" + respuesta[j].nombres + "</td>";// agregué respuesta
+                    registro += "<td>" + respuesta[j].primerApellido + "</td>";//agregué respuesta
+                    registro += "<td>" + respuesta[j].segundoApellido + "</td>";//agregué respuesta
+                    registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                    registro += "</tr>"
+                } else {
+                    registro += "<tr>";
+                    //registro += "<td>" + respuesta[j].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
+                    registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
+                    registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
+                    registro += "<td>" + respuesta[j].nombres + "</td>"; //respuesta.value.nombres
+                    registro += "<td>" + respuesta[j].primerApellido + "</td>";  //respuesta.value.primerApellido
+                    registro += "<td>" + respuesta[j].segundoApellido + "</td>"; //respuesta.value.segundoApellido
+                    registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+                    registro += "</tr>";
+                }
+            }
+            $("#tbody").html(registro)
+        }
+    }
+}
+
+
 
 function atender(idElemento) {
 

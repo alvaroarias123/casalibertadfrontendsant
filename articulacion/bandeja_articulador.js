@@ -38,61 +38,63 @@ $(document).ready(function(){
 
     })
 
-    function getTurnos(){
+    
+})
 
-        $.ajax({
+function getTurnos(){
 
-            url:endpoint+"/bandejaArtic/consulta",
-            type:"GET",
-            dataType:"json",
-            success:function(respuesta){
+    $.ajax({
 
-                console.log(respuesta);
+        url:endpoint+"/bandejaArtic/consulta",
+        type:"GET",
+        dataType:"json",
+        success:function(respuesta){
 
-                pintarRespuesta(respuesta.items)
+            console.log(respuesta);
 
-            }
-        })
-    }
+            pintarRespuesta(respuesta)
 
-    function pintarRespuesta(items){
+        }
+    })
+}
 
-        let registro="";
+function pintarRespuesta(items){
 
-        for(i=0;i<items.length;i++){
+    let registro="";
 
-            if(items[i].accion==='s'){
-                registro+="<tr>";
-                registro+="<td>"+items[i].uniqid+"</td>";
-                registro+="<td>"+items[i].numeroDocumento+"</td>";
-                registro+="<td>"+items[i].nombres+"</td>";
-                registro+="<td>"+items[i].primerApellido+"</td>";
-                registro+="<td>"+items[i].segundoApellido+"</td>";
-                registro+="<td class='text-center bot1'><button onclick='atender("+items[i].numeroDocumento+")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
-                registro+="</tr>"
-            }else{
-                registro+="<tr>";
-                registro+="<td>"+value.uniqid+"</td>";
-                registro+="<td>"+value.numeroDocumento+"</td>";
-                registro+="<td>"+value.nombres+"</td>";
-                registro+="<td>"+value.primerApellido+"</td>";
-                registro+="<td>"+value.segundoApellido+"</td>";
-                registro+="<td class='text-center bot2'><button onclick='atendiendo("+items[i].numeroDocumento+")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
-                registro+="</tr>";
-            }
+    for(i=0;i<items.length;i++){
+
+        if(items[i].accion==='s'){
+            registro+="<tr>";
+            registro+="<td>"+items[i].uniqid+"</td>";
+            registro+="<td>"+items[i].numeroDocumento+"</td>";
+            registro+="<td>"+items[i].nombres+"</td>";
+            registro+="<td>"+items[i].primerApellido+"</td>";
+            registro+="<td>"+items[i].segundoApellido+"</td>";
+            registro+="<td class='text-center bot1'><button onclick='atender("+items[i].numeroDocumento+")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+            registro+="</tr>"
+        }else{
+            registro+="<tr>";
+            registro+="<td>"+value.uniqid+"</td>";
+            registro+="<td>"+value.numeroDocumento+"</td>";
+            registro+="<td>"+value.nombres+"</td>";
+            registro+="<td>"+value.primerApellido+"</td>";
+            registro+="<td>"+value.segundoApellido+"</td>";
+            registro+="<td class='text-center bot2'><button onclick='atendiendo("+items[i].numeroDocumento+")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+            registro+="</tr>";
         }
     }
+}
 
-    function atender(idElemento){
+function atender(idElemento){
 
-        alert("Módulo Articulación en construcción!!!")
-        location.href="/introduccion.html";
-    }
+    alert("Módulo Articulación en construcción!!!")
+    location.href="/introduccion.html";
+}
 
 
-    function atendiendo(idElemento){
+function atendiendo(idElemento){
 
-        alert("Módulo Articulación en construcción!!!")
-        location.href="/introduccion.html";
-    }
-})
+    alert("Módulo Articulación en construcción!!!")
+    location.href="/introduccion.html";
+}

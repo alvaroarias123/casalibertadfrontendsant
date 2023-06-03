@@ -87,7 +87,7 @@ $(document).ready(function(){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
             guardarViviendas();
-            alert("Se ha guardado viviendas")
+            //alert("Se ha guardado viviendas")
             if(sitio===1){
                 window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }else{
@@ -101,7 +101,7 @@ $(document).ready(function(){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
             guardarViviendas();
-            alert("Se guardó viviendas con éxito!!");
+            //alert("Se guardó viviendas con éxito!!");
             if(sitio===1){
                 window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }else{
@@ -121,10 +121,16 @@ $(document).ready(function(){
             dataType:'json',
             contentType:"application/json",
             complete:function(data){
-                console.log(data)
+                console.log(data.status)
                 let mensaje=""
-                mensaje="guardo viviendas con exito"
-                console.log(mensaje)
+                if(data.status=="201"){
+                    mensaje="guardo Viviendas con exito"
+                    console.log(mensaje)
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                    console.log(mensaje)
+                }
+                alert(mensaje)
             }
         })
     }
