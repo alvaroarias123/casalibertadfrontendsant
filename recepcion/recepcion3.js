@@ -258,60 +258,54 @@ $(document).ready(function(){
         }
     }
 
-
-})
-
-
-function borrar(){
-    $("#radio1").prop("checked",false);
-    $("#radio2").prop("checked",false);
-    $("#numero_documento").val("");
-    $("#tipo_documento").val("0");
-    $("#nombres").val("");
-    $("#primer_apellido").val("");
-    $("#segundo_apellido").val("");
-    $("#cel_1").val("");
-    $("#cel_2").val("");
-    $("#razon").val("0");
-    $("#otra_razon").val("");
-    $("#modulo").val("0");
-    $("#canal").val("0");
-}
-
-function guardarBandejaRec(numero){
-
-    if($("#segundo_apellido").val().trim()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val().trim()};
-
-    let bandeja={
-        numeroDocumento:numero,
-        nombres:$("#nombres").val().trim(),
-        primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
-        segundoApellido:segApellido,
-        accion:"s"
+    function borrar(){
+        $("#radio1").prop("checked",false);
+        $("#radio2").prop("checked",false);
+        $("#numero_documento").val("");
+        $("#tipo_documento").val("0");
+        $("#nombres").val("");
+        $("#primer_apellido").val("");
+        $("#segundo_apellido").val("");
+        $("#cel_1").val("");
+        $("#cel_2").val("");
+        $("#razon").val("0");
+        $("#otra_razon").val("");
+        $("#modulo").val("0");
+        $("#canal").val("0");
     }
 
-    $.ajax({
+    function guardarBandejaRec(numero){
 
-        url:endpoint+"/bandejarec/save",
-        type:"POST",
-        data:JSON.stringify(bandeja),
-        dataType:'json',
-        contentType:"application/json",
-        complete:function(data){
-            console.log(data.status)
-            let mensaje=""
-            if(data.status=="201"){
-                mensaje="guardo turno bandeja acogida con exito"
-            }else{
-                mensaje="problemas al guardar en base datos consulte con el administrador"
-            }   
-            console.log(mensaje)
+        if($("#segundo_apellido").val().trim()==""){segApellido = null}else{segApellido=$("#segundo_apellido").val().trim()};
+    
+        let bandeja={
+            numeroDocumento:numero,
+            nombres:$("#nombres").val().trim(),
+            primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
+            segundoApellido:segApellido,
+            accion:"s"
         }
-    })
     
-}
-
-
+        $.ajax({
     
+            url:endpoint+"/bandejarec/save",
+            type:"POST",
+            data:JSON.stringify(bandeja),
+            dataType:'json',
+            contentType:"application/json",
+            complete:function(data){
+                console.log(data.status)
+                let mensaje=""
+                if(data.status=="201"){
+                    mensaje="guardo turno bandeja acogida con exito"
+                }else{
+                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                }   
+                console.log(mensaje)
+            }
+        })
+        
+    }
 
+})
    // <location.href="/acogida/bandeja.html";

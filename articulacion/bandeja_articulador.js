@@ -38,53 +38,53 @@ $(document).ready(function(){
 
     })
 
+    function getTurnos(){
+
+        $.ajax({
     
-})
+            url:endpoint+"/bandejaArtic/consulta",
+            type:"GET",
+            dataType:"json",
+            success:function(respuesta){
+    
+                console.log(respuesta);
+    
+                pintarRespuesta(respuesta)
+    
+            }
+        })
+    }
 
-function getTurnos(){
+    function pintarRespuesta(items){
 
-    $.ajax({
-
-        url:endpoint+"/bandejaArtic/consulta",
-        type:"GET",
-        dataType:"json",
-        success:function(respuesta){
-
-            console.log(respuesta);
-
-            pintarRespuesta(respuesta)
-
-        }
-    })
-}
-
-function pintarRespuesta(items){
-
-    let registro="";
-
-    for(i=0;i<items.length;i++){
-
-        if(items[i].accion==='s'){
-            registro+="<tr>";
-            registro+="<td>"+items[i].uniqid+"</td>";
-            registro+="<td>"+items[i].numeroDocumento+"</td>";
-            registro+="<td>"+items[i].nombres+"</td>";
-            registro+="<td>"+items[i].primerApellido+"</td>";
-            registro+="<td>"+items[i].segundoApellido+"</td>";
-            registro+="<td class='text-center bot1'><button onclick='atender("+items[i].numeroDocumento+")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
-            registro+="</tr>"
-        }else{
-            registro+="<tr>";
-            registro+="<td>"+value.uniqid+"</td>";
-            registro+="<td>"+value.numeroDocumento+"</td>";
-            registro+="<td>"+value.nombres+"</td>";
-            registro+="<td>"+value.primerApellido+"</td>";
-            registro+="<td>"+value.segundoApellido+"</td>";
-            registro+="<td class='text-center bot2'><button onclick='atendiendo("+items[i].numeroDocumento+")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
-            registro+="</tr>";
+        let registro="";
+    
+        for(i=0;i<items.length;i++){
+    
+            if(items[i].accion==='s'){
+                registro+="<tr>";
+                registro+="<td>"+items[i].uniqid+"</td>";
+                registro+="<td>"+items[i].numeroDocumento+"</td>";
+                registro+="<td>"+items[i].nombres+"</td>";
+                registro+="<td>"+items[i].primerApellido+"</td>";
+                registro+="<td>"+items[i].segundoApellido+"</td>";
+                registro+="<td class='text-center bot1'><button onclick='atender("+items[i].numeroDocumento+")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                registro+="</tr>"
+            }else{
+                registro+="<tr>";
+                registro+="<td>"+value.uniqid+"</td>";
+                registro+="<td>"+value.numeroDocumento+"</td>";
+                registro+="<td>"+value.nombres+"</td>";
+                registro+="<td>"+value.primerApellido+"</td>";
+                registro+="<td>"+value.segundoApellido+"</td>";
+                registro+="<td class='text-center bot2'><button onclick='atendiendo("+items[i].numeroDocumento+")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+                registro+="</tr>";
+            }
         }
     }
-}
+    
+    
+})
 
 function atender(idElemento){
 

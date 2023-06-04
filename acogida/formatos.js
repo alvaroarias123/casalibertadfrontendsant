@@ -88,27 +88,27 @@ $(document).ready(function(){
         //location.href="/introduccion.html";
     })
 
-    function validarFormulario(sitio){   
+    function validarFormulario(sitio) {
 
-        if($("#consentimiento_firma").val()=="0"){
+        if ($("#consentimiento_firma").val() == "0") {
             alert("Seleccione opción ¿Usuario firmó consentimiento informado");
         }
         /*else if($("#consentimiento_firma").val()=="si" || $("#consentimiento_firma").val()=="no"){
             alert("Adjuntar Consentimiento Informado");
         }*/
-        else if($("#adjunto_concentimiento_firma").val()==false){
+        else if ($("#adjunto_concentimiento_firma").val() == false) {
             alert(("Adjuntar Consentimiento Informado"))
         }
-        else if($("#consentimiento_firma_habeas").val()=="0"){
+        else if ($("#consentimiento_firma_habeas").val() == "0") {
             alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
         }
         /*else if($("#consentimiento_firma_habeas").val()=="si" || $("#consentimiento_firma_habeas").val()=="no"){
             alert("Adjuntar Autorización Tratamiento Datos Personales");
         }*/
-        else if($("#adjunto_datos_habeas").val()==false){
+        else if ($("#adjunto_datos_habeas").val() == false) {
             alert("Adjuntar Autorización Tratamiento Datos Personales");
         }
-        else if($("#consentimiento_uso_imagen").val()=="0"){
+        else if ($("#consentimiento_uso_imagen").val() == "0") {
             alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
         }
         /*else if($("#consentimiento_uso_imagen").val()=="si" || $("#consentimiento_uso_imagen").val()=="no"){
@@ -117,26 +117,29 @@ $(document).ready(function(){
         /*else if($("#adjunto_uso_imagen").val()==false){
             alert("Adjuntar Autorización Uso de Imagen")
         }*/
-        else if($("#medio_att_no_presencial").val()=="0"){
+        else if ($("#medio_att_no_presencial").val() == "0") {
             alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
         }
-        else if($("#estado").val()=="0"){
+        else if ($("#estado").val() == "0") {
         }
-        else{
+        else {
             guardarFormatos();
             //alert("Se guardó Formatos con éxito!!");
             //if($("#adjunto_uso_imagen").val()==true){
-                if($("#adjunto_uso_imagen").val()!=false){
-                    guardarBandejaArticulacion();
-                    //alert("Se creó turno en bandeja articulación con éxito!!")
-                    eliminarTurno();
-                    //alert("Se eliminó turno en bandeja acogida");
-                    //alert("Se guardó Formatos con éxito!!");
-                }
-            if(sitio==1){
-                location.href="/introduccion.html";
-            }else{  
-                window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            if ($("#adjunto_uso_imagen").val() != false) {
+                guardarBandejaArticulacion();
+                //alert("Se creó turno en bandeja articulación con éxito!!")
+                eliminarTurno();
+                //alert("Se eliminó turno en bandeja acogida");
+                //alert("Se guardó Formatos con éxito!!");
+            } else {
+                alert("Se guardaron Formatos")
+            }
+
+            if (sitio == 1) {
+                location.href = "/introduccion.html";
+            } else {
+                window.location = 'programas.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
             }
             /*}else{
                 //alert("Se guardó Formatos con éxito!!");
@@ -253,37 +256,37 @@ $(document).ready(function(){
 
     }
 
+    function traerFormatos(){  
 
+        $.ajax({
+            url:endpoint+"/formatos/consulta?numeroDocumento="+numero,
+            type:"GET",
+            dataType:"json",
+            success:function(respuesta){
+                console.log(respuesta);
+                pintarRespuesta(respuesta)
+            }
+        })
+    }
+    
+    function pintarRespuesta(items){
+        if(items.consentimiento_firma===null){$("#consentimiento_firma").val("0")}else{$("#consentimiento_firma").val(items.consentimiento_firma);}
+        if(items.trat_datos_firma===null){$("#consentimiento_firma_habeas").val("0")}else{$("#consentimiento_firma_habeas").val(items.trat_datos_firma)}
+        if(items.autoriz_imagen_firma===null){$("#consentimiento_uso_imagen").val("0")}else{$("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma)}
+        if(items.adjunto_concentimiento!==null){
+            $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento);
+        }else{$("#adjunto_concentimiento_firma").val("");}
+        if(items.adjunto_trat_datos!==null){
+            $("#adjunto_datos_habeas").val(items.adjunto_trat_datos);
+        }else{$("#adjunto_datos_habeas").val("");}
+        if(items.adjunto_uso_imagen!==null){
+            $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen);
+        }else{$("#adjunto_uso_imagen").val("");}
+        if(items.medio_att_no_presencial===null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
+        if(items.estado===null){$("#estado").val("0")}else{$("#estado").val(items.estado)}
+        
+    }
 
 })
 
-function traerFormatos(){  
 
-    $.ajax({
-        url:endpoint+"/formatos/consulta?numeroDocumento="+numero,
-        type:"GET",
-        dataType:"json",
-        success:function(respuesta){
-            console.log(respuesta);
-            pintarRespuesta(respuesta)
-        }
-    })
-}
-
-function pintarRespuesta(items){
-    if(items.consentimiento_firma===null){$("#consentimiento_firma").val("0")}else{$("#consentimiento_firma").val(items.consentimiento_firma);}
-    if(items.trat_datos_firma===null){$("#consentimiento_firma_habeas").val("0")}else{$("#consentimiento_firma_habeas").val(items.trat_datos_firma)}
-    if(items.autoriz_imagen_firma===null){$("#consentimiento_uso_imagen").val("0")}else{$("#consentimiento_uso_imagen").val(items.autoriz_imagen_firma)}
-    if(items.adjunto_concentimiento!==null){
-        $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento);
-    }else{$("#adjunto_concentimiento_firma").val("");}
-    if(items.adjunto_trat_datos!==null){
-        $("#adjunto_datos_habeas").val(items.adjunto_trat_datos);
-    }else{$("#adjunto_datos_habeas").val("");}
-    if(items.adjunto_uso_imagen!==null){
-        $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen);
-    }else{$("#adjunto_uso_imagen").val("");}
-    if(items.medio_att_no_presencial===null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
-    if(items.estado===null){$("#estado").val("0")}else{$("#estado").val(items.estado)}
-    
-}
