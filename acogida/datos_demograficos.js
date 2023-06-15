@@ -342,16 +342,20 @@ $(document).ready(function(){
             let mes=fecha.getMonth()+1
             let annio=fecha.getFullYear()
             if(mes<10){
-                mes="-0"+mes;
+                mes="0"+mes;
+            }else{
+                mes=mes;
             }
             if(dia<10){
-                dia="-0"+dia;
+                dia="0"+dia;
+            }else{
+                dia=dia
             }
-            calen=annio+mes+dia
+            calen = annio+"-"+mes+"-"+dia;
             $("#fecha_nacimiento").val(calen)
             console.log(calen)
         }else{
-            $("#fecha_nacimiento").val(items.fecha_nacimiento)
+            $("#fecha_nacimiento").val("")
         };
         if(items.nacionalidad===null){$("#nacionalidad").val("0")}else{$("#nacionalidad").val(items.nacionalidad)};
         if(items.pais_origen===null){$("#pais").val("")}else{$("#pais").val(items.pais_origen)};

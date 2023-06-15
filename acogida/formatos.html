@@ -163,14 +163,14 @@
                         <h4 style="color:#A41549;">FORMATOS</h4>
                     </div>
                 </div>
-                <!--<form>-->
+                <!--<form id="myform" name="myform" method="post" enctype="multipart/form-data">-->
                 <div class="row mb-4 justify-content-between">
                     <div class="col-5 mx-3">
                         <label for="consentimiento_firma" class="form-label" style="display: block">¿Usuario firmó
                             Consentimiento informado? <strong>*</strong></label>
                         <div>
                             <select class="form-select form-select-sm form-control form-control-sm bg-white"
-                                id="consentimiento_firma">
+                                id="consentimiento_firma" name="consentimientoFirma">
                                 <option value="0">SELECCIONE</option>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -183,7 +183,7 @@
                         <div>
                             <label for="adjunto_concentimiento_firma" class="form-label">Adjuntar Consentimiento
                                 informado (No puede superar los 5Mb)</label>
-                            <input class="form-control form-control-sm mb-1" type="file" id="adjunto_concentimiento_firma">
+                            <input class="form-control form-control-sm mb-1" type="file" id="adjunto_concentimiento_firma" name="consentimiento">
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                             Autorización Tratamiento Datos Personales<br>Habeas Data? <strong>*</strong></label>
                         <div>
                             <select class="form-select form-select-sm form-control form-control-sm bg-white"
-                                id="consentimiento_firma_habeas">
+                                id="consentimiento_firma_habeas" name="tratamientoDatosFirma">
                                 <option value="0">SELECCIONE</option>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -207,7 +207,7 @@
                         <div>
                             <label for="adjunto_datos_habeas" class="form-label">Adjuntar Autorización
                                 Tratamiento Datos Personales Habeas Data (No puede superar los 5Mb)</label>
-                            <input class="form-control form-control-sm" type="file" id="adjunto_datos_habeas">
+                            <input class="form-control form-control-sm" type="file" id="adjunto_datos_habeas" name="autorTratamDatos">
                         </div>
                     </div>
                 </div>
@@ -217,7 +217,7 @@
                             Autorización de uso de imagen? <strong>*</strong></label>
                         <div>
                             <select class="form-select form-select-sm form-control form-control-sm bg-white"
-                                id="consentimiento_uso_imagen">
+                                id="consentimiento_uso_imagen" name="autorizImagenFirma">
                                 <option value="0">SELECCIONE</option>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -230,7 +230,7 @@
                         <div>
                             <label for="adjunto_uso_imagen" class="form-label">Adjuntar Autorización de uso de
                                 imagen (No puede superar los 5Mb)</label>
-                            <input class="form-control form-control-sm" type="file" id="adjunto_uso_imagen">
+                            <input class="form-control form-control-sm" type="file" id="adjunto_uso_imagen" name="autorUsoImagen">
                         </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                             <strong>*</strong></label>
                         <div>
                             <select class="form-select form-select-sm form-control form-control-sm bg-white"
-                                id="medio_att_no_presencial">
+                                id="medio_att_no_presencial" name="mediosAttNoPresenc">
                                 <option value="0">SELECCIONE</option>
                                 <option value="Internet en su computador con camara y microfono(interno o externo)">Internet en su computador con cámara y micrófono(interno o externo)</option>
                                 <option value="Internet desde su celular">Internet desde su celular</option>
@@ -257,7 +257,8 @@
                             <strong>*</strong></label>
                         <div>
                             <select class="form-select form-select-sm form-control form-control-sm bg-white"
-                                id="estado">
+                                id="estado" name="estado">
+                                <option value="0">SELECCIONE</option>
                                 <option value="registrado">REGISTRADO</option>
                             </select>
                         </div>
@@ -270,6 +271,7 @@
                                     style="background-color: #A41549; color: white;">ANTERIOR</button>
                             <button class="btn" type="button" id="btn_guardar"
                                     style="background-color: #A41549; color: white;">GUARDAR</button>
+                            
                                 
                         </div>
                     </div>

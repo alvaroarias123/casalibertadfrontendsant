@@ -250,16 +250,20 @@ $(document).ready(function(){
                 let mes=fecha.getMonth()+1
                 let annio=fecha.getFullYear()
                 if(mes<10){
-                    mes="-0"+mes;
+                    mes="0"+mes;
+                }else{
+                    mes=mes;
                 }
                 if(dia<10){
-                    dia="-0"+dia;
+                    dia="0"+dia;
+                }else{
+                    dia=dia;
                 }
-                calen=annio+mes+dia
-                $("#fecha_expedicion").val(calen);
-                console.log(calen)
+                calen = annio+"-"+mes+"-"+dia;
+                $("#fecha_libertad").val(calen);
+                console.log(calen);
         }else{
-            $("#fecha_expedicion").val("")};
+            $("#fecha_libertad").val("")};
         if(items.meses_condena===null){$("#meses_condena").val("")}else{$("#meses_condena").val(items.meses_condena)}
         if(items.ultimoProceso===null){$("#info_ultimo_proceso").val("")}else{$("#info_ultimo_proceso").val(items.ultimoProceso)}
         if(items.aprehend_adolesc===null){$("#aprehend_adolesc").val("0")}else{$("#aprehend_adolesc").val(items.aprehend_adolesc)}

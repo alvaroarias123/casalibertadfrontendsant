@@ -418,13 +418,17 @@ $(document).ready(function () {
             let mes = fecha.getMonth() + 1
             let annio = fecha.getFullYear()
             if (mes < 10) {
-                mes = "-0" + mes;
+                mes = "0" + mes;
+            }else{
+                mes=mes;
             }
             if (dia < 10) {
-                dia = "-0" + dia;
+                dia = "0" + dia;
+            }else{
+                dia=dia;
             }
-            calen = annio + mes + dia
-            $("#fecha_expedicion").val(calen);
+            calen = annio+"-"+mes+"-"+dia;
+            $("#fecha_expedicion").val(annio+"-"+mes+"-"+dia);
             console.log(calen)
         } else {
             $("#fecha_expedicion").val("")
@@ -432,9 +436,9 @@ $(document).ready(function () {
         if (items.direccion !== null) { $("#calle").val(items.direccion) } else { $("#calle").val("0") };
         if (items.info_complementaria !== null) { $("#info_complementaria").val(items.info_complementaria) } else { $("#info_complementaria").val("") };
         if (items.verificacion_direccion === null) { $("#direccion").val("") } else { $("#direccion").val(items.verificacion_direccion) };
-        if (items.localidad === null) { $("#localidad").val("0") } else { $("#localidad").val(items.localidad) };
+        if (items.localidad === null) {$("#localidad").val("0")} else {$("#localidad").val(items.localidad)};
         if (items.barrio === null) { $("#barrio").val("") } else { $("#barrio").val(items.barrio) };
-        if (items.estrato === null) { $("#estrato").val("0") } else { $("#estrato").val(items.estrato) };
+        if (items.estrato !== null) {$("#estrato").val(items.estrato)} else {$("#estrato").val("0")};
         if (items.tel_fijo === 0) { $("#tel_fijo").val("") } else { $("#tel_fijo").val(items.tel_fijo) };
         $("#celular_1").val(items.cel_1);
         if (items.cel_2 === 0) { $("#celular_2").val("") } else { $("#celular_2").val(items.cel_2) };
