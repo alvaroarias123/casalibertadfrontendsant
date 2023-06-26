@@ -151,7 +151,7 @@ $(document).ready(function () {
                         registro += "<td>" + respuesta[j].nombres + "</td>"; //respuesta.value.nombres
                         registro += "<td>" + respuesta[j].primerApellido + "</td>";  //respuesta.value.primerApellido
                         registro += "<td>" + respuesta[j].segundoApellido + "</td>"; //respuesta.value.segundoApellido
-                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
                         registro += "</tr>";
                     }
                 }
@@ -163,6 +163,7 @@ $(document).ready(function () {
 })
 
 function atender(idElemento) {
+    
 
     let info = {
         numeroDocumento: idElemento,

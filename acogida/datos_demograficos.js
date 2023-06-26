@@ -7,33 +7,48 @@ $(document).ready(function(){
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero=urlParams.get("numeroDocumento");
+    var fechaExpedicion=urlParams.get("fecha_expedicion");
+    //var fechaNacimiento=urlParams.get("fecha_nacimiento");
     var nombres=urlParams.get("nombres");
     var primerApellido=urlParams.get("primerApellido");
     var segundoApellido=urlParams.get("segundoApellido");
 
     //alert("Hola")
+    var fechaNacimiento=$("#fecha_nacimiento").val();
 
     $("#registro").click(function(){
+        //window.location='registro.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     $("#datos_dem").click(function(){
     
+        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#vivienda").click(function(){
-        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
+        window.location='vivienda.html?numeroDocumento='+numero+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#antecedente").click(function(){
-        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
+        window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#programa").click(function(){
+        //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#formato").click(function(){
+        //window.location='formatos.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
@@ -123,6 +138,47 @@ $(document).ready(function(){
         validarCampos2(sitio);
     })
 
+    $("#fecha_nacimiento").blur(function(){
+        var fechaNacimiento=$("#fecha_nacimiento").val();
+        fechaNac=new Date(fechaNacimiento);
+        fechaExp=new Date(fechaExpedicion);
+        fechaActual= new Date();
+
+        if(fechaNac.getFullYear()>fechaActual.getFullYear()){
+            alert("fecha nacimiento erronea");
+        }
+        else if(fechaNac.getFullYear()==fechaActual.getFullYear()){
+            if(fechaNac.getMonth()>fechaActual.getMonth()){
+                alert("fecha nacimiento erronea");
+            }else if(fechaNac.getDate()>fechaActual.getDate()){
+                alert("fecha nacimiento erronea");
+            }
+        }
+        else if(fechaNac.getFullYear()>fechaExp.getFullYear()){
+            alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+        }
+        else if(fechaNac.getFullYear()==fechaExp.getFullYear()){
+            if(fechaNac.getMonth()>fechaExp.getMonth()){
+                alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+            }else if(fechaNac.getDate()>fechaExp.getDate()){
+                alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+            }    
+        }
+    })
+
+    $("#nacionalidad").blur(function(){
+        if($("#nacionalidad").val()!="2"){
+            $("#pais").val("0");
+        }
+    })
+
+    $("#etnia").blur(function(){
+        if($("#etnia").val()!="7"){
+            $("#otra_etnia").val("");
+        }
+    })
+
+
     function deshabilitarCajaDiscapacidad(){
 
         $("#ayuda_movilidad1").prop('checked',false)
@@ -201,12 +257,16 @@ $(document).ready(function(){
         else{
             guardarFormularioDatosDem();
             //alert("Se ha guardado Datos Demográficos")
-
+            var fechaNacimiento=$("#fecha_nacimiento").val();
             if(sitio==1){
-                window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+                //window.location='vivienda.html?numeroDocumento='+numero + '&fecha_nacimiento=' + fechaNacimiento + '&fecha_expedicion=' + fechaExpedicion+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
+                window.location='vivienda.html?numeroDocumento='+numero +'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }
             else{
-                window.location='registro.html?numeroDocumento='+numero;
+                //window.location='registro.html?numeroDocumento='+numero+'&fecha_nacimiento=' + fechaNacimiento+'&fecha_expedicion=' + fechaExpedicion+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
+                window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }
         }
     }
@@ -249,7 +309,10 @@ $(document).ready(function(){
         else{
             guardarFormularioDatosDem();
             //alert("Se ha guardado Datos Demográficos")
+            var fechaNacimien=$("#fecha_nacimiento").val();
             if(sitio==1){
+                //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_nacimiento=' + fechaNacimien+'&fecha_expedicion=' + fechaExpedicion+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
                 window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
             }
             else{

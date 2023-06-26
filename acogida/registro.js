@@ -7,28 +7,47 @@ $(document).ready(function () {
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero = urlParams.get("numeroDocumento");
+    //var fechaExpedicion=urlParams.get("fecha_expedicion");
+    //var fechaNacimiento=urlParams.get("fecha_nacimiento");
+    var nombres=urlParams.get("nombres");
+    var primerApellido=urlParams.get("primerApellido");
+    var segundoApellido=urlParams.get("segundoApellido");
 
+
+    var fechaExpedicion=$("#fecha_expedicion").val();
     $("#registro").click(function () {
-        window.location = 'registro.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        //window.location = 'registro.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
+        window.location = 'registro.html?numeroDocumento=' + numero +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
     $("#datos_dem").click(function () {
 
-        window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        //window.location = 'datos_demograficos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
+        window.location = 'datos_demograficos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
 
     $("#vivienda").click(function () {
+        //window.location = 'vivienda.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
         window.location = 'vivienda.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
 
     $("#antecedente").click(function () {
+        //window.location = 'antecedentes.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
         window.location = 'antecedentes.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
 
     $("#programa").click(function () {
+        //window.location = 'programas.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
         window.location = 'programas.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
 
     $("#formato").click(function () {
+        //window.location = 'formatos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
         window.location = 'formatos.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     })
 
@@ -71,6 +90,7 @@ $(document).ready(function () {
     var nombres = $("#nombres").val();
     var primerApellido = $("#primer_apellido").val();
     var segundoApellido = $("#segundo_apellido").val();
+    //var fechaNacimiento=urlParams.get("fecha_nacimiento");
 
     $("#radio2A").click(function () {
 
@@ -105,23 +125,86 @@ $(document).ready(function () {
 
     })
 
+    //BLUR CON FECHA NACIMIENTO OJO AQUI SE NECESITA VER SI FECHA NACIMIENTO = NULL O ""
+    $("#fecha_expedicion").blur(function(){
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        //fechaNac=new Date(fechaNacimiento);
+        fechaExp=new Date(fechaExpedicion);
+        fechaActual= new Date();
+
+        if(fechaExp.getFullYear()>fechaActual.getFullYear()){
+            alert("fecha expedición erronea");
+        }
+        else if(fechaExp.getFullYear()==fechaActual.getFullYear()){
+            if(fechaExp.getMonth()>fechaActual.getMonth()){
+                alert("fecha expedición erronea");
+            }else if(fechaExp.getDate()>=fechaActual.getDate()){
+                alert("fecha expedidión erronea");
+            }
+        }
+
+        /*else if(fechaNac.getFullYear()>fechaExp.getFullYear()){
+            alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+        }
+        else if(fechaNac.getFullYear()==fechaExp.getFullYear()){
+            if(fechaNac.getMonth()>fechaExp.getMonth()){
+                alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+            }else if(fechaNac.getDate()>=fechaExp.getDate()){
+                alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+            }    
+        
+    }*/
+    })
+
     $("#calle").blur(function () {
         var cal = $("#calle").val();
         $("#direccion").val(cal);
+        $("#8").val("");
+        $("#A").val("");
+        $("#BIS").val("");
+        $("#AA").val("");
+        $("#SUR").val("");
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
+
     })
 
 
     $("#8").blur(function () {
         var cal = $("#calle").val();
         var nu = $("#8").val().trim();
+        $("#A").val("");
+        $("#BIS").val("");
+        $("#AA").val("");
+        $("#SUR").val("");
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
+        if(isNaN(nu)){
+            alert("casilla 8 solo acepta números");
+            $("#8").val("");
+        }else{
         $("#direccion").val(cal + " " + nu);
-
+        }
     })
 
     $("#A").blur(function () {
         var cal = $("#calle").val();
         var nu = $("#8").val().trim();
         var som = $("#A").val();
+        $("#BIS").val("");
+        $("#AA").val("");
+        $("#SUR").val("");
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som);
 
     })
@@ -131,6 +214,13 @@ $(document).ready(function () {
         var nu = $("#8").val().trim();
         var som = $("#A").val();
         var bis = $("#BIS").val();
+        $("#AA").val("");
+        $("#SUR").val("");
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis);
 
     })
@@ -141,6 +231,12 @@ $(document).ready(function () {
         var som = $("#A").val();
         var bis = $("#BIS").val();
         var aa = $("#AA").val();
+        $("#SUR").val("");
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa);
 
     })
@@ -152,6 +248,11 @@ $(document).ready(function () {
         var bis = $("#BIS").val();
         var aa = $("#AA").val();
         var sur = $("#SUR").val();
+        $("#9").val("");
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur);
 
     })
@@ -164,8 +265,16 @@ $(document).ready(function () {
         var aa = $("#AA").val();
         var sur = $("#SUR").val();
         var me = $("#9").val().trim();
+        $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
+        if(isNaN(me)){
+            alert("casilla 9 solo acepta números");
+            $("#9").val("");
+        }else{
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me);
-
+        }   
     })
 
     $("#AAA").blur(function () {
@@ -177,6 +286,9 @@ $(document).ready(function () {
         var sur = $("#SUR").val();
         var me = $("#9").val().trim();
         var aaa = $("#AAA").val();
+        $("#25").val("");
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa);
 
     })
@@ -191,8 +303,14 @@ $(document).ready(function () {
         var me = $("#9").val().trim();
         var aaa = $("#AAA").val();
         var mal = $("#25").val().trim();
+        $("#ESTE").val("");
+        $("#info_complementaria").val("");
+        if(isNaN(mal)){
+            alert("casilla 25 solo acepta números")
+            $("#25").val("");
+        }else{
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal);
-
+        }
     })
 
     $("#ESTE").blur(function () {
@@ -206,11 +324,12 @@ $(document).ready(function () {
         var aaa = $("#AAA").val();
         var mal = $("#25").val().trim();
         var este = $("#ESTE").val();
+        $("#info_complementaria").val("");
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este);
 
     })
 
-    $("#info_complementaria").focus(function () {
+    /*$("#info_complementaria").focus(function () {
         var cal = $("#calle").val();
         var nu = $("#8").val().trim();
         var som = $("#A").val();
@@ -223,7 +342,7 @@ $(document).ready(function () {
         var este = $("#ESTE").val();
 
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este);
-    })
+    })*/
 
     $("#info_complementaria").blur(function () {
         var cal = $("#calle").val();
@@ -242,7 +361,7 @@ $(document).ready(function () {
 
     })
 
-    $("#localidad").focus(function () {
+    /*$("#localidad").focus(function () {
         var cal = $("#calle").val();
         var nu = $("#8").val().trim();
         var som = $("#A").val();
@@ -257,7 +376,7 @@ $(document).ready(function () {
 
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este + "   " + info);
 
-    })
+    })*/
 
     function validarCampos(numero) {
 
@@ -270,19 +389,19 @@ $(document).ready(function () {
         else if ($("#fecha_expedicion").val() == "") {
             alert("Selleccionar fecha expedición documento")
         }
-        else if ($("#calle").val() == "0") {
+        else if ($("#calle").val() == "0" && $("#direccion").val()=="") {
             alert("Seleccione opción en desplegable dirección ")
         }
-        else if ($("#8").val().trim() == "") {
+        else if ($("#8").val().trim() == "" && $("#direccion").val()=="") {
             alert("llenar casilla 8*")
         }
-        else if ($("#9").val().trim() == "") {
+        else if ($("#9").val().trim() == "" && $("#direccion").val()=="") {
             alert("llenar casilla 9*")
         }
-        else if ($("#25").val().trim() == "") {
+        else if ($("#25").val().trim() == "" && $("#direccion").val()=="") {
             alert("llenar casilla 25*")
         }
-        else if ($("#info_complementaria").val().trim() == "") {
+        else if ($("#info_complementaria").val().trim() == "" && $("#direccion").val()=="") {
             alert("Llenar casilla Información Complementaria")
         }
         else if ($("#localidad").val() == "0") {
@@ -293,6 +412,15 @@ $(document).ready(function () {
         }
         else if ($("#estrato").val() == "0") {
             alert("Seleccione opción Estrato Socioeconómico")
+        }
+        else if($("#tel_fijo").val().trim()!="" && $("#tel_fijo").val().trim().length != 10){
+            alert("Teléfono Fijo debe ser de 10 dígitos")
+        }
+        else if($("#celular_1").val().trim()!="" && $("#celular_1").val().trim().length != 10){
+            alert("Teléfono Celular 1 debe ser de 10 dígitos")
+        }
+        else if($("#celular_2").val().trim()!="" && $("#celular_2").val().trim().length != 10){
+            alert("Teléfono Celular 2 debe ser de 10 dígitos")
         }
         else if ($("#email").val().trim() != "") {
             validarCorreo($("#email").val().trim())
@@ -309,8 +437,11 @@ $(document).ready(function () {
         else {
     
             guardarInformacion()
+            var fechaExpedicion=$("#fecha_expedicion").val();
             //borrar()
-            window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+            //window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento='+fechaNacimiento +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
+            window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion  +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     
         }
     

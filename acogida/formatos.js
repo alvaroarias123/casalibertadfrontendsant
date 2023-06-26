@@ -7,6 +7,8 @@ $(document).ready(function(){
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero=urlParams.get("numeroDocumento");
+    //var fechaExpedicion=urlParams.get("fecha_expedicion");
+    //var fechaNacimiento=urlParams.get("fecha_nacimiento");
     var nombres=urlParams.get("nombres");
     var primerApellido=urlParams.get("primerApellido");
     var segundoApellido=urlParams.get("segundoApellido");
@@ -17,26 +19,38 @@ $(document).ready(function(){
     traerFormatos();
 
     $("#registro").click(function(){
+        //window.location='registro.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     $("#datos_dem").click(function(){
     
+        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#vivienda").click(function(){
+        //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#antecedente").click(function(){
+        //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#programa").click(function(){
+        //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
     
     $("#formato").click(function(){
+        //window.location='formatos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+
         window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
     })
 
@@ -133,44 +147,82 @@ $(document).ready(function(){
             if (sitio == 1) {
                 location.href = "/introduccion.html";
             } else {
-                window.location = 'programas.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+                //window.location = 'programas.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+
+                window.location = 'programas.html?numeroDocumento=' + numero  + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
             }
             
         }
     }
 
     function guardarFormatos(){
-            let consentimiento_firma=$("#consentimiento_firma").val();
-            let trat_datos_firma=$("#consentimiento_firma_habeas").val();
-            let autoriz_imagen_firma=$("#consentimiento_uso_imagen").val();
-            let adjunto_concentimiento=$("#adjunto_concentimiento_firma").val();
-            let adjunto_trat_datos=$("#adjunto_datos_habeas").val();
-            let adjunto_uso_imagen=$("#adjunto_uso_imagen").val();
-            let medio_att_no_presencial=$("#medio_att_no_presencial").val();
-            let estado=$("#estado").val();  
+            let consentFirma=$("#consentimiento_firma").val();
+            let tratDatosFirma=$("#consentimiento_firma_habeas").val();
+            let autorizacionImagenFirma=$("#consentimiento_uso_imagen").val(); 
+            let medioAttNoPresencial=$("#medio_att_no_presencial").val();
+            let estad=$("#estado").val();
 
-        $.ajax({
 
-            url:endpoint+"/formatos/save?numeroDocumento="+numero+"&consentimientoFirma="+consentimiento_firma+"&tratamientoDatosFirma="+trat_datos_firma+"&autorizImagenFirma="+autoriz_imagen_firma+"&mediosAttNoPresenc="+medio_att_no_presencial+"&estado="+estado+
-            "&consentimiento="+adjunto_concentimiento+"&autorTratamDatos="+adjunto_trat_datos+"&autorUsoImagen="+adjunto_uso_imagen,
-            type:'POST',
-            dataType:'json',
-            contentType:"application/json",
-            complete:function(data){
-                console.log(data.status)
-                    let mensaje = ""
-                    if (data.status == "201") {
-                        mensaje = "guardo Formatos con exito"
-                    } else {
-                        mensaje = "problemas al guardar en base datos consulte con el administrador"
-                        alert(mensaje)
-                    }
-                    console.log(mensaje)
-                    
-                
-                
+            var formdata= new FormData();
+            formdata.append("numeroDocumento",num);
+            formdata.append("consentimientoFirma",consentFirma);
+            formdata.append("tratamientoDatosFirma",tratDatosFirma);
+            formdata.append("autorizImagenFirma",autorizacionImagenFirma);
+            formdata.append("mediosAttNoPresenc",medioAttNoPresencial);
+            formdata.append("estado",estad);
+
+
+            var imagen1=$("#adjunto_concentimiento_firma").val();
+            if(imagen1!=""){
+                var file_data1=$('input[name="consentimiento"]')[0].files;
+                for(var i=0;i<file_data1.length;i++){
+                    formdata.append("consentimiento",file_data1[i]);
+                }
             }
-        })
+            
+            var imagen2=$("#adjunto_datos_habeas").val();
+            if(imagen2!=""){
+                var file_data2=$('input[name="autorTratamDatos"]')[0].files;
+                for(var j=0;j<file_data2.length;j++){
+                    formdata.append("autorTratamDatos",file_data2[j]);
+                }
+            }
+
+            var imagen3=$("#adjunto_uso_imagen").val();
+            if(imagen3!=""){
+                var file_data3=$('input[name="autorUsoImagen"]')[0].files;
+                for(var k=0;k<file_data3.length;k++){
+                    formdata.append("autorUsoImagen",file_data3[k]);
+                }
+            }
+
+            $.ajax({
+
+                url:endpoint+"/formatos/save",
+                type:'POST',
+                data:formdata,
+                //dataType:"json",
+                contentType:false,
+                processData:false,
+                //contentType:"multipart/form-data",
+                cache:false,
+                timeout:600000,
+                enctype:"multipart/form-data",
+                complete:function(data){
+                    console.log(data.status)
+                        let mensaje = ""
+                        if (data.status == "201") {
+                            mensaje = "guardo Formatos con exito"
+                        } else {
+                            mensaje = "problemas al guardar en base datos consulte con el administrador"
+                            alert(mensaje)
+                        }
+                        console.log(mensaje)
+                        
+                    
+                    
+                }
+            })
     }
 
     function guardarBandejaArticulacion(){
@@ -252,13 +304,13 @@ $(document).ready(function(){
         if(items.medio_att_no_presencial===null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
         if(items.estado===null){$("#estado").val("registrado")}else{$("#estado").val(items.estado)}
         if(items.adjunto_concentimiento!==null){
-            $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento);
+            $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento.name);//items.adjunto_concentimiento.name  getOriginalFilename
         }else{$("#adjunto_concentimiento_firma").val("")}
         if(items.adjunto_trat_datos!==null){
-            $("#adjunto_datos_habeas").val(items.adjunto_trat_datos);
+            $("#adjunto_datos_habeas").val(items.adjunto_trat_datos.name);//items.adjunto_trat_datos.name    getOriginalFilename
         }else{$("#adjunto_datos_habeas").val("")}
         if(items.adjunto_uso_imagen!==null){
-            $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen);
+            $("#adjunto_uso_imagen").val(items.adjunto_uso_imagen.name);//items.adjunto_uso_imagen.name    getOriginalFilename
         }else{$("#adjunto_uso_imagen").val("")}
 
         

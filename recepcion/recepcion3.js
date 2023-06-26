@@ -111,6 +111,15 @@ $(document).ready(function(){
         $("#aceptacion").show()
     }
 
+    $("#razon").blur(function(){
+        if($("#razon").val()!="13"){
+            $("#otra_razon").val("");
+        }
+        if($("#razon").val()!="3"){
+            $("#modulo").val("0");
+        }
+    })
+
     function validarCampos(){
 
         if($("#radio1").prop("checked")==false && $("#radio2").prop("checked")==false ){
