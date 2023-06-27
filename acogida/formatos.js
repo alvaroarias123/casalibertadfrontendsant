@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 
             var formdata= new FormData();
-            formdata.append("numeroDocumento",num);
+            formdata.append("numeroDocumento",numero);
             formdata.append("consentimientoFirma",consentFirma);
             formdata.append("tratamientoDatosFirma",tratDatosFirma);
             formdata.append("autorizImagenFirma",autorizacionImagenFirma);
@@ -201,7 +201,7 @@ $(document).ready(function(){
                 url:endpoint+"/formatos/save",
                 type:'POST',
                 data:formdata,
-                //dataType:"json",
+                dataType:"json",
                 contentType:false,
                 processData:false,
                 //contentType:"multipart/form-data",
@@ -304,7 +304,7 @@ $(document).ready(function(){
         if(items.medio_att_no_presencial===null){$("#medio_att_no_presencial").val("0")}else{$("#medio_att_no_presencial").val(items.medio_att_no_presencial);}
         if(items.estado===null){$("#estado").val("registrado")}else{$("#estado").val(items.estado)}
         if(items.adjunto_concentimiento!==null){
-            $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento.name);//items.adjunto_concentimiento.name  getOriginalFilename
+            $("#adjunto_concentimiento_firma").val(items.adjunto_concentimiento.name);//items.adjunto_concentimiento   .getOriginalFilename
         }else{$("#adjunto_concentimiento_firma").val("")}
         if(items.adjunto_trat_datos!==null){
             $("#adjunto_datos_habeas").val(items.adjunto_trat_datos.name);//items.adjunto_trat_datos.name    getOriginalFilename
