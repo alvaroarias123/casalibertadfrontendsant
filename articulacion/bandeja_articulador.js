@@ -82,8 +82,7 @@ $(document).ready(function(){
             }
         }
     }
-    
-    
+
 })
 
 function atender(idElemento){
@@ -91,7 +90,6 @@ function atender(idElemento){
     alert("Módulo Articulación en construcción!!!")
     location.href="/introduccion.html";
 }
-
 
 function atendiendo(idElemento){
 
