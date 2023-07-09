@@ -9,49 +9,36 @@ $(document).ready(function(){
     var numero=urlParams.get("numeroDocumento");
     //var fechaExpedicion=urlParams.get("fecha_expedicion");
     //var fechaNacimiento=urlParams.get("fecha_nacimiento");
-    var nombres=urlParams.get("nombres");
-    var primerApellido=urlParams.get("primerApellido");
-    var segundoApellido=urlParams.get("segundoApellido");
-
-
-    //alert("Funciona");
 
     traerFormatos();
 
     $("#registro").click(function(){
-        //window.location='registro.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='registro.html?numeroDocumento='+numero;
     })
     $("#datos_dem").click(function(){
-    
-        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='datos_demograficos.html?numeroDocumento='+numero;
     })
     
     $("#vivienda").click(function(){
-        //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='vivienda.html?numeroDocumento='+numero;
     })
     
     $("#antecedente").click(function(){
-        //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='antecedentes.html?numeroDocumento='+numero;
     })
     
     $("#programa").click(function(){
-        //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='programas.html?numeroDocumento='+numero;
     })
     
     $("#formato").click(function(){
-        //window.location='formatos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='formatos.html?numeroDocumento='+numero;
     })
 
     $("#boton_aumentar").click(function(){
@@ -104,30 +91,18 @@ $(document).ready(function(){
         if ($("#consentimiento_firma").val() == "0") {
             alert("Seleccione opción ¿Usuario firmó consentimiento informado");
         }
-        /*else if($("#consentimiento_firma").val()=="si" || $("#consentimiento_firma").val()=="no"){
-            alert("Adjuntar Consentimiento Informado");
-        }*/
         else if ($("#adjunto_concentimiento_firma").val() == false) {
             alert(("Adjuntar Consentimiento Informado"))
         }
         else if ($("#consentimiento_firma_habeas").val() == "0") {
             alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
         }
-        /*else if($("#consentimiento_firma_habeas").val()=="si" || $("#consentimiento_firma_habeas").val()=="no"){
-            alert("Adjuntar Autorización Tratamiento Datos Personales");
-        }*/
         else if ($("#adjunto_datos_habeas").val() == false) {
             alert("Adjuntar Autorización Tratamiento Datos Personales");
         }
         else if ($("#consentimiento_uso_imagen").val() == "0") {
             alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
         }
-        /*else if($("#consentimiento_uso_imagen").val()=="si" || $("#consentimiento_uso_imagen").val()=="no"){
-            alert("Adjuntar Autorización Uso de Imagen");
-        }*/
-        /*else if($("#adjunto_uso_imagen").val()==false){
-            alert("Adjuntar Autorización Uso de Imagen")
-        }*/
         else if ($("#medio_att_no_presencial").val() == "0") {
             alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
         }
@@ -135,9 +110,9 @@ $(document).ready(function(){
             alert("Seleccione Estado")
         }
         else {
-            guardarFormatos();
+            guardarFormatos(sitio);
 
-            if ($("#consentimiento_uso_imagen").val()==="si") { 
+            /*if ($("#consentimiento_uso_imagen").val()==="si") { 
                 //guardarBandejaArticulacion(); SE ELIMINA POR EL MOMENTO HASTA CONSTRUCCIÖN DEL MÖDULO ARTICULACIÖN   
                 eliminarTurno();  
             } else {
@@ -147,15 +122,13 @@ $(document).ready(function(){
             if (sitio == 1) {
                 location.href = "/introduccion.html";
             } else {
-                //window.location = 'programas.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-                window.location = 'programas.html?numeroDocumento=' + numero  + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-            }
+                window.location = 'programas.html?numeroDocumento=' + numero;
+            }*/
             
         }
     }
 
-    function guardarFormatos(){
+    function guardarFormatos(sitio){
             let consentFirma=$("#consentimiento_firma").val();
             let tratDatosFirma=$("#consentimiento_firma_habeas").val();
             let autorizacionImagenFirma=$("#consentimiento_uso_imagen").val(); 
@@ -209,15 +182,23 @@ $(document).ready(function(){
                 timeout:600000,
                 enctype:"multipart/form-data",
                 complete:function(data){
-                    console.log(data.status)
-                        let mensaje = ""
+                    console.log(data)
                         if (data.status == "201") {
-                            mensaje = "guardo Formatos con exito"
+                            if ($("#consentimiento_uso_imagen").val()==="si") { 
+                                //guardarBandejaArticulacion(); SE ELIMINA POR EL MOMENTO HASTA CONSTRUCCIÖN DEL MÖDULO ARTICULACIÖN   
+                                eliminarTurno();  
+                            } else {
+                                alert("Se guardaron Formatos")
+                            }
+
+                            if (sitio == 1) {
+                                location.href = "/introduccion.html";
+                            } else {
+                                window.location = 'programas.html?numeroDocumento=' + numero;
+                            }
                         } else {
-                            mensaje = "problemas al guardar en base datos consulte con el administrador"
-                            alert(mensaje)
+                            alert("problemas al guardar en base datos consulte con el administrador")
                         }
-                        console.log(mensaje)
                         
                     
                     
@@ -242,6 +223,7 @@ $(document).ready(function(){
             data:JSON.stringify(bandeja),
             dataType:'json',
             contentType:"application/json",
+            timeout:600000,
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""
@@ -267,17 +249,14 @@ $(document).ready(function(){
             data:JSON.stringify(bandeja),
             dataType:'json',
             contentType:"application/json",
+            timeout:600000,
             complete:function(data){
-                console.log(data.status)
-                let mensaje=""
                 if(data.status=="204"){
-                    mensaje="eliminó turno y guardo Formatos con exito"
+                    alert("eliminó turno y guardo Formatos con exito")
                 }else{
-                    mensaje="problemas al eliminar en base datos consulte con el administrador"
+                    alert("problemas al eliminar en base datos consulte con el administrador")
                     
                 }
-                alert(mensaje);
-                console.log(mensaje)
             }
         })
 

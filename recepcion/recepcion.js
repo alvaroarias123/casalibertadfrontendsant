@@ -1,6 +1,6 @@
 //var endpoint="localhost:7001/CasaLRec";
 //var endpoint="localhost:8085";
-var endpoint="http://172.21.21.27:9073/part1/CasaLRec"; //  /recepcion
+var endpoint="http://172.21.21.27:9073/part1/CasaLRec"; 
 
 
 $(document).ready(function(){

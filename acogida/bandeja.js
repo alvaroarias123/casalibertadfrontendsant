@@ -1,5 +1,5 @@
 //const endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; 
 
 
 $(document).ready(function () {
@@ -81,7 +81,7 @@ $(document).ready(function () {
             success: function (respuesta) {
     
                 console.log(respuesta);
-                pintarRespuesta(respuesta, m)  //pintarRespuesta(respuesta.items, m)
+                pintarRespuesta(respuesta, m)  
             }
         })
     }
@@ -104,9 +104,9 @@ $(document).ready(function () {
     
     }
 
-    function pintarRespuesta(respuesta, m) {  //cambié items po respuesta
+    function pintarRespuesta(respuesta, m) {  
 
-        z = respuesta.length;  //cambié items por respuesta
+        z = respuesta.length;  
         let registro = "";
     
         var i = m * 10;
@@ -116,41 +116,36 @@ $(document).ready(function () {
             if (respuesta.length > i) {
     
                 if (respuesta.length < ((m * 10) + 10)) {
-                    var part = respuesta.length;  // en todas las respuesta antes estaba items
+                    var part = respuesta.length;  
                 } else {
-                    //var part = i + 10;// no es debería ser repsuesta.length
-                    //var part=respuesta.length;
-                    var part=(i*10)+10;//var part=10;
-                    //i=i+10;
+                    var part=(i*10)+10;
                 }
                 for (var j=i; j < part; j++) {   
     
                     if(respuesta[j].accion === 's'){
                         registro += "<tr>";
-                        //registro += "<td>" + respuesta[j].uniqid + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
-                        if(j<9){
-                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";// registro += "<td>" + respuesta.items[i].uniqid + "</td>";
-                        }else{
-                            registro += "<td>"+ "0" + ((respuesta[j].id)+1) + "</td>";
-                        }
-                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta[j].nombres + "</td>";// agregué respuesta
-                        registro += "<td>" + respuesta[j].primerApellido + "</td>";//agregué respuesta
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>";//agregué respuesta
-                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
-                        registro += "</tr>"
-                    } else {
-                        registro += "<tr>";
-                        //registro += "<td>" + respuesta[j].uniqid + "</td>";//agregué respuesta--respuesta.value.uniqid
                         if(j<9){
                         registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
                         }else{
                             registro += "<td>"+ "0" + ((respuesta[j].id)+1) + "</td>";
                         }
-                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";//respuesta.value.numeroDocumento
-                        registro += "<td>" + respuesta[j].nombres + "</td>"; //respuesta.value.nombres
-                        registro += "<td>" + respuesta[j].primerApellido + "</td>";  //respuesta.value.primerApellido
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>"; //respuesta.value.segundoApellido
+                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
+                        registro += "<td>" + respuesta[j].nombres + "</td>";
+                        registro += "<td>" + respuesta[j].primerApellido + "</td>";
+                        registro += "<td>" + respuesta[j].segundoApellido + "</td>";
+                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                        registro += "</tr>"
+                    } else {
+                        registro += "<tr>";
+                        if(j<9){
+                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
+                        }else{
+                            registro += "<td>"+ "0" + ((respuesta[j].id)+1) + "</td>";
+                        }
+                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
+                        registro += "<td>" + respuesta[j].nombres + "</td>"; 
+                        registro += "<td>" + respuesta[j].primerApellido + "</td>";  
+                        registro += "<td>" + respuesta[j].segundoApellido + "</td>"; 
                         registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
                         registro += "</tr>";
                     }
@@ -178,14 +173,16 @@ function atender(idElemento) {
         contentType: "application/json",
         complete: function (data) {
             console.log(data)
+            if(data.status=="201"){
             let mensaje = ""
             mensaje = "guardo accion con exito"
             console.log(mensaje)
+            window.location = 'registro.html?numeroDocumento=' + idElemento;
+            }else{
+                alert("no guardo acción. consulte con el administrador")
+            }
         } 
     })
-
-    window.location = 'registro.html?numeroDocumento=' + idElemento;
-
 }
 
 function atendiendo(idElemento) {

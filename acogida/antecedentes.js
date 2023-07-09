@@ -9,47 +9,38 @@ $(document).ready(function(){
     var numero=urlParams.get("numeroDocumento");
     //var fechaExpedicion=urlParams.get("fecha_expedicion");
     var fechaNacimiento=urlParams.get("fecha_nacimiento");
-    var nombres=urlParams.get("nombres");
-    var primerApellido=urlParams.get("primerApellido");
-    var segundoApellido=urlParams.get("segundoApellido");
 
 
     traerAntecedentes();
 
     $("#registro").click(function(){
-        //window.location='registro.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='registro.html?numeroDocumento='+numero;
     })
-    $("#datos_dem").click(function(){
-    
-        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    $("#datos_dem").click(function(){
+
+        window.location='datos_demograficos.html?numeroDocumento='+numero;
     })
     
     $("#vivienda").click(function(){
-        //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='vivienda.html?numeroDocumento=' + numero;
     })
     
     $("#antecedente").click(function(){
-        //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='antecedentes.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='antecedentes.html?numeroDocumento=' + numero + '&fecha_nacimiento=' + fechaNacimiento;
     })
     
     $("#programa").click(function(){
-        //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='programas.html?numeroDocumento=' + numero;
     })
     
     $("#formato").click(function(){
-        //window.location='formatos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='formatos.html?numeroDocumento=' + numero;
     })
 
     $("#boton_aumentar").click(function(){
@@ -186,7 +177,7 @@ $(document).ready(function(){
         var fechaLibertad=$("#fecha_libertad").val();
         fechaLib=new Date(fechaLibertad);
         fechaNac=new Date(fechaNacimiento);
-        fechaExp=new Date(fechaExpedicion);
+        //fechaExp=new Date(fechaExpedicion);
         fechaActual= new Date();
 
         if(fechaLib.getFullYear()>fechaActual.getFullYear()){
@@ -199,7 +190,7 @@ $(document).ready(function(){
                 alert("fecha Libertad erronea");
             }
         }
-        else if(fechaLib.getFullYear()>fechaNac.getFullYear()){
+        else if(fechaLib.getFullYear()<fechaNac.getFullYear()){
             alert("Revisar fecha Nacimiento en Datos Demográficos y Fecha Libertad en Antecedentes. Una de las dos está errada!!");
         }
         else if(fechaLib.getFullYear()==fechaNac.getFullYear()){
@@ -209,7 +200,7 @@ $(document).ready(function(){
                 alert("Revisar fecha Nacimiento en Datos Demográficos y Fecha Libertad en Antecedentes. Una de las dos está errada!!");
             }
         }
-        else if(fechaExp.getFullYear()>fechaLib.getFullYear()){
+        /*else if(fechaExp.getFullYear()>fechaLib.getFullYear()){
             alert("Revisar fecha Expedición en Registro y Fecha Libertad en Antecedentes. Una de las dos está errada!!");
         }
         else if(fechaExp.getFullYear()==fechaLib.getFullYear()){
@@ -218,7 +209,7 @@ $(document).ready(function(){
             }else if(fechaExp.getDate()>=fechaLib.getDate()){
                 alert("Revisar fecha Expedición en Registro y Fecha Libertad en Antecedentes. Una de las dos está errada!!");
             }
-        }
+        }*/
     })
 
 
@@ -272,17 +263,15 @@ $(document).ready(function(){
             alert("seleccionar si actualmente tiene un proceso en su contra");
         }
         else{
-            guardarAntecedentes();
+            guardarAntecedentes(sitio);
             //alert("Se guardó Antecedentes con éxito!!")
-            if(sitio==1){
-                //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento +'&nombres='+nombres+'&primerApellido='+primerApellido +'&segundoApellido='+segundoApellido;
+            /*if(sitio==1){
 
-                window.location='vivienda.html?numeroDocumento='+numero +'&fecha_nacimiento=' + fechaNacimiento +'&nombres='+nombres+'&primerApellido='+primerApellido +'&segundoApellido='+segundoApellido;
+                window.location='vivienda.html?numeroDocumento='+numero +'&fecha_nacimiento=' + fechaNacimiento;
             }else{
-                //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento=' + fechaNacimiento +'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-                window.location='programas.html?numeroDocumento='+numero +'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-            }
+                window.location='programas.html?numeroDocumento='+numero;
+            }*/
         }
     }
 
@@ -344,7 +333,7 @@ $(document).ready(function(){
 
 
 
-    function guardarAntecedentes(){
+    function guardarAntecedentes(sitio){
 
         if($("#proceso_actual1").prop('checked')){procesoAct="si"}else{procesoAct="no"};
         if($("#personeria1").prop('checked')){person="si"}else if($("#personeria2").prop('checked')){person="no"}else{person="no fue posible verificar"}
@@ -380,21 +369,23 @@ $(document).ready(function(){
 
             url:endpoint+"/antecedentes/save?numeroDocumento="+numero,
             type:'POST',
-            //data:JSON.stringify(informacion),
             data:datem,
             dataType:'json',
             contentType:"application/json",
+            timeout:600000,
             complete:function(data){
                 console.log(data.status)
-                let mensaje=""
                 if(data.status=="201"){
-                    mensaje="guardo Antecedentes con exito"
+                    alert("guardo Antecedentes con exito")
+                    if(sitio==1){
+                        window.location='vivienda.html?numeroDocumento='+numero;
+                    }else{
+                        window.location='programas.html?numeroDocumento='+numero;
+                    }
                     
                 }else{
-                    mensaje="problemas al guardar en base datos consulte con el administrador"
+                    alert("problemas al guardar en base datos consulte con el administrador")
                 }
-                alert(mensaje)
-                console.log(mensaje)
                 console.log(data)
                 
             }

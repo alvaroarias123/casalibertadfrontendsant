@@ -9,46 +9,36 @@ $(document).ready(function(){
     var numero=urlParams.get("numeroDocumento");
     //var fechaExpedicion=urlParams.get("fecha_expedicion");
     var fechaNacimiento=urlParams.get("fecha_nacimiento");
-    var nombres=urlParams.get("nombres");
-    var primerApellido=urlParams.get("primerApellido");
-    var segundoApellido=urlParams.get("segundoApellido");
 
-    //alert("okkk")
 
     $("#registro").click(function(){
-        //window.location='registro.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='registro.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='registro.html?numeroDocumento=' + numero;
     })
-    $("#datos_dem").click(function(){
-    
-        //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+    $("#datos_dem").click(function(){
+
+        window.location='datos_demograficos.html?numeroDocumento=' + numero;
     })
     
     $("#vivienda").click(function(){
-        //window.location='vivienda.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='vivienda.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='vivienda.html?numeroDocumento=' + numero + '&fecha_nacimiento=' + fechaNacimiento;
     })
     
     $("#antecedente").click(function(){
-        //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='antecedentes.html?numeroDocumento=' + numero + '&fecha_nacimiento=' + fechaNacimiento;
     })
     
     $("#programa").click(function(){
-        //window.location='programas.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='programas.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='programas.html?numeroDocumento=' + numero;
     })
     
     $("#formato").click(function(){
-        //window.location='formatos.html?numeroDocumento='+numero+'&fecha_expedicion='+fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
 
-        window.location='formatos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+        window.location='formatos.html?numeroDocumento=' + numero;
     })
 
     $("#boton_aumentar").click(function(){
@@ -100,17 +90,13 @@ $(document).ready(function(){
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas();
+            guardarViviendas(sitio);
             //alert("Se ha guardado viviendas")
-            if(sitio===1){
-                //window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-
-                window.location='antecedentes.html?numeroDocumento='+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            /*if(sitio===1){
+                window.location='antecedentes.html?numeroDocumento='+'&fecha_nacimiento='+fechaNacimiento;
             }else{
-                //window.location='datos_demograficos.html?numeroDocumento='+numero+'&fecha_expedicion=' + fechaExpedicion+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-
-                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-            }
+                window.location='datos_demograficos.html?numeroDocumento='+numero;
+            }*/
         }
     }
 
@@ -118,17 +104,17 @@ $(document).ready(function(){
         if($("#tipo_vivienda").val()=="0"){
             alert("seleccione en que tipo de vivienda duerme actualmente")
         }else{
-            guardarViviendas();
+            guardarViviendas(sitio);
             //alert("Se guardó viviendas con éxito!!");
-            if(sitio===1){
-                window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_nacimiento='+fechaNacimiento+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
+            /*if(sitio===1){
+                window.location='antecedentes.html?numeroDocumento='+numero+'&fecha_nacimiento='+fechaNacimiento;
             }else{
-                window.location='datos_demograficos.html?numeroDocumento='+numero+'&nombres='+nombres+'&primerApellido='+primerApellido+'&segundoApellido='+segundoApellido;
-            }
+                window.location='datos_demograficos.html?numeroDocumento='+numero;
+            }*/
         }        
     }
 
-    function guardarViviendas(){
+    function guardarViviendas(sitio){
 
         let tipo=$("#tipo_vivienda").val();
 
@@ -138,17 +124,19 @@ $(document).ready(function(){
             data:JSON.stringify(tipo),
             dataType:'json',
             contentType:"application/json",
+            timeout:600000,
             complete:function(data){
                 console.log(data.status)
-                let mensaje=""
                 if(data.status=="201"){
-                    mensaje="guardo Viviendas con exito"
-                    console.log(mensaje)
+                    alert("guardo Viviendas con exito")
+                    if(sitio===1){
+                        window.location='antecedentes.html?numeroDocumento='+ numero + '&fecha_nacimiento=' + fechaNacimiento;
+                    }else{
+                        window.location='datos_demograficos.html?numeroDocumento=' + numero;
+                    }
                 }else{
-                    mensaje="problemas al guardar en base datos consulte con el administrador"
-                    console.log(mensaje)
+                    alert("problemas al guardar en base datos consulte con el administrador")
                 }
-                alert(mensaje)
             }
         })
     }

@@ -60,8 +60,6 @@ $(document).ready(function(){
         $("#radio1").attr("checked",false)
         $("#radio2").attr("checked",true)
     }
-    //$("#radio1").val();
-    //$("radio2").prop("checked")=radio2;
 
     getUsuario(numero,tipo)
 
@@ -81,8 +79,7 @@ $(document).ready(function(){
     $("#guardar_recepcion3").click(function(){ 
 
         validarCampos();
-        //borrar();
-        //location.href=" ";
+
     })
 
 
@@ -161,8 +158,6 @@ $(document).ready(function(){
 
             guardarVisita()
 
-            //getUsuario(numero,tipo) // de esta manera traigo a usuario con la data y la guardo en variable info
-            //if(info.citas_solicitadas_uniqid==2){    //cambié === por ==
             if($("#modulo").val()=="2"){ 
                 console.log("escogió 2")
                 guardarBandejaRec(numero)
@@ -186,7 +181,6 @@ $(document).ready(function(){
             type:'GET',
             dataType:'json',
             success:function(data){
-                //info=data
                 console.log(data)
                 pintarRespuesta(data)
             }
@@ -290,7 +284,7 @@ $(document).ready(function(){
         let bandeja={
             numeroDocumento:numero,
             nombres:$("#nombres").val().trim(),
-            primerApellido:$("#primer_apellido").val().trim(), // es primerApellido
+            primerApellido:$("#primer_apellido").val().trim(), 
             segundoApellido:segApellido,
             accion:"s"
         }

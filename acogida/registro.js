@@ -9,46 +9,36 @@ $(document).ready(function () {
     var numero = urlParams.get("numeroDocumento");
     //var fechaExpedicion=urlParams.get("fecha_expedicion");
     //var fechaNacimiento=urlParams.get("fecha_nacimiento");
-    var nombres=urlParams.get("nombres");
-    var primerApellido=urlParams.get("primerApellido");
-    var segundoApellido=urlParams.get("segundoApellido");
 
 
-    var fechaExpedicion=$("#fecha_expedicion").val();
     $("#registro").click(function () {
-        //window.location = 'registro.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'registro.html?numeroDocumento=' + numero +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'registro.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
     })
+
     $("#datos_dem").click(function () {
-
-        //window.location = 'datos_demograficos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'datos_demograficos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
     })
 
     $("#vivienda").click(function () {
-        //window.location = 'vivienda.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'vivienda.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'vivienda.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion; 
     })
 
     $("#antecedente").click(function () {
-        //window.location = 'antecedentes.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'antecedentes.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'antecedentes.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
     })
 
     $("#programa").click(function () {
-        //window.location = 'programas.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'programas.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'programas.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
     })
 
     $("#formato").click(function () {
-        //window.location = 'formatos.html?numeroDocumento=' + numero +'&fecha_expedicion='+fechaExpedicion+'&fechaNacimiento='+fechaNacimiento+ '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
-
-        window.location = 'formatos.html?numeroDocumento=' + numero + '&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+        var fechaExpedicion=$("#fecha_expedicion").val();
+        window.location = 'formatos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
     })
 
 
@@ -85,12 +75,10 @@ $(document).ready(function () {
 
     })
 
-    //alert("prueba")
 
     var nombres = $("#nombres").val();
     var primerApellido = $("#primer_apellido").val();
     var segundoApellido = $("#segundo_apellido").val();
-    //var fechaNacimiento=urlParams.get("fecha_nacimiento");
 
     $("#radio2A").click(function () {
 
@@ -329,21 +317,6 @@ $(document).ready(function () {
 
     })
 
-    /*$("#info_complementaria").focus(function () {
-        var cal = $("#calle").val();
-        var nu = $("#8").val().trim();
-        var som = $("#A").val();
-        var bis = $("#BIS").val();
-        var aa = $("#AA").val();
-        var sur = $("#SUR").val();
-        var me = $("#9").val().trim();
-        var aaa = $("#AAA").val();
-        var mal = $("#25").val().trim();
-        var este = $("#ESTE").val();
-
-        $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este);
-    })*/
-
     $("#info_complementaria").blur(function () {
         var cal = $("#calle").val();
         var nu = $("#8").val().trim();
@@ -360,23 +333,6 @@ $(document).ready(function () {
         $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este + "   " + info);
 
     })
-
-    /*$("#localidad").focus(function () {
-        var cal = $("#calle").val();
-        var nu = $("#8").val().trim();
-        var som = $("#A").val();
-        var bis = $("#BIS").val();
-        var aa = $("#AA").val();
-        var sur = $("#SUR").val();
-        var me = $("#9").val().trim();
-        var aaa = $("#AAA").val();
-        var mal = $("#25").val().trim();
-        var este = $("#ESTE").val();
-        var info = $("#info_complementaria").val();
-
-        $("#direccion").val(cal + " " + nu + " " + som + " " + bis + " " + aa + " " + sur + " # " + me + " " + aaa + " - " + mal + "  " + este + "   " + info);
-
-    })*/
 
     function validarCampos(numero) {
 
@@ -436,19 +392,19 @@ $(document).ready(function () {
         }
         else {
     
-            guardarInformacion()
-            var fechaExpedicion=$("#fecha_expedicion").val();
+            guardarInformacion(numero)
+            //var fechaExpedicion=$("#fecha_expedicion").val();
             //borrar()
             //window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento='+fechaNacimiento +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
 
-            window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion  +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
+            //window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion  +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
     
         }
     
     }
     
 
-    function guardarInformacion() {
+    function guardarInformacion(numero) {
 
         if ($("#radio1A").prop("checked")) { condiciones = "s" } else { condiciones = "n" };
         if ($("#radio1B").prop("checked")) { aceptacion = "s" } else { aceptacion = "n" };
@@ -489,16 +445,16 @@ $(document).ready(function () {
             data: JSON.stringify(registro),
             dataType: 'json',
             contentType: "application/json",
+            timeout:600000,
             complete: function (data) {
                 console.log(data.status)
-                let mensaje = ""
                 if (data.status == "201") {
-                    mensaje = "guardo registro con exito"
+                    var fechaExpedicion=$("#fecha_expedicion").val();
+                    alert("guardo registro con exito")
+                    window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
                 } else {
-                    mensaje = "problemas al guardar en base datos consulte con el administrador"
+                    alert("problemas al guardar en base datos consulte con el administrador")
                 }
-                console.log(mensaje)
-                alert(mensaje)
             }
         })
     }
@@ -610,7 +566,7 @@ $(document).ready(function () {
         }
         else {
             guardarFormulario();
-            location.href = "/introduccion.html";
+            //location.href = "/introduccion.html";
     
         }
     
@@ -660,14 +616,12 @@ $(document).ready(function () {
             contentType: "application/json",
             complete: function (data) {
                 console.log(data.status)
-                let mensaje = ""
                 if (data.status == "201") {
-                    mensaje = "guardo registro con exito"
+                    alert("guardo registro con exito")
+                    location.href = "/introduccion.html";
                 } else {
-                    mensaje = "problemas al guardar en base datos consulte con el administrador"
+                    alert("problemas al guardar en base datos consulte con el administrador")
                 }
-                console.log(mensaje)
-                alert("mensaje")
             }
         })
     }
