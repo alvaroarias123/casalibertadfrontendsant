@@ -1,8 +1,17 @@
 //const endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; 
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; 
 
 
 $(document).ready(function () {
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
+
+    sessionStorage.removeItem("numero");
+    sessionStorage.removeItem("nombre");
+    sessionStorage.removeItem("primerApellido");
+    sessionStorage.removeItem("segundoApellido");
 
     var m = 0;
     var z;
@@ -75,9 +84,9 @@ $(document).ready(function () {
 
         $.ajax({
     
-            url: endpoint + "/bandaco/consulta",
-            type: "GET",
-            dataType: "json",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/bandaco/consulta",
+            type:"GET",
+            dataType:"json",
             success: function (respuesta) {
     
                 console.log(respuesta);
@@ -158,7 +167,7 @@ $(document).ready(function () {
 })
 
 function atender(idElemento) {
-    
+
 
     let info = {
         numeroDocumento: idElemento,
@@ -166,11 +175,13 @@ function atender(idElemento) {
     };
     $.ajax({
 
-        url: endpoint + "/bandaco/actualizar",
-        type: "PUT",
-        data: JSON.stringify(info),
-        dataType: 'json',
-        contentType: "application/json",
+        url:"http://172.21.21.27:9073/part1/CasaLAco/bandaco/actualizar",
+        type:"PUT",
+        data:JSON.stringify(info),
+        dataType:'json',
+        contentType:"application/json",
+        cache:false,
+        timeout:600000,
         complete: function (data) {
             console.log(data)
             if(data.status=="201"){
@@ -190,3 +201,5 @@ function atendiendo(idElemento) {
     window.location = 'registro.html?numeroDocumento=' + idElemento;
 
 }
+
+//registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + "," +respuesta[j].nombres +","+respuesta[j].primerApellido +","+respuesta[j].segundoApellido +")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";

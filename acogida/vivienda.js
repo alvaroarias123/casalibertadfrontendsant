@@ -1,7 +1,11 @@
 //var endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
     const valores1=window.location.search;
     console.log(valores1)
@@ -119,11 +123,12 @@ $(document).ready(function(){
         let tipo=$("#tipo_vivienda").val();
 
         $.ajax({
-            url:endpoint+"/vivienda/save?numeroDocumento="+numero+"&tipo="+tipo,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/vivienda/save?numeroDocumento="+numero+"&tipo="+tipo,
             type:'POST',
             data:JSON.stringify(tipo),
             dataType:'json',
             contentType:"application/json",
+            cache:false,
             timeout:600000,
             complete:function(data){
                 console.log(data.status)
@@ -144,7 +149,7 @@ $(document).ready(function(){
     function traerVivienda(numeros){
 
         $.ajax({
-            url:endpoint+"/vivienda/consulta?numeroDocumento="+numeros,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/vivienda/consulta?numeroDocumento="+numeros,
             type:"GET",
             dataType:"json",
             success:function(respuesta){

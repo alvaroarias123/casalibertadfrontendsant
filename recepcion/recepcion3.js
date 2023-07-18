@@ -1,9 +1,13 @@
 //var endpoint="localhost:7001/CasaLRec";
 //var endpoint="localhost:8085";
-var endpoint="http://172.21.21.27:9073/part1/CasaLRec";// /recepcion
+//var endpoint="http://172.21.21.27:9073/part1/CasaLRec";// /recepcion
 
 
 $(document).ready(function(){
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
     //$("body").hide().fadeIn(1000);
 
@@ -177,7 +181,7 @@ $(document).ready(function(){
 
         $.ajax({
 
-            url:endpoint+"/recepcion/consultar?numeroDocumento="+num+"&documentoTipo="+tipos,
+            url:"http://172.21.21.27:9073/part1/CasaLRec/recepcion/consultar?numeroDocumento="+num+"&documentoTipo="+tipos,
             type:'GET',
             dataType:'json',
             success:function(data){
@@ -215,7 +219,7 @@ $(document).ready(function(){
 
         $.ajax({
 
-            url:endpoint+"/recepcion/save?numeroDocumento="+numeroDocumento,
+            url:"http://172.21.21.27:9073/part1/CasaLRec/recepcion/save?numeroDocumento="+numeroDocumento,
             type:'POST',
             data:JSON.stringify(visita),
             dataType:'json',
@@ -291,11 +295,12 @@ $(document).ready(function(){
     
         $.ajax({
     
-            url:endpoint+"/bandejarec/save",
+            url:"http://172.21.21.27:9073/part1/CasaLRec/bandejarec/save",
             type:"POST",
             data:JSON.stringify(bandeja),
             dataType:'json',
             contentType:"application/json",
+            cache:false,
             complete:function(data){
                 console.log(data.status)
                 let mensaje=""

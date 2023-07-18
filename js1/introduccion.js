@@ -3,6 +3,11 @@ var endpoint="http://172.21.21.27:9073";
 
 $(document).ready(function(){
 
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
+
+    
     $("#boton_aumentar").click(function(){
 
         var ventana_ancho=$("#cuerpo").width();

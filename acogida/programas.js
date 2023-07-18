@@ -1,7 +1,11 @@
 //var endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
     const valores1=window.location.search;
     console.log(valores1)
@@ -176,7 +180,7 @@ $(document).ready(function(){
     function traerProgramas(){
 
         $.ajax({
-            url:endpoint+"/programas/consulta?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/programas/consulta?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(respuesta){
@@ -200,11 +204,12 @@ $(document).ready(function(){
 
             $.ajax({
 
-                url:endpoint+"/programas/save?numeroDocumento="+numero,
+                url:"http://172.21.21.27:9073/part1/CasaLAco/programas/save?numeroDocumento="+numero,
                 type:'POST',
                 data:JSON.stringify(informacion),
                 dataType:'json',
                 contentType:"application/json",
+                cache:false,
                 timeout:600000,
                 complete:function(data){
                     console.log(data.status)

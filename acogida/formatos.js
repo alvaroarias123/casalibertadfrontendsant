@@ -1,7 +1,11 @@
 //var endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; 
 
 $(document).ready(function(){
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
     const valores1=window.location.search;
     console.log(valores1)
@@ -88,44 +92,30 @@ $(document).ready(function(){
 
     function validarFormulario(sitio) {
 
-        if ($("#consentimiento_firma").val() == "0") {
-            alert("Seleccione opción ¿Usuario firmó consentimiento informado");
-        }
-        else if ($("#adjunto_concentimiento_firma").val() == false) {
-            alert(("Adjuntar Consentimiento Informado"))
-        }
-        else if ($("#consentimiento_firma_habeas").val() == "0") {
-            alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
-        }
-        else if ($("#adjunto_datos_habeas").val() == false) {
-            alert("Adjuntar Autorización Tratamiento Datos Personales");
-        }
-        else if ($("#consentimiento_uso_imagen").val() == "0") {
-            alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
-        }
-        else if ($("#medio_att_no_presencial").val() == "0") {
-            alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
-        }
-        else if ($("#estado").val() == "0") {
-            alert("Seleccione Estado")
-        }
-        else {
-            guardarFormatos(sitio);
-
-            /*if ($("#consentimiento_uso_imagen").val()==="si") { 
-                //guardarBandejaArticulacion(); SE ELIMINA POR EL MOMENTO HASTA CONSTRUCCIÖN DEL MÖDULO ARTICULACIÖN   
-                eliminarTurno();  
-            } else {
-                alert("Se guardaron Formatos")
+            if ($("#consentimiento_firma").val() == "0") {
+                alert("Seleccione opción ¿Usuario firmó consentimiento informado");
             }
-
-            if (sitio == 1) {
-                location.href = "/introduccion.html";
-            } else {
-                window.location = 'programas.html?numeroDocumento=' + numero;
-            }*/
-            
-        }
+            else if ($("#adjunto_concentimiento_firma").val() == false) {
+                alert(("Adjuntar Consentimiento Informado"))
+            }
+            else if ($("#consentimiento_firma_habeas").val() == "0") {
+                alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
+            }
+            else if ($("#adjunto_datos_habeas").val() == false) {
+                alert("Adjuntar Autorización Tratamiento Datos Personales");
+            }
+            else if ($("#consentimiento_uso_imagen").val() == "0") {
+                alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
+            }
+            else if ($("#medio_att_no_presencial").val() == "0") {
+                alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
+            }
+            else if ($("#estado").val() == "0") {
+                alert("Seleccione Estado")
+            }
+            else {
+                guardarFormatos(sitio);
+            }
     }
 
     function guardarFormatos(sitio){
@@ -171,7 +161,7 @@ $(document).ready(function(){
 
             $.ajax({
 
-                url:endpoint+"/formatos/save",
+                url:"http://172.21.21.27:9073/part1/CasaLAco/formatos/save",
                 type:'POST',
                 data:formdata,
                 dataType:"json",
@@ -184,8 +174,8 @@ $(document).ready(function(){
                 complete:function(data){
                     console.log(data)
                         if (data.status == "201") {
-                            if ($("#consentimiento_uso_imagen").val()==="si") { 
-                                //guardarBandejaArticulacion(); SE ELIMINA POR EL MOMENTO HASTA CONSTRUCCIÖN DEL MÖDULO ARTICULACIÖN   
+                            if ($("#consentimiento_uso_imagen").val()==="si") {
+                                //guardarBandejaArticulacion();
                                 eliminarTurno();  
                             } else {
                                 alert("Se guardaron Formatos")
@@ -210,15 +200,15 @@ $(document).ready(function(){
 
         let bandeja={
             numeroDocumento:numero,
-            nombres:nombres,
-            primer_apellido:primerApellido,
-            segundoApellido:segundoApellido,
+            nombres:sessionStorage.getItem("nombre"),
+            primerApellido:sessionStorage.getItem("primerApellido"),
+            segundoApellido:sessionStorage.getItem("segundoApellido"),
             accion:"s"
         }
 
         $.ajax({
 
-            url:endpoint+"/bandejaArtic/save",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/bandejaArtic/save",
             type:"POST",
             data:JSON.stringify(bandeja),
             dataType:'json',
@@ -244,7 +234,7 @@ $(document).ready(function(){
         }
         $.ajax({
 
-            url:endpoint+"/bandaco/delete",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/bandaco/delete",
             type:"DELETE",
             data:JSON.stringify(bandeja),
             dataType:'json',
@@ -266,7 +256,7 @@ $(document).ready(function(){
     function traerFormatos(){  
 
         $.ajax({
-            url:endpoint+"/formatos/consulta?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/formatos/consulta?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(respuesta){

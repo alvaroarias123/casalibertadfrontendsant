@@ -1,7 +1,6 @@
-var endpoint = "http://172.21.21.27:9073/part1";
+//var endpoint = "http://172.21.21.27:9073/part1";
 
 $(document).ready(function(){
-
 
     $("#boton_enviar").click(function(){
         validarCampos();
@@ -38,24 +37,42 @@ $(document).ready(function(){
 
     function enviarInformacion(){
 
-        let registro={
+        const nombre= $("#uname").val();
+        const password= $("#pwd").val();
+
+        
+        if(nombre=="admin" && password=="Prueba123456"){
+            var validacion="si";
+            sessionStorage.setItem("validacion",validacion);
+            location.href="/introduccion.html"
+        }else{
+            alert("Usuario no autorizado");
+            limpiarCajaLogging();
+
+        }
+
+        /*let registro={
             usuario: $("#uname").val().trim(),
             claveUsuario: $("#pwd").val() 
         }
 
-        $.ajax({
-            url: endpoint + "/aut/usuario/admin", 
+        $.ajax({              
+            url: http://172.21.21.27:9073/part1/aut/usuario/admin", 
             type: "POST",
             data: JSON.stringify(registro),
             dataType: "json",
             contentType: "application/json",
-            success: function (respuesta) {
+            //cache:false,
+            //timeout:600000,
+            complete: function (respuesta) {
                 console.log(respuesta);
                 let mens = ""
                 if(respuesta.mensaje=="ok"){
                     //var token=respuesta.data.token;
-                    //se supone que aquí envío token al backend!!
+                    //se supone que aquí guardo token (con sessionStorage) para envío token al backend!!//headers: {'Authorization': 'Bearer xxxxxxxxxxxxx'},esto para enviar cabeceras al backend!!
                     limpiarCajaLogging();
+                    //var validacion="si";
+                    //sessionStorage.setItem("validacion",validacion);
                     location.href = "/introduccion.html";
                 }else{
                     mens="Usuario no registrado!!!";
@@ -65,8 +82,8 @@ $(document).ready(function(){
                 
                 
             }  
-        })
-    }
+        })*/
+    }  
 
     function limpiarCajaLogging(){
         $("#uname").val("");

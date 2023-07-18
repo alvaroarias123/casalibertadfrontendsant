@@ -1,14 +1,20 @@
 //var endpoint="localhost:7001/CasaLAco";
-var endpoint = "http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint = "http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function () {
 
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
     const valores1 = window.location.search;
     console.log(valores1)
     const urlParams = new URLSearchParams(valores1);
     var numero = urlParams.get("numeroDocumento");
     //var fechaExpedicion=urlParams.get("fecha_expedicion");
     //var fechaNacimiento=urlParams.get("fecha_nacimiento");
+
+    
+
 
 
     $("#registro").click(function () {
@@ -76,10 +82,7 @@ $(document).ready(function () {
     })
 
 
-    var nombres = $("#nombres").val();
-    var primerApellido = $("#primer_apellido").val();
-    var segundoApellido = $("#segundo_apellido").val();
-
+    
     $("#radio2A").click(function () {
 
         deshabilitarCampos();
@@ -91,6 +94,7 @@ $(document).ready(function () {
     })
 
     mostrarInformacion(numero);
+
 
     $("#seleccione_guardar").click(function () {
 
@@ -440,13 +444,14 @@ $(document).ready(function () {
         }
         $.ajax({
     
-            url: endpoint + "/registro/save",
-            type: 'POST',
-            data: JSON.stringify(registro),
-            dataType: 'json',
-            contentType: "application/json",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/registro/save",
+            type:'POST',
+            data:JSON.stringify(registro),
+            dataType:'json',
+            contentType:"application/json",
+            //cache:false,
             timeout:600000,
-            complete: function (data) {
+            complete: function(data) {
                 console.log(data.status)
                 if (data.status == "201") {
                     var fechaExpedicion=$("#fecha_expedicion").val();
@@ -475,10 +480,10 @@ $(document).ready(function () {
     
     function mostrarInformacion(numeroDocumento) {
         $.ajax({
-            url: endpoint + "/registro/consulta?numeroDocumento=" + numeroDocumento,
-            type: "GET",
-            dataType: "json",
-            success: function (respuesta) {
+            url:"http://172.21.21.27:9073/part1/CasaLAco/registro/consulta?numeroDocumento=" + numeroDocumento,
+            type:"GET",
+            dataType:"json",
+            success: function(respuesta) {
                 console.log(respuesta);
                 pintarRespuesta(respuesta)
             }
@@ -609,12 +614,12 @@ $(document).ready(function () {
     
         $.ajax({
     
-            url: endpoint + "/registro/save",
-            type: 'POST',
-            data: JSON.stringify(registro),
-            dataType: 'json',
-            contentType: "application/json",
-            complete: function (data) {
+            url:"http://172.21.21.27:9073/part1/CasaLAco/registro/save",
+            type:'POST',
+            data:JSON.stringify(registro),
+            dataType:'json',
+            contentType:"application/json",
+            complete: function(data) {
                 console.log(data.status)
                 if (data.status == "201") {
                     alert("guardo registro con exito")

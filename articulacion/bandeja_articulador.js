@@ -1,98 +1,202 @@
 //const endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; // /acogida  //Aquí por el momento está en Acogida, no en articulación pues todavía no hay url
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; 
 
-$(document).ready(function(){
 
-    getTurnos();
+$(document).ready(function () {
 
-    $("#boton_aumentar").click(function(){
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
-        var ventana_ancho=$("#cuerpo").width();
-        var ventana_alto=$("#cuerpo").height();
+    sessionStorage.removeItem("numero");
+    sessionStorage.removeItem("nombre");
+    sessionStorage.removeItem("primerApellido");
+    sessionStorage.removeItem("segundoApellido");
 
-        console.log(ventana_ancho);
-        console.log(ventana_alto);
+    var m = 0;
+    var z;
+    getTurnos(m);
 
-        nuevoAncho=1.2*ventana_ancho;
-        nuevoAlto=1.2*ventana_alto;
+    $("#boton_aumentar").click(function () {
 
-        $("#cuerpo").width(nuevoAncho)
-        $("#cuerpo").height(nuevoAlto)
-        
-
-    })
-
-    $("#boton_disminuir").click(function(){
-
-        var ventana_ancho=$("#cuerpo").width();
-        var ventana_alto=$("#cuerpo").height();
+        var ventana_ancho = $("#cuerpo").width();
+        var ventana_alto = $("#cuerpo").height();
 
         console.log(ventana_ancho);
         console.log(ventana_alto);
 
-        nuevoAncho=ventana_ancho/1.2;
-        nuevoAlto=ventana_alto/1.2;
+        nuevoAncho = 1.2 * ventana_ancho;
+        nuevoAlto = 1.2 * ventana_alto;
+
+        $("#cuerpo").width(nuevoAncho)
+        $("#cuerpo").height(nuevoAlto)
+
+
+    })
+
+    $("#boton_disminuir").click(function () {
+
+        var ventana_ancho = $("#cuerpo").width();
+        var ventana_alto = $("#cuerpo").height();
+
+        console.log(ventana_ancho);
+        console.log(ventana_alto);
+
+        nuevoAncho = ventana_ancho / 1.2;
+        nuevoAlto = ventana_alto / 1.2;
 
         $("#cuerpo").width(nuevoAncho)
         $("#cuerpo").height(nuevoAlto)
 
     })
 
-    function getTurnos(){
+
+
+    $("#btn_siguiente").click(function () {
+        borrarTabla();
+        m = m + 1;
+        getTurnos(m);
+    })
+
+    $("#btn_anterior").click(function () {
+        if(m>=0){
+            borrarTabla();
+            m = m - 1;
+            if (m>=0) {
+                getTurnos(m);
+        }
+        }
+    })
+
+    $("#btn_primero").click(function () {
+        borrarTabla();
+        m = 0;
+        getTurnos(m);
+    })
+
+    $("#btn_ultimo").click(function () {
+        borrarTabla();
+        m = Math.floor(z / 10)
+        getTurnos(m);
+    })
+
+    function getTurnos(m) {
 
         $.ajax({
     
-            url:endpoint+"/bandejaArtic/consulta",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/bandejaArtic/consulta",
             type:"GET",
             dataType:"json",
-            success:function(respuesta){
+            success: function(respuesta) {
     
                 console.log(respuesta);
-    
-                pintarRespuesta(respuesta)
-    
+                pintarRespuesta(respuesta, m)  
             }
         })
     }
-
-    function pintarRespuesta(items){
-
+    
+    function borrarTabla() {
         let registro="";
+        for (i=0; i <10 ; i++) {
     
-        for(i=0;i<items.length;i++){
+                        registro += "<tr>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "<td>" + "" + "</td>";
+                        registro += "</tr>"
     
-            if(items[i].accion==='s'){
-                registro+="<tr>";
-                registro+="<td>"+items[i].uniqid+"</td>";
-                registro+="<td>"+items[i].numeroDocumento+"</td>";
-                registro+="<td>"+items[i].nombres+"</td>";
-                registro+="<td>"+items[i].primerApellido+"</td>";
-                registro+="<td>"+items[i].segundoApellido+"</td>";
-                registro+="<td class='text-center bot1'><button onclick='atender("+items[i].numeroDocumento+")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
-                registro+="</tr>"
-            }else{
-                registro+="<tr>";
-                registro+="<td>"+value.uniqid+"</td>";
-                registro+="<td>"+value.numeroDocumento+"</td>";
-                registro+="<td>"+value.nombres+"</td>";
-                registro+="<td>"+value.primerApellido+"</td>";
-                registro+="<td>"+value.segundoApellido+"</td>";
-                registro+="<td class='text-center bot2'><button onclick='atendiendo("+items[i].numeroDocumento+")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
-                registro+="</tr>";
+        }
+        $("#tbody").html(registro)
+    
+    }
+
+    function pintarRespuesta(respuesta, m) {  
+
+        z = respuesta.length;  
+        let registro = "";
+    
+        var i = m * 10;
+    
+        if (i >= 0) {
+    
+            if (respuesta.length > i) {
+    
+                if (respuesta.length < ((m * 10) + 10)) {
+                    var part = respuesta.length;  
+                } else {
+                    var part=(i*10)+10;
+                }
+                for (var j=i; j < part; j++) {   
+    
+                    if(respuesta[j].accion === 's'){
+                        registro += "<tr>";
+                        if(j<9){
+                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
+                        }else{
+                            registro += "<td>"+ "0" + ((respuesta[j].id)+1) + "</td>";
+                        }
+                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
+                        registro += "<td>" + respuesta[j].nombres + "</td>";
+                        registro += "<td>" + respuesta[j].primerApellido + "</td>";
+                        registro += "<td>" + respuesta[j].segundoApellido + "</td>";
+                        registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
+                        registro += "</tr>"
+                    } else {
+                        registro += "<tr>";
+                        if(j<9){
+                        registro += "<td>"+ "00" + ((respuesta[j].id)+1) + "</td>";
+                        }else{
+                            registro += "<td>"+ "0" + ((respuesta[j].id)+1) + "</td>";
+                        }
+                        registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
+                        registro += "<td>" + respuesta[j].nombres + "</td>"; 
+                        registro += "<td>" + respuesta[j].primerApellido + "</td>";  
+                        registro += "<td>" + respuesta[j].segundoApellido + "</td>"; 
+                        registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
+                        registro += "</tr>";
+                    }
+                }
+                $("#tbody").html(registro)
             }
         }
     }
-
+    
 })
 
-function atender(idElemento){
+/*function atender(idElemento) {   //OJO QUE TODAVÍA NO ESTÁ BACKEND DE ARTICULACIONES!!!!
 
-    alert("Módulo Articulación en construcción!!!")
-    location.href="/introduccion.html";
-}
 
-function atendiendo(idElemento){
+    let info = {
+        numeroDocumento: idElemento,
+        accion: 'n'
+    };
+    $.ajax({
 
-    alert("Módulo Articulación en construcción!!!")
-    location.href="/introduccion.html";
-}
+        url:"http://172.21.21.27:9073/part1/CasaLArtic/bandejaArtic/actualizar",
+        type:"PUT",
+        data:JSON.stringify(info),
+        dataType:'json',
+        contentType:"application/json",
+        cache:false,
+        //timeout:600000,
+        complete: function(data) {
+            console.log(data)
+            if(data.status=="201"){
+            let mensaje = ""
+            mensaje = "guardo accion con exito"
+            console.log(mensaje)
+            window.location = 'datos.html?numeroDocumento=' + idElemento;
+            }else{
+                alert("no guardo acción. consulte con el administrador")
+            }
+        } 
+    })
+}*/
+
+/*function atendiendo(idElemento) {
+
+    window.location = 'datos.html?numeroDocumento=' + idElemento;
+}*/

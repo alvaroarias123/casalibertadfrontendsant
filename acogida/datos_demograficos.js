@@ -1,7 +1,11 @@
 //const endpoint="localhost:7001/CasaLAco";
-var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
+//var endpoint="http://172.21.21.27:9073/part1/CasaLAco"; //  /acogida
 
 $(document).ready(function(){
+
+    if(!sessionStorage.getItem("validacion")){
+        location.href="/index.html";
+    }
 
     const valores1=window.location.search;
     console.log(valores1)
@@ -350,11 +354,12 @@ $(document).ready(function(){
 
         $.ajax({
 
-            url:endpoint+"/datos_demog/save?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/datos_demog/save?numeroDocumento="+numero,
             type:'POST',
             data:JSON.stringify(formulario),
             dataType:'json',
             contentType:"application/json",
+            cache:false,
             timeout:600000,
             complete:function(data){
                 var fechaNacimiento=$("#fecha_nacimiento").val();
@@ -378,7 +383,7 @@ $(document).ready(function(){
     function traerDatosDemograficos(){
 
         $.ajax({
-            url:endpoint+"/datos_demog/consulta?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/datos_demog/consulta?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(resultado){
@@ -441,7 +446,7 @@ $(document).ready(function(){
     function traerPaises(){
 
         $.ajax({
-            url:endpoint+"/paises/all",
+            url:"http://172.21.21.27:9073/part1/CasaLAco/paises/all",
             type:"GET",
             dataType:"json",
             success:function(respuesta){
