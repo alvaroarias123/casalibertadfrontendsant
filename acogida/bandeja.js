@@ -51,27 +51,28 @@ $(document).ready(function () {
     })
 
 
-
-    $("#btn_siguiente").click(function () {
-        borrarTabla();
-        m = m + 1;
-        getTurnos(m);
-    })
-
-    $("#btn_anterior").click(function () {
-        if(m>=0){
-            borrarTabla();
-            m = m - 1;
-            if (m>=0) {
-                getTurnos(m);
-        }
-        }
-    })
-
     $("#btn_primero").click(function () {
         borrarTabla();
         m = 0;
         getTurnos(m);
+    })
+
+    $("#btn_anterior").click(function () {
+        if(m>0){
+            borrarTabla();
+            m = m - 1;
+            if (m>=0) {
+                getTurnos(m);
+            }
+        }
+    })
+
+    $("#btn_siguiente").click(function () {
+        if(z>10){
+            borrarTabla();
+            m = m + 1;
+            getTurnos(m);
+        }
     })
 
     $("#btn_ultimo").click(function () {
@@ -88,7 +89,7 @@ $(document).ready(function () {
             type:"GET",
             dataType:"json",
             success: function (respuesta) {
-    
+                z=respuesta.length;
                 console.log(respuesta);
                 pintarRespuesta(respuesta, m)  
             }
@@ -141,7 +142,11 @@ $(document).ready(function () {
                         registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
                         registro += "<td>" + respuesta[j].nombres + "</td>";
                         registro += "<td>" + respuesta[j].primerApellido + "</td>";
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>";
+                        if(respuesta[j].segundoApellido!=null){
+                            registro += "<td>" + respuesta[j].segundoApellido + "</td>";
+                        }else{
+                            registro += "<td>" + " " + "</td>";
+                        }
                         registro += "<td class='text-center bot1'><button onclick='atender(" + respuesta[j].numeroDocumento + ")' class='btn' type='button' style='background-color:#9F2257; color: white;'>ATENDER</button></td>";
                         registro += "</tr>"
                     } else {
@@ -153,8 +158,12 @@ $(document).ready(function () {
                         }
                         registro += "<td>" + respuesta[j].numeroDocumento + "</td>";
                         registro += "<td>" + respuesta[j].nombres + "</td>"; 
-                        registro += "<td>" + respuesta[j].primerApellido + "</td>";  
-                        registro += "<td>" + respuesta[j].segundoApellido + "</td>"; 
+                        registro += "<td>" + respuesta[j].primerApellido + "</td>";
+                        if(respuesta[j].segundoApellido!=null){
+                                registro += "<td>" + respuesta[j].segundoApellido + "</td>";
+                            }else{
+                                registro += "<td>" + " " + "</td>";
+                            }   
                         registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + ")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";
                         registro += "</tr>";
                     }
@@ -201,5 +210,3 @@ function atendiendo(idElemento) {
     window.location = 'registro.html?numeroDocumento=' + idElemento;
 
 }
-
-//registro += "<td class='text-center bot2'><button onclick='atendiendo(" + respuesta[j].numeroDocumento  + "," +respuesta[j].nombres +","+respuesta[j].primerApellido +","+respuesta[j].segundoApellido +")' class='btn btn-warning' type='button'  style='color: white'>ATENDIENDO</button></td>";

@@ -95,17 +95,20 @@ $(document).ready(function(){
             if ($("#consentimiento_firma").val() == "0") {
                 alert("Seleccione opción ¿Usuario firmó consentimiento informado");
             }
-            else if ($("#adjunto_concentimiento_firma").val() == false) {
-                alert(("Adjuntar Consentimiento Informado"))
+            else if(($("#consentimiento_firma").val() === "si" || $("#consentimiento_firma").val() === "no") && $("#adjunto_concentimiento_firma").val()==""){
+                alert("Adjutar Consentimiento Informado");
             }
             else if ($("#consentimiento_firma_habeas").val() == "0") {
                 alert("Seleccione opción ¿Usuario firmó Autorización Tratamiento Datos Personales Habeas Data?");
             }
-            else if ($("#adjunto_datos_habeas").val() == false) {
+            else if(($("#consentimiento_firma_habeas").val() == "si" || $("#consentimiento_firma_habeas").val() == "no") &&  $("#adjunto_datos_habeas").val() == ""){
                 alert("Adjuntar Autorización Tratamiento Datos Personales");
             }
             else if ($("#consentimiento_uso_imagen").val() == "0") {
                 alert("Seleccionar ¿Usuario firmó Autorización de uso de Imagen?")
+            }
+            else if(($("#consentimiento_uso_imagen").val() == "si" || $("#consentimiento_uso_imagen").val() == "no") && $("#adjunto_uso_imagen").val()==""){
+                alert("Adjuntar Autorización Uso Imagen");
             }
             else if ($("#medio_att_no_presencial").val() == "0") {
                 alert("Seleccione ¿El ciudadano dispone de los siguientes elementos para realizar la atención no presencial?")
@@ -142,21 +145,41 @@ $(document).ready(function(){
                     formdata.append("consentimiento",file_data1[i]);
                 }
             }
-            
+            else {
+                const file = new File([new Blob()], 'null.txt', {
+                    lastModified: new Date(2020, 1, 1),
+                    type: "text/plain"
+                });
+                formdata.append("consentimiento",file);
+            }
+
             var imagen2=$("#adjunto_datos_habeas").val();
             if(imagen2!=""){
                 var file_data2=$('input[name="autorTratamDatos"]')[0].files;
                 for(var j=0;j<file_data2.length;j++){
                     formdata.append("autorTratamDatos",file_data2[j]);
                 }
+            }else {
+                const file = new File([new Blob()], 'null.txt', {
+                    lastModified: new Date(2020, 1, 1),
+                    type: "text/plain"
+                });
+                formdata.append("autorTratamDatos",file);
             }
 
-            var imagen3=$("#adjunto_uso_imagen").val();
+
+            var imagen3=$("#adjunto_uso_imagen").val();undefined
             if(imagen3!=""){
                 var file_data3=$('input[name="autorUsoImagen"]')[0].files;
                 for(var k=0;k<file_data3.length;k++){
                     formdata.append("autorUsoImagen",file_data3[k]);
                 }
+            }else {
+                const file = new File([new Blob()], 'null.txt', {
+                    lastModified: new Date(2020, 1, 1),
+                    type: "text/plain"
+                });
+                formdata.append("autorUsoImagen",file);
             }
 
             $.ajax({
@@ -174,17 +197,16 @@ $(document).ready(function(){
                 complete:function(data){
                     console.log(data)
                         if (data.status == "201") {
-                            if ($("#consentimiento_uso_imagen").val()==="si") {
-                                //guardarBandejaArticulacion();
-                                eliminarTurno();  
+                            if (($("#consentimiento_uso_imagen").val()==="si" || $("#consentimiento_uso_imagen").val()==="no") && ($("#consentimiento_firma_habeas").val()==="si" || $("#consentimiento_firma_habeas").val()==="no") && ($("#consentimiento_firma").val() === "si" || $("#consentimiento_firma").val() === "no") && sitio===1) {
+                                //guardarBandejaArticulacion(sitio);  111
+                                eliminarTurno(sitio);  //OJO: eliminar cuando se implemente guardarBandejaArticulacion 111!!
                             } else {
                                 alert("Se guardaron Formatos")
-                            }
-
-                            if (sitio == 1) {
-                                location.href = "/introduccion.html";
-                            } else {
-                                window.location = 'programas.html?numeroDocumento=' + numero;
+                                if (sitio == 1) {
+                                    location.href = "/introduccion.html";
+                                } else {
+                                    window.location = 'programas.html?numeroDocumento=' + numero;
+                                }
                             }
                         } else {
                             alert("problemas al guardar en base datos consulte con el administrador")
@@ -196,7 +218,7 @@ $(document).ready(function(){
             })
     }
 
-    function guardarBandejaArticulacion(){
+    function guardarBandejaArticulacion(sitio){
 
         let bandeja={
             numeroDocumento:numero,
@@ -219,6 +241,7 @@ $(document).ready(function(){
                 let mensaje=""
                 if(data.status=="201"){
                     mensaje="se guardo bandeja articulación"
+                    eliminarTurno(sitio)
                 }else{
                     mensaje="problemas al guardar bandeja articulación en base datos consulte con el administrador"
                     alert(mensaje);
@@ -228,7 +251,7 @@ $(document).ready(function(){
         })
     }
 
-    function eliminarTurno(){
+    function eliminarTurno(sitio){
         let bandeja={
             numeroDocumento:numero
         }
@@ -239,19 +262,54 @@ $(document).ready(function(){
             data:JSON.stringify(bandeja),
             dataType:'json',
             contentType:"application/json",
-            timeout:600000,
+            //timeout:600000,
             complete:function(data){
                 if(data.status=="204"){
                     alert("eliminó turno y guardo Formatos con exito")
+                    if (sitio == 1) {
+                        location.href = "/introduccion.html";
+                    } else {
+                        window.location = 'programas.html?numeroDocumento=' + numero;
+                    }
                 }else{
                     alert("problemas al eliminar en base datos consulte con el administrador")
                     
                 }
             }
         })
-
-
     }
+
+    base64ToArrayBuffer = (base64) => {
+        var binaryString = window.atob(base64);
+        var binaryLen = binaryString.length;
+        var bytes = new Uint8Array(binaryLen);
+        for (var i = 0; i < binaryLen; i++) {
+            var ascii = binaryString.charCodeAt(i);
+            bytes[i] = ascii;
+        }
+        return bytes;
+    }
+    
+    
+    
+    handleFileDataType = ext => {
+        switch (ext) {
+            case 'txt':
+                return 'text/plain'
+            case 'pdf':
+                return 'application/pdf';
+            case 'jpg':
+                return 'image/jpeg';
+            case 'jpeg':
+                return 'image/jpeg';
+            case 'png':
+                return 'image/png';
+            case 'tiff':
+                return 'image/tiff';
+            case 'docx':
+                return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        }
+    };
 
     function traerFormatos(){  
 
@@ -261,9 +319,13 @@ $(document).ready(function(){
             dataType:"json",
             success:function(respuesta){
                 console.log(respuesta);
+                
+                binaryData = new File([base64ToArrayBuffer(respuesta.adjunto_trat_datos)], 'file name', { type: handleFileDataType('txt'), lastModified: new Date() });
+                console.log(binaryData)
                 pintarRespuesta(respuesta)
             }
         })
+
     }
     
     function pintarRespuesta(items){

@@ -80,6 +80,7 @@ $(document).ready(function(){
 
     traerPaises();
     traerDatosDemograficos();
+    habilitarCajaDiscapacidad();
 
     $("#nacionalidad").click(function(){
         habilitarCajaPais();
@@ -139,22 +140,28 @@ $(document).ready(function(){
 
         if(fechaNac.getFullYear()>fechaActual.getFullYear()){
             alert("fecha nacimiento erronea");
+            $("#fecha_nacimiento").val("")
         }
         else if(fechaNac.getFullYear()==fechaActual.getFullYear()){
             if(fechaNac.getMonth()>fechaActual.getMonth()){
                 alert("fecha nacimiento erronea");
+                $("#fecha_nacimiento").val("")
             }else if(fechaNac.getDate()>fechaActual.getDate()){
                 alert("fecha nacimiento erronea");
+                $("#fecha_nacimiento").val("")
             }
         }
         else if(fechaNac.getFullYear()>fechaExp.getFullYear()){
             alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+            $("#fecha_nacimiento").val("")
         }
         else if(fechaNac.getFullYear()==fechaExp.getFullYear()){
             if(fechaNac.getMonth()>fechaExp.getMonth()){
                 alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+                $("#fecha_nacimiento").val("")
             }else if(fechaNac.getDate()>fechaExp.getDate()){
                 alert("Revisar fecha de nacimiento en Datos Demográficos y fecha expedición documento en Registro. Una de las dos está errada!! ")
+                $("#fecha_nacimiento").val("")
             }    
         }
     })

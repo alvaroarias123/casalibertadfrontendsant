@@ -102,7 +102,7 @@ $(document).ready(function () {
             alert("seleccionar condiciones para ser beneficiario del programa");
         }
         else if ($("#radio1A").prop("checked") == true) {
-            validarCampos(numero);
+            validarCampos();
         }
 
     })
@@ -126,12 +126,15 @@ $(document).ready(function () {
 
         if(fechaExp.getFullYear()>fechaActual.getFullYear()){
             alert("fecha expedición erronea");
+            $("#fecha_expedicion").val("")
         }
         else if(fechaExp.getFullYear()==fechaActual.getFullYear()){
             if(fechaExp.getMonth()>fechaActual.getMonth()){
                 alert("fecha expedición erronea");
+                $("#fecha_expedicion").val("")
             }else if(fechaExp.getDate()>=fechaActual.getDate()){
                 alert("fecha expedidión erronea");
+                $("#fecha_expedicion").val("")
             }
         }
 
@@ -338,7 +341,11 @@ $(document).ready(function () {
 
     })
 
-    function validarCampos(numero) {
+    $("#email").blur(function () {
+        validarCorreo($("#email").val().trim())
+    })
+
+    function validarCampos() {
 
         if ($("#canal_atencion").val() == "0") {
             alert("seleccione canal de atención")
@@ -382,9 +389,6 @@ $(document).ready(function () {
         else if($("#celular_2").val().trim()!="" && $("#celular_2").val().trim().length != 10){
             alert("Teléfono Celular 2 debe ser de 10 dígitos")
         }
-        else if ($("#email").val().trim() != "") {
-            validarCorreo($("#email").val().trim())
-        }
         else if ($("#nom_cont_usu").val().trim() == "") {
             alert("Llenar casilla Nombre Contacto Usuario")
         }
@@ -396,7 +400,7 @@ $(document).ready(function () {
         }
         else {
     
-            guardarInformacion(numero)
+            guardarInformacion()
             //var fechaExpedicion=$("#fecha_expedicion").val();
             //borrar()
             //window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion +'&fecha_nacimiento='+fechaNacimiento +'&nombres=' + nombres + '&primerApellido=' + primerApellido + '&segundoApellido=' + segundoApellido;
@@ -408,7 +412,7 @@ $(document).ready(function () {
     }
     
 
-    function guardarInformacion(numero) {
+    function guardarInformacion() {
 
         if ($("#radio1A").prop("checked")) { condiciones = "s" } else { condiciones = "n" };
         if ($("#radio1B").prop("checked")) { aceptacion = "s" } else { aceptacion = "n" };
@@ -439,8 +443,8 @@ $(document).ready(function () {
             segundo_apellido_cont: $("#seg_apell").val().trim(),
             cel_contacto: $("#cel_numero").val().trim(),
             parentesco: $("#parentesco").val().trim(),
-            observaciones: null
-            //observaciones:$("#observaciones").val(null)-----------------------------------------
+            //observaciones: null
+            observaciones:$("#observaciones").val()
         }
         $.ajax({
     
@@ -450,11 +454,12 @@ $(document).ready(function () {
             dataType:'json',
             contentType:"application/json",
             //cache:false,
-            timeout:600000,
+            //timeout:600000,
             complete: function(data) {
                 console.log(data.status)
                 if (data.status == "201") {
                     var fechaExpedicion=$("#fecha_expedicion").val();
+                    var numero=$("#numero_documento").val();
                     alert("guardo registro con exito")
                     window.location = 'datos_demograficos.html?numeroDocumento=' + numero + '&fecha_expedicion=' + fechaExpedicion;
                 } else {
@@ -538,7 +543,7 @@ $(document).ready(function () {
         if (items.nombre_contacto === null) { $("#nom_cont_usu").val("") } else { $("#nom_cont_usu").val(items.nombre_contacto) };
         if (items.primer_apellido_cont === null) { $("#prim_apell").val("") } else { $("#prim_apell").val(items.primer_apellido_cont) };
         if (items.segundo_apellido_cont === null) { $("#seg_apell").val("") } else { $("#seg_apell").val(items.segundo_apellido_cont) };
-        if (items.cel_contacto === null) { $("#cel_numero").val("") } else { $("#cel_numero").val(items.cel_contacto) };
+        if (items.cel_contacto === 0) { $("#cel_numero").val("") } else { $("#cel_numero").val(items.cel_contacto) };
         if (items.parentesco === null) { $("#parentesco").val("") } else { $("#parentesco").val(items.parentesco) };
         if (items.observaciones === null) { $("#observaciones").val("") } else { $("#observaciones").val(items.observaciones) }
         if ($("#radio1A").prop("checked") == false) {
@@ -554,8 +559,10 @@ $(document).ready(function () {
         var expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
         var esValido = expReg.test(email);
         if (esValido == false) {
-            alert("Correo no es válido!!!")
+            alert("Correo no es válido!!!");
+            $("#email").val("")
         }
+        
     }
 
     function validarCamposMinimos() {
@@ -593,21 +600,21 @@ $(document).ready(function () {
             nombres: $("#nombres").val(),
             primer_apellido: $("#primer_apellido").val(),
             segundo_apellido: $("#segundo_apellido").val(),
-            fecha_expedicion: null,
+            fecha_expedicion: null,//"2010-09-10",
             direccion: null,
             info_complementaria: null,
             verificacion_direccion: null,
-            localidad: null,
+            localidad: null,  //"0",
             barrio: null,
-            estrato: null,
+            estrato: null, //"0,"
             tel_fijo: 0,
             cel_1: $("#celular_1").val(),
             cel_2: $("#celular_2").val(),
             correo: null,
-            nombre_contacto: null,
-            primer_apellido_cont: null,
+            nombre_contacto: " ",
+            primer_apellido_cont: " ",
             segundo_apellido_cont: null,
-            cel_contacto: null,
+            cel_contacto: 0, //null,
             parentesco: null,
             observaciones: $("#observaciones").val()
         }
@@ -622,10 +629,35 @@ $(document).ready(function () {
             complete: function(data) {
                 console.log(data.status)
                 if (data.status == "201") {
-                    alert("guardo registro con exito")
-                    location.href = "/introduccion.html";
+                    //alert("guardo registro con exito")
+                    //location.href = "/introduccion.html";
+                    eliminarTurno()
                 } else {
                     alert("problemas al guardar en base datos consulte con el administrador")
+                }
+            }
+        })
+    }
+
+    function eliminarTurno(){
+        let bandeja={
+            numeroDocumento:numero
+        }
+        $.ajax({
+
+            url:"http://172.21.21.27:9073/part1/CasaLAco/bandaco/delete",
+            type:"DELETE",
+            data:JSON.stringify(bandeja),
+            dataType:'json',
+            contentType:"application/json",
+            //timeout:600000,
+            complete:function(data){
+                if(data.status=="204"){
+                    alert("Guardó Registro y Eliminó turno con Exito!!")
+                    location.href = "/introduccion.html";
+                }else{
+                    alert("problemas al eliminar en base datos consulte con el administrador")
+                    
                 }
             }
         })
