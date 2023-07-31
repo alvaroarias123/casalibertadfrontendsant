@@ -85,8 +85,8 @@ $(document).ready(function () {
 
         $.ajax({
     
-            // url:"http://localhost:9073/part1/CasaLAco/bandaco/consulta",
-            url:"http://localhost:9073/bandaco/consulta",
+            url:"http://localhost:9073/part1/CasaLAco/bandaco/consulta",
+            // url:"http://localhost:9073/bandaco/consulta",
             type:"GET",
             dataType:"json",
             success: function (respuesta) {

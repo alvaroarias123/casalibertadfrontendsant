@@ -230,8 +230,8 @@ $(document).ready(function () {
       };
   
       $.ajax({
-        // url:"http://172.21.21.27:9073/part1/CasaLAco/bandejaArtic/save",
-        url: "http://localhost:9073/bandejaArtic/save",
+        url:"http://172.21.21.27:9073/part1/CasaLAco/bandejaArtic/save",
+        // url: "http://localhost:9073/bandejaArtic/save",
         type: "POST",
         data: JSON.stringify(bandeja),
         dataType: "json",
@@ -283,8 +283,8 @@ $(document).ready(function () {
   
     function traerFormatos() {
       $.ajax({
-        // url:"http://172.21.21.27:9073/part1/CasaLAco/formatos/consulta?numeroDocumento="+numero,
-        url: "http://localhost:9073/formatos/consulta?numeroDocumento=" + numero,
+        url:"http://172.21.21.27:9073/part1/CasaLAco/formatos/consulta?numeroDocumento="+numero,
+        // url: "http://localhost:9073/formatos/consulta?numeroDocumento=" + numero,
         type: "GET",
         dataType: "json",
         success: function (respuesta) {

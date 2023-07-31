@@ -284,8 +284,8 @@ $(document).ready(function(){
     function traerAntecedentes(){
         console.log("b")
         $.ajax({
-            // url:"http://172.21.21.27:9073/part1/CasaLAco/antecedentes/consultar?numeroDocumento="+numero,
-            url:"http://localhost:9073/antecedentes/consultar?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/antecedentes/consultar?numeroDocumento="+numero,
+            // url:"http://localhost:9073/antecedentes/consultar?numeroDocumento="+numero,
             type:"GET",
             dataType:"json",
             success:function(respuesta){
@@ -372,8 +372,8 @@ $(document).ready(function(){
         datem=JSON.stringify(informacion)
         $.ajax({
 
-            // url:"http://172.21.21.27:9073/part1/CasaLAco/antecedentes/save?numeroDocumento="+numero,
-            url:"http://localhost:9073/antecedentes/save?numeroDocumento="+numero,
+            url:"http://172.21.21.27:9073/part1/CasaLAco/antecedentes/save?numeroDocumento="+numero,
+            // url:"http://localhost:9073/antecedentes/save?numeroDocumento="+numero,
             type:'POST',
             data:datem,
             dataType:'json',
